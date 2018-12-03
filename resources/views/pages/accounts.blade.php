@@ -110,7 +110,7 @@
                                       </thead>
                                       <tbody>
 
-                                            @if (count($accounts)>1)
+                                            @if (count($accounts)>=1)
                                                 @foreach ($accounts as $account)
                                                     <tr>
                                                
@@ -119,7 +119,32 @@
                                                             <td>{{$account -> email}}</td>
                                                             <td>Admin</td>
                                                             <td class="text-center">
-                                                                <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm" style="font-size: 1rem;"></button>
+                                                                <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm"  data-toggle="modal" data-target="#modalLRFormDemo1"style="font-size: 1rem;"></button>
+                                                                  <!--Modal: Login / Register Form Demo-->
+                            <div class="modal fade" id="modalLRFormDemo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                            aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Edit Account</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                            <div class="col-lg-4 col-sm-12">
+                                                   
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Modal: Login / Register Form Demo-->
+
+
                                                             </td>
                                                             <td class="text-center">
                                                                 <button type="button" class="fa fa-trash btn btn-red btn-sm" style="font-size: 1rem;"></button>
