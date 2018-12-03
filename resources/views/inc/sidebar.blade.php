@@ -89,7 +89,7 @@
 
                             <a href="items">
                                     <h6 class="mb-2">
-                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Stack Adjustment
+                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Stock Adjustment
                                     <h6>        
                             </a>
 

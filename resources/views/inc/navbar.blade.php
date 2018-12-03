@@ -1,10 +1,10 @@
  <!-- Navbar -->
- <nav class="navbar fixed-top navbar-expand-lg navbar-light orange base scrolling-navbar">
+ <nav class="navbar fixed-top navbar-expand-lg navbar-light scrolling-navbar" style="background-color: #b20a2c;">
     <div class="container-fluid">
   
         <!-- Brand -->
         <a class="navbar-brand mx-auto txt">
-           <b>Cafe de' Nilo</b>
+           <h5 style=" color:#fffbd5; font-weight:500;"><b>CAFE DE' NILO</b></h5>
         </a>
   
         <!-- Collapse -->
