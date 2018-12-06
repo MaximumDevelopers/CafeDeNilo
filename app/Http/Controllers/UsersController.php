@@ -58,7 +58,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        
+        $accounts = account::find($id);
+        return view ('pages.accounts')->with('accounts', $accounts);
     }
 
     /**
@@ -81,6 +82,8 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $accounts = account::find($id);
+        $accounts->delete();
+        return view ('pages.accounts')->with('success', 'removed');
     }
 }

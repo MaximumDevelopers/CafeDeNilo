@@ -56,8 +56,8 @@ return [
     */
 
     'from' => [
-        'address' => env('address', 'daniellebote@gmail.com'),
-        'name' => env('name', 'Danielle Bote'),
+        'address' => env('address', 'cafedenilostore@gmail.com'),
+        'name' => env('name', 'Cafe De Nilo'),
     ],
 
     /*
@@ -84,8 +84,8 @@ return [
     |
     */
 
-    'username' => env('MAIL_USERNAME', 'daniellerelox@gmail.com'),
-    'password' => env('MAIL_PASSWORD', '********'),
+    'username' => env('MAIL_USERNAME', 'cafedenilostore@gmail.com'),
+    'password' => env('MAIL_PASSWORD', 'cdn12345'),
 
 
 

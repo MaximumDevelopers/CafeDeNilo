@@ -204,13 +204,15 @@
                                             @if (count($accounts)>=1)
                                                 @foreach ($accounts as $account)
                                                     <tr>
-                                               
+                                                            
                                                             <td>{{$account -> first_name}}</td>
                                                             <td>{{$account -> last_name}}</td>
                                                             <td>{{$account -> email}}</td>
                                                             <td>Admin</td>
+                                                            
                                                             <td class="text-center">
-                                                                <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm"  data-toggle="modal" data-target="#modalLRFormDemo1" style="font-size: 1rem;"></button>
+                                                            <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm"  data-toggle="modal" data-target="#modalLRFormDemo1" style="font-size: 1rem;"></button>
+
                                                                   <!--Edit Account-->
                             <div class="modal fade" id="modalLRFormDemo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                             aria-hidden="true">
