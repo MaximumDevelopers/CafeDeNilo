@@ -126,12 +126,12 @@
                                                             
                                                             <td>{{$account -> first_name}}</td>
                                                             <td>{{$account -> last_name}}</td>
-                                                            <td >{{$account -> email}}</td>
+                                                            <td>{{$account -> email}}</td>
                                                             <td>Admin</td>
                                                             
                                                             <td>
                                                             <div class="text-center">
-                                                                <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm"  data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
+                                                                <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm" data-fname="{{$account -> first_name}}" data-lname="{{$account -> last_name}}" data-email="{{$account -> email}}" data-pword="{{$account -> password}}"  data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
                                                             </div>
                                                             <!--Edit Account-->
                                                             <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -144,7 +144,7 @@
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
-                                                                        <form  method="post" action="{{route('accounts.update',$account->id)}}">
+                                                                        <form  method="POST" action="{{route('accounts.update',$account->id)}}">
                                                                         @csrf
                                                                         @method('PATCH')
                                                                         <div class="modal-body mx-3">
@@ -179,7 +179,7 @@
                                                                             <div class="form-group md-form ml-0 mr-0">
                                                                                     <i class="fa fa-envelope prefix grey-text"></i>
                                                                                     <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
-                                                                                <label for="email" class="ml-8">{{ __('E-Mail Address') }}</label>
+                                                                                    <label for="email" class="float ml-8">{{ __('Email Address') }}</label>
                                                     
                                                             
                                                                                     @if ($errors->has('email'))
