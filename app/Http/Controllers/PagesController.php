@@ -31,4 +31,8 @@ class PagesController extends Controller
     {
         return view('login');
     }
+    public function categories()
+    {
+        return view('pages.categories');
+    }
 }
