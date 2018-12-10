@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <a href="items">
                                 
-                                <a href="items">
+                                <a href="Msample">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Sales summary
                                         <h6>        

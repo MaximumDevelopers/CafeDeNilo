@@ -22,10 +22,7 @@ class PagesController extends Controller
     {
         return view('pages.MS');
     }
-    public function accounts()
-    {
-        return view('pages.accounts');
-    }
+    
 
     public function login()
     {

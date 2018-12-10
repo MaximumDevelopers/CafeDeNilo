@@ -13,12 +13,24 @@
 
 Route::get('/', 'PagesController@index');
 
+Route::get('/Msample', 'PagesController@Msample')->middleware('auth','admin');
+
 Route::get('/about', 'PagesController@about');
 
-Route::get('/Msample', 'PagesController@Msample');
+
  
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('accounts', 'UsersController');
+Route::resource('accounts', 'UsersController')->middleware('auth');
+
+Route::get('/admin', function(){
+    echo "Hello Admin";
+})->middleware('auth','admin');
+ 
+Route::get('/barista', function(){
+    echo "Hello Barista";
+})->middleware('auth','barista');
+
+ 

@@ -71,6 +71,16 @@
                                     <div class="form-group md-form ml-0 mr-0">
                                         
             
+                                        <select name="role" class="form-control" >
+                                            <option value="admin">Admin</option>
+                                            <option value="barista">Barista</option>
+                                        </select>
+                                       
+                                    </div>
+
+                                    <div class="form-group md-form ml-0 mr-0">
+                                        
+            
                                             <i class="fa fa-lock prefix grey-text"></i>
                                             <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
                                             <label for="password" class="ml-8">{{ __('Password') }}</label>
@@ -112,7 +122,7 @@
                                           <th scope="col">Firstname</th>
                                           <th scope="col">Lastname</th>
                                           <th scope="col">Email</th>
-                                          <th scope="col">Type</th>
+                                          <th scope="col">Role</th>
                                           <th scope="col"></th>
                                           <th scope="col"></th>
                           
@@ -127,11 +137,11 @@
                                                             <td>{{$account -> first_name}}</td>
                                                             <td>{{$account -> last_name}}</td>
                                                             <td >{{$account -> email}}</td>
-                                                            <td>Admin</td>
+                                                            <td>{{$account -> role}}</td>
                                                             
                                                             <td>
                                                             <div class="text-center">
-                                                                <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm"  data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
+                                                                <button id="dan2" type="button" class=" edit_btn fa fa-user-edit btn btn-yellow  btn-sm" data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
                                                             </div>
                                                             <!--Edit Account-->
                                                             <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -178,7 +188,7 @@
                                                     
                                                                             <div class="form-group md-form ml-0 mr-0">
                                                                                     <i class="fa fa-envelope prefix grey-text"></i>
-                                                                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
+                                                                                    <input id="{{$account -> email}}" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
                                                                                 <label for="email" class="ml-8">{{ __('E-Mail Address') }}</label>
                                                     
                                                             

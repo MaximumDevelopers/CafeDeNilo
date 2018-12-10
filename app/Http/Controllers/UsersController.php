@@ -20,6 +20,12 @@ class UsersController extends Controller
         return view('pages.accounts')->with('accounts', $accounts);
     }
 
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
+    
+
     /**
      * Show the form for creating a new resource.
      *
