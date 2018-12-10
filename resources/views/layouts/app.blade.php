@@ -25,12 +25,12 @@
         </header>
         <main class="pt-5 mx-lg-5">
             <div class="container-fluid mt-5">
-             <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-             <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
+            
                 @yield('content')
                
             </div>
         </main>
-    
+        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
     </body>
 </html>

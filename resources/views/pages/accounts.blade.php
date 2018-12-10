@@ -10,10 +10,10 @@
                                 <h2 id="ct1" class="card-title">Manage User Account</h2>
                                 
                                 <button type="button" class="btn btn-primary btn-sm ml-auto btnLogin" 
-                                data-toggle="modal" data-target="#modalLRFormDemo">Add Account
+                                data-toggle="modal" data-target="#modalAdd">Add Account
                                 </button>
                         </div>
-                    <div class="modal fade" id="modalLRFormDemo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                    <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                         aria-hidden="true">
                         <div class="modal-dialog" role="document">
                             <div class="modal-content">
@@ -24,86 +24,9 @@
                                     </button>
                                 </div>
                                 
-                              <!--  <form method="POST" action="{{ route('register') }}">
-                                        @csrf
-
-                               
-                                <div class="modal-body mb-1">
-                                       
-                                        <div class="md-form ml-0 mr-0">
-                                            <i class="fa fa-user prefix grey-text"></i>
-                                            <input id="first_name" type="text" class=" form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" required autofocus>
-                                            <label for="first_name" class="ml-8">Enter Firstname</label>
-
-                                            @if ($errors->has('first_name'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('first_name') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="md-form ml-0 mr-0">
-                                            
-                                                <i class="fa fa-user prefix grey-text"></i>
-                                            <input id="last_name" type="text" class=" form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" required >
-                                            <label for="last_name" class="ml-8">Enter Lastname</label>
-
-                                            @if ($errors->has('last_name'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('last_name') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="md-form ml-0 mr-0">
-                                            <i class="fa fa-envelope prefix grey-text"></i>
-                                            <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required >
-                                            <label for="email" class="ml-8">Enter Email</label>
-                                           
-
-                                            @if ($errors->has('email'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('email') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-                                       
-
-                                        <div class="md-form ml-0 mr-0">
-                                            <i class="fa fa-lock prefix grey-text"></i>
-                                            <input id="password" type="password" class=" form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required >
-                                            <label for="password" class="ml-8">Enter Password</label>
-
-                                            @if ($errors->has('password'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('password') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                        <div class="md-form ml-0">
-                                            <i class="fa fa-lock prefix grey-text"></i>   
-                                            <input id="password-confirm" type="password" class=" form-control{{ $errors->has('password-confirm') ? ' is-invalid' : '' }}" name="password-confirm" required >
-                                            <label for="password-confirm" class="ml-8">Confirm Password</label>
-
-                                            @if ($errors->has('password-confirm'))
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('password-confirm') }}</strong>
-                                                </span>
-                                            @endif
-                                        </div>
-
-                                    </div>
-                                <div class="modal-footer">
-                                    <button type="button" class=" form-group btn btn-secondary" data-dismiss="modal">Close</button>
-                                    <button type="submit" class=" form-group btn btn-primary">Add account</button>
-                                </div>
-                            </form> !-->
-
-
                             <form method="POST" action="{{ route('register') }}">
                                     @csrf
-            
+                                    @method('')
                                     <div class="modal-body mb-1">
                                     <div class="form-group md-form ml-0 mr-0">
                                             <i class="fa fa-user prefix grey-text"></i>
@@ -121,7 +44,7 @@
             
                                     <div class="form-group md-form ml-0 mr-0">
                                                 <i class="fa fa-user prefix grey-text"></i>
-                                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required autofocus>
+                                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required>
                                                 <label for="last_name" class="ml-8">{{ __('Last Name') }}</label>
                                                 @if ($errors->has('last_name'))
                                                     <span class="invalid-feedback" role="alert">
@@ -161,8 +84,7 @@
                                     </div>
             
                                     <div class="form-group md-form ml-0 mr-0">
-                                        
-            
+
                                             <i class="fa fa-lock prefix grey-text"></i>
                                             <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                             <label for="password-confirm" class="ml-8">{{ __('Confirm Password') }}</label>
@@ -176,9 +98,6 @@
                                         </div>
 
                                 </form>
-
-
-
 
                             </div>
                         </div>
@@ -207,69 +126,142 @@
                                                             
                                                             <td>{{$account -> first_name}}</td>
                                                             <td>{{$account -> last_name}}</td>
-                                                            <td>{{$account -> email}}</td>
+                                                            <td >{{$account -> email}}</td>
                                                             <td>Admin</td>
                                                             
-                                                            <td class="text-center">
-                                                            <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm"  data-toggle="modal" data-target="#modalLRFormDemo1" style="font-size: 1rem;"></button>
+                                                            <td>
+                                                            <div class="text-center">
+                                                                <button type="button" class="fa fa-user-edit btn btn-yellow  btn-sm"  data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
+                                                            </div>
+                                                            <!--Edit Account-->
+                                                            <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                            aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header yellow darken-2">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Edit Account</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <form  method="post" action="{{route('accounts.update',$account->id)}}">
+                                                                        @csrf
+                                                                        @method('PATCH')
+                                                                        <div class="modal-body mx-3">
 
-                                                                  <!--Edit Account-->
-                            <div class="modal fade" id="modalLRFormDemo1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header yellow darken-2">
-                                        <h5 class="modal-title" id="exampleModalLabel">Edit Account</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                            
-                                                   
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                        <button type="button" class="btn btn-primary">Save changes</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Edit Account-->
-
-
+                                                                            <div class="form-group md-form ml-0 mr-0">
+                                                                                    <i class="fa fa-user prefix grey-text"></i>
+                                                                                    <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{$account->first_name}}" required >
+                                                                                    <label for="first_name" class="ml-8">{{ __('First Name') }}</label>
+                                                    
+            
+                                                                                    @if ($errors->has('first_name'))
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $errors->first('first_name') }}</strong>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                
+                                                                            </div>
+                                                    
+                                                                            <div class="form-group md-form ml-0 mr-0">
+                                                                                        <i class="fa fa-user prefix grey-text"></i>
+                                                                                        <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{$account->last_name}}" required>
+                                                                                        <label for="last_name" class="ml-8">{{ __('Last Name') }}</label>
+                                                                                        
+                                                                                        @if ($errors->has('last_name'))
+                                                                                            <span class="invalid-feedback" role="alert">
+                                                                                                <strong>{{ $errors->first('last_name') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    
+                                                                            </div>
+                                                    
+                                                                            <div class="form-group md-form ml-0 mr-0">
+                                                                                    <i class="fa fa-envelope prefix grey-text"></i>
+                                                                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
+                                                                                <label for="email" class="ml-8">{{ __('E-Mail Address') }}</label>
+                                                    
+                                                            
+                                                                                    @if ($errors->has('email'))
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $errors->first('email') }}</strong>
+                                                                                        </span>
+                                                                                    @endif
+                                                                               
+                                                                            </div>
+                                                    
+                                                                            <div class="form-group md-form ml-0 mr-0">
+                                                                                
+                                                    
+                                                                                    <i class="fa fa-lock prefix grey-text"></i>
+                                                                                    <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                                                                    <label for="password" class="ml-8">{{ __('Password') }}</label>
+                                                    
+                                                                                    @if ($errors->has('password'))
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $errors->first('password') }}</strong>
+                                                                                        </span>
+                                                                                    @endif
+                                                                               
+                                                                            </div>
+                                                    
+                                                                            <div class="form-group md-form ml-0 mr-0">
+                                                                                
+                                                    
+                                                                                    <i class="fa fa-lock prefix grey-text"></i>
+                                                                                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                                                                    <label for="password-confirm" class="ml-8">{{ __('Confirm Password') }}</label>
+                                                                            </div>
+                                                
+                                                                            </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                                        </div>
+                                                                    </form>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Edit Account-->
                                                             </td>
+                                                            
+                                                            <!--Delete Account-->
                                                             <td class="text-center">
-                                                                <button type="button" class="fa fa-trash btn btn-red btn-sm" data-toggle="modal" data-target="#modalLRFormDemo2" style="font-size: 1rem; "></button>
-                                                                <!--Delete Account-->
-                            <div class="modal fade" id="modalLRFormDemo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                            aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                    <div class="modal-header" style="background-color: #b71c1c;">
-                                        <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    <div class="modal-body">
-                                            
-                                                   <h4><p>Are you sure you want to delete this account?</p></h4>
-
-
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                        <button type="button" class="btn btn-primary">Delete</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <!--Delete Account-->
+                                                                    <form action="{{ route('accounts.destroy', $account -> id) }}" method="post">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <button type="submit" class="fa fa-trash btn btn-red btn-sm" data-toggle="modal" data-target="#modalLRFormDemo2" style="font-size: 1rem; "></button>
+                                                                    </form>
+                                                                <button type="button" class="fa fa-trash btn btn-blue btn-sm" data-toggle="modal" data-target="#modalLRFormDemo2" style="font-size: 1rem; "></button>
+                                                                
+                                                                <div class="modal fade" id="modalLRFormDemo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog" role="document">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header" style="background-color: #b71c1c;">
+                                                                            <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <h4><p>Are you sure you want to delete this account?</p></h4>
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                                            <form action="{{ route('accounts.destroy', $account -> id) }}" method="post">
+                                                                                    @csrf
+                                                                                    @method('DELETE')
+                                                                            <button type="submit" class="btn btn-primary">Delete</button>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--Delete Account-->
                                                             </td>
                                                     </tr>
-                                                          
-                                            
+
                                                 @endforeach
                                             @else
                                             <p>No post</p>
@@ -295,14 +287,5 @@
                 </div>
         
     </div>
-        
-        
-     
-
-
-
-
-
-
 
 @endsection
