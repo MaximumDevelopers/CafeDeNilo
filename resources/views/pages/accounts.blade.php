@@ -136,13 +136,15 @@
                                                             
                                                             <td>{{$account -> first_name}}</td>
                                                             <td>{{$account -> last_name}}</td>
-                                                            <td >{{$account -> email}}</td>
+                                                            <td>{{$account -> email}}</td>
                                                             <td>{{$account -> role}}</td>
-                                                            
-                                                            <td>
-                                                            <div class="text-center">
-                                                                <button id="dan2" type="button" class=" edit_btn fa fa-user-edit btn btn-yellow  btn-sm" data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
-                                                            </div>
+                                                            <td class="text-center">
+                                                                <button type="button" style="margin: 0%" class="fa fa-user-edit btn btn-yellow  btn-md" data-fname="{{$account -> first_name}}" data-lname="{{$account -> last_name}}" data-email="{{$account -> email}}" data-pword="{{$account -> password}}" data-id="{{$account -> id}}"  data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
+                                                            </td>
+                                                            <td class="text-center">
+                                                                <button type="button" style="margin: 0%" class="fa fa-trash btn btn-red btn-md" data-id="{{$account -> id}}" data-toggle="modal"  data-target="#modalDel" style="font-size: 1rem; "></button>
+                                                            </td>
+
                                                             <!--Edit Account-->
                                                             <div class="modal fade" id="modalEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                                                             aria-hidden="true">
@@ -154,7 +156,7 @@
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
-                                                                        <form  method="post" action="{{route('accounts.update',$account->id)}}">
+                                                                        <form id="edit-form" method="POST" action="{{route('accounts.update',$account->id)}}">
                                                                         @csrf
                                                                         @method('PATCH')
                                                                         <div class="modal-body mx-3">
@@ -188,8 +190,8 @@
                                                     
                                                                             <div class="form-group md-form ml-0 mr-0">
                                                                                     <i class="fa fa-envelope prefix grey-text"></i>
-                                                                                    <input id="{{$account -> email}}" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" required>
-                                                                                <label for="email" class="ml-8">{{ __('E-Mail Address') }}</label>
+                                                                                    <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"  value="{{$account->email}}" required>
+                                                                                    <label for="email" class="float ml-8">{{ __('Email Address') }}</label>
                                                     
                                                             
                                                                                     @if ($errors->has('email'))
@@ -222,6 +224,7 @@
                                                                                     <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                                                                                     <label for="password-confirm" class="ml-8">{{ __('Confirm Password') }}</label>
                                                                             </div>
+                                                                            <input type="hidden" name="user_id" id="user_id" value="">
                                                 
                                                                             </div>
                                                                         <div class="modal-footer">
@@ -232,19 +235,10 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <!--Edit Account-->
-                                                            </td>
+                                                            <!--Edit Account-->        
                                                             
                                                             <!--Delete Account-->
-                                                            <td class="text-center">
-                                                                    <form action="{{ route('accounts.destroy', $account -> id) }}" method="post">
-                                                                            @csrf
-                                                                            @method('DELETE')
-                                                                            <button type="submit" class="fa fa-trash btn btn-red btn-sm" data-toggle="modal" data-target="#modalLRFormDemo2" style="font-size: 1rem; "></button>
-                                                                    </form>
-                                                                <button type="button" class="fa fa-trash btn btn-blue btn-sm" data-toggle="modal" data-target="#modalLRFormDemo2" style="font-size: 1rem; "></button>
-                                                                
-                                                                <div class="modal fade" id="modalLRFormDemo2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                                <div class="modal fade" id="modalDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                                                                 aria-hidden="true">
                                                                 <div class="modal-dialog" role="document">
                                                                     <div class="modal-content">
@@ -254,22 +248,24 @@
                                                                                 <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
-                                                                        <div class="modal-body">
-                                                                            <h4><p>Are you sure you want to delete this account?</p></h4>
-                                                                        </div>
+                                                                        <form action="{{ route('accounts.destroy', $account -> id) }}" method="post">
+                                                                            @csrf
+                                                                            @method('DELETE')
+                                                                            <div class="modal-body">
+                                                                                <p>Are you sure you want to delete this account?</p>
+                                                                                <input type="hidden" name="user_id" id="user_id" value="">
+                                                                
+                                                                            </div>
                                                                         <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                                                                            <form action="{{ route('accounts.destroy', $account -> id) }}" method="post">
-                                                                                    @csrf
-                                                                                    @method('DELETE')
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>   
                                                                             <button type="submit" class="btn btn-primary">Delete</button>
-                                                                            </form>
                                                                         </div>
+                                                                    </form>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <!--Delete Account-->
-                                                            </td>
+                                                            
                                                     </tr>
 
                                                 @endforeach

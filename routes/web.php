@@ -17,7 +17,7 @@ Route::get('/Msample', 'PagesController@Msample')->middleware('auth','admin');
 
 Route::get('/about', 'PagesController@about');
 
-
+Route::get('/categories', 'PagesController@categories');
  
 Auth::routes();
 
@@ -33,4 +33,4 @@ Route::get('/barista', function(){
     echo "Hello Barista";
 })->middleware('auth','barista');
 
- 
+

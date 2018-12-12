@@ -79,19 +79,14 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        /*$request->validate([
-            'first_name' => 'required',
-            'last_name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-          ]);*/
-          
+    {          
           $this->validator($request->all())->validate();
 
           $hashed = Hash::make($request->get('password'));
+          $user_id = $request->get('user_id');
 
-          $accounts = account::find($id);
+          $accounts = account::find($user_id);
+          //$accounts->id = $request->get('user_id');
           $accounts->first_name = $request->get('first_name');
           $accounts->last_name = $request->get('last_name');
           $accounts->email = $request->get('email');
@@ -108,7 +103,7 @@ class UsersController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6|confirmed',
-            
+            'user_id' => 'required',
         ]);
     }
 
@@ -118,9 +113,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        $accounts = account::find($id);
+        //$this->validator($request->all())->validate();
+        
+        $user_id = $request->get('user_id');
+        $accounts = account::find($user_id);
         $accounts->delete();
         return redirect()->route('accounts.index');
     }
