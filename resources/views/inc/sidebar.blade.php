@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <a href="items">
                                 
-                                <a href="Msample">
+                                <a href="/Msample">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Sales summary
                                         <h6>        
@@ -110,7 +110,7 @@
 
                 <!-- #4-->
                 <div class="card-header waves-effect" id="headingFour">
-                    <a href="accounts">
+                    <a href="/admin/accounts">
                             <h6 class="mb-0">
                                     <i class="fa fa-user mr-3"></i>Accounts
                             </h6>           

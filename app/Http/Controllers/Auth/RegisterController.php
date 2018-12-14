@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/accounts';
+    protected $redirectTo = '/admin/accounts';
 
     /**
      * Create a new controller instance.
@@ -54,7 +54,7 @@ class RegisterController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'role' => 'required|in:admin,barista',
+            'role' => 'required|in:admin,owner,captain crew,barista',
         ]);
     }
 

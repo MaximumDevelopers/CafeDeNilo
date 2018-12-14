@@ -23,14 +23,26 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('accounts', 'UsersController')->middleware('auth');
 
+//ADMIN ROUTES
 Route::get('/admin', function(){
     echo "Hello Admin";
 })->middleware('auth','admin');
- 
+Route::resource('admin/accounts', 'UsersController')->middleware('auth');
+
+//Owner
+Route::get('/admin', function(){
+    echo "Hello Admin";
+})->middleware('auth','admin');
+
+//BARISTA ROUTES
 Route::get('/barista', function(){
     echo "Hello Barista";
 })->middleware('auth','barista');
+
+//CAPTAIN CREW ROUTES
+Route::get('/captaincrew', function(){
+    echo "Hello CaptainCrew";
+})->middleware('auth','captaincrew');
 
 

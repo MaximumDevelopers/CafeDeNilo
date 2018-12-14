@@ -70,10 +70,11 @@
             
                                     <div class="form-group md-form ml-0 mr-0">
                                         
-            
-                                        <select name="role" class="form-control" >
+                                        <select name="role" id="role" class="form-control" >
                                             <option value="admin">Admin</option>
                                             <option value="barista">Barista</option>
+                                            <option value="captain crew">Captain Crew</option>
+                                            <option value="owner">Owner</option>
                                         </select>
                                        
                                     </div>
@@ -139,7 +140,7 @@
                                                             <td>{{$account -> email}}</td>
                                                             <td>{{$account -> role}}</td>
                                                             <td class="text-center">
-                                                                <button type="button" style="margin: 0%" class="fa fa-user-edit btn btn-yellow  btn-md" data-fname="{{$account -> first_name}}" data-lname="{{$account -> last_name}}" data-email="{{$account -> email}}" data-pword="{{$account -> password}}" data-id="{{$account -> id}}"  data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
+                                                                <button type="button" style="margin: 0%" class="fa fa-user-edit btn btn-yellow  btn-md" data-fname="{{$account -> first_name}}" data-lname="{{$account -> last_name}}" data-email="{{$account -> email}}" data-pword="{{$account -> password}}" data-role="{{$account -> role}}" data-id="{{$account -> id}}"  data-toggle="modal" data-target="#modalEdit" style="font-size: 1rem;"></button>
                                                             </td>
                                                             <td class="text-center">
                                                                 <button type="button" style="margin: 0%" class="fa fa-trash btn btn-red btn-md" data-id="{{$account -> id}}" data-toggle="modal"  data-target="#modalDel" style="font-size: 1rem; "></button>
@@ -199,6 +200,17 @@
                                                                                             <strong>{{ $errors->first('email') }}</strong>
                                                                                         </span>
                                                                                     @endif
+                                                                               
+                                                                            </div>
+
+                                                                            <div class="form-group md-form ml-0 mr-0">
+                                        
+                                                                                <select name="role" id="role" class="form-control" >
+                                                                                    <option value="admin">Admin</option>
+                                                                                    <option value="barista">Barista</option>
+                                                                                    <option value="captain crew">Captain Crew</option>
+                                                                                    <option value="owner">Owner</option>
+                                                                                </select>
                                                                                
                                                                             </div>
                                                     

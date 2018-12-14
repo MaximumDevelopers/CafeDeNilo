@@ -43,9 +43,14 @@ class LoginController extends Controller
         if (\Auth::check() && \Auth::user()->role == 'barista') {
 			return '/barista';
 		}
-		
+		elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return '/owner';
+        }
+        elseif (Auth::check() && Auth::user()->role == 'captain crew') {
+            return '/captaincrew';
+        }
 		else {
-			return '/';
+			return '/admin';
         } 
         
     }

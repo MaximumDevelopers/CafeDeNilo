@@ -67,8 +67,7 @@ class UsersController extends Controller
 
     public function edit($id)
     {
-        $accounts = account::find($id);
-        return view('modal.update', compact('accounts'));
+        //Todo
     }
 
     /**

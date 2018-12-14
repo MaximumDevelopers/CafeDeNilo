@@ -5,7 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Auth;
 
-class Barista
+class Owner
 {
     /**
      * Handle an incoming request.
@@ -16,11 +16,11 @@ class Barista
      */
     public function handle($request, Closure $next)
     {
-        if (Auth::check() && Auth::user()->role == 'barista') {
+        if (Auth::check() && Auth::user()->role == 'owner') {
             return $next($request);
         }
-        elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return redirect('/owner');
+        elseif (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'captain crew') {
             return redirect('/captaincrew');
