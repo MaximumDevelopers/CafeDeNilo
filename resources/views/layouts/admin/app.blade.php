@@ -17,19 +17,19 @@
 
     <Title>{{config('app.name', 'Cafe de\' Nilo')}}</Title>
     </head>
-    <body class="grey lighten-3 ">
+    <body class="grey lighten-3 fixed-sn">
 
         <header>
             @include('inc.admin.navbar')
-            
+            @include('inc.admin.sidebar')
         </header>
-        
-            <div class="container-fluid mt-5 pt-5">
+        <main class="pt-5 mx-lg-5">
+            <div class="container-fluid mt-5">
             
                 @yield('content')
                
             </div>
-        
+        </main>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
     </body>

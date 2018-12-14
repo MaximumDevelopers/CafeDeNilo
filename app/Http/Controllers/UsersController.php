@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index()
     {
         $accounts = account::all();
-        return view('pages.accounts')->with('accounts', $accounts);
+        return view('users.admin.accounts')->with('accounts', $accounts);
     }
 
     public function __construct()
@@ -89,6 +89,7 @@ class UsersController extends Controller
           $accounts->first_name = $request->get('first_name');
           $accounts->last_name = $request->get('last_name');
           $accounts->email = $request->get('email');
+          $accounts->role = $request->get('role');
           $accounts->password = Hash::make($request->get('password'));
           $accounts->save();
           return redirect()->route('accounts.index');

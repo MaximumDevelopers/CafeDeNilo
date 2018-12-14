@@ -25,24 +25,18 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 //ADMIN ROUTES
-Route::get('/admin', function(){
-    echo "Hello Admin";
-})->middleware('auth','admin');
+
+Route::get('/admin', 'User\AdminController@index')->middleware('auth','admin');
 Route::resource('admin/accounts', 'UsersController')->middleware('auth');
 
 //Owner
-Route::get('/admin', function(){
-    echo "Hello Admin";
-})->middleware('auth','admin');
+Route::get('/owner', 'User\OwnerController@index')->middleware('auth','owner');
+Route::resource('admin/accounts', 'UsersController')->middleware('auth');
 
 //BARISTA ROUTES
-Route::get('/barista', function(){
-    echo "Hello Barista";
-})->middleware('auth','barista');
+Route::get('/barista', 'User\BaristaController@index')->middleware('auth','barista');
 
 //CAPTAIN CREW ROUTES
-Route::get('/captaincrew', function(){
-    echo "Hello CaptainCrew";
-})->middleware('auth','captaincrew');
+Route::get('/captaincrew', 'User\CaptainCrewController@index')->middleware('auth','captaincrew');
 
 
