@@ -2,8 +2,17 @@ $(document).ready(function () {
     $('#dtBasicExample').DataTable({
         'columnDefs': [{ 'orderable': false, 'targets': [4,5] }],
         });
-    $('.dataTables_length').addClass('bs-select');    
+    $('.dataTables_length').addClass('bs-select');  
+
+    $('#dtCategories').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [6,7] }],
+        
+        });
+        $('.dataTables_length').addClass('bs-select');    
 });
+
+
+
     
 //Accounts Edit
 $(document).ready(function () {  
