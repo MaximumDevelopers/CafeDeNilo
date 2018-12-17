@@ -64,5 +64,6 @@ class Kernel extends HttpKernel
         'owner' => 'App\Http\Middleware\Owner',
         'captaincrew' => 'App\Http\Middleware\CaptainCrew',
         'barista' => 'App\Http\Middleware\Barista',
+        'role' => \App\Http\Middleware\Role::class,
     ];
 }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\account;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Auth;
 
 class UsersController extends Controller
 {
@@ -20,10 +21,7 @@ class UsersController extends Controller
         return view('users.admin.accounts')->with('accounts', $accounts);
     }
 
-    public function __construct()
-    {
-        $this->middleware('admin');
-    }
+        
     
 
     /**
