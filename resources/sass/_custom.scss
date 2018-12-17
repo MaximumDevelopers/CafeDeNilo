@@ -39,13 +39,30 @@
   }
 
 
-
+#mBody
+{
+  max-height:400px; 
+    overflow-y: auto;
+}
 .card
 {
 padding-bottom: 1rem;
 border-radius: 5px;
 
 }
+#cardX
+{
+  padding-top: 8rem; 
+}
+#logoY
+{
+  padding-top: 4rem;
+}
+#btnpass
+{
+  margin-top: 2rem;
+}
+
 
 .table
 {

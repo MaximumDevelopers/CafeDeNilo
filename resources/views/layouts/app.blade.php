@@ -20,11 +20,11 @@
     <body class="grey lighten-3 ">
 
         <header>
-            @include('inc.admin.navbar')
+           
             
         </header>
         
-            <div class="container-fluid mt-5 pt-5">
+            <div class="container-fluid mt-0 pt-0">
             
                 @yield('content')
                
