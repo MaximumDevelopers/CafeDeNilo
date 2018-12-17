@@ -26,16 +26,22 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 //ADMIN ROUTES
 
-Route::get('/admin', 'User\AdminController@index')->middleware('auth','admin');
-Route::group(['middleware' => ['auth', 'admin']], function() {
-    Route::resource('admin/accounts', 'UsersController'); //Make a CRUD controller
-});
-
+    Route::get('/admin', 'User\AdminController@index')->middleware('auth','admin');
+    //accounts
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/accounts', 'UsersController'); 
+    });
+    //categories
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/categories', 'CategoriesController'); 
+    }); 
+    
 //Owner
 Route::get('/owner', 'User\OwnerController@index')->middleware('auth','owner');
 Route::group(['middleware' => ['auth', 'owner']], function() {
-    Route::resource('owner/accounts', 'UsersController'); //Make a CRUD controller
+    Route::resource('owner/accounts', 'UsersController'); 
 });
+
 
 //BARISTA ROUTES
 Route::get('/barista', 'User\BaristaController@index')->middleware('auth','barista');

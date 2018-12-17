@@ -42,7 +42,7 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
     }
 
     /**
@@ -90,7 +90,8 @@ class UsersController extends Controller
           $accounts->role = $request->get('role');
           $accounts->password = Hash::make($request->get('password'));
           $accounts->save();
-          return redirect()->route('accounts.index');
+          return back();
+          
           
     }
 

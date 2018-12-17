@@ -15,20 +15,13 @@
                                 <option value="3">Inventory Count</option>
                                 <option value="4">Loss</option>
                                 <option value="5">Damage</option>
-                              </select>
-                   
-
-                        
-                    
+                        </select>                                       
                 </div>
+                
                 <div class="form-group md-form ml-0 mr-0">
                         <i class="far fa-sticky-note prefix"></i>
                         <input id="note" type="text" class="form-control" name="note" required>
-                        <label for="note" class="ml-8">{{ __('Note..') }}</label>
-                   
-
-                        
-                    
+                        <label for="note" class="ml-8">{{ __('Note..') }}</label>                     
                 </div>
 
 

@@ -29,13 +29,10 @@
                                     @method('')
                                     <div class="modal-body mb-1">
                                     <div class="form-group md-form ml-0 mr-0">
-                                            <i class="far fa-folder-open prefix"></i>
+                                            <i class="far fa-list-alt prefix"></i>
                                             <input id="category" type="text" class="form-control" name="category" required>
                                             <label for="category" class="ml-8">{{ __('Enter new category here..') }}</label>
-                                       
-            
-                                            
-                                        
+      
                                     </div>
                                     </div>
 
@@ -92,7 +89,7 @@
                                                                         <div class="modal-body mx-3">
 
                                                                             <div class="form-group md-form ml-0 mr-0">
-                                                                                    <i class="far fa-folder-open prefix grey-text"></i>
+                                                                                    <i class="far fa-list-alt prefix grey-text"></i>
                                                                                     <input id="cat_edit" type="text" class="form-control" name="cat_edit" value="" required>
                                                                                     <label for="cat_edit" class="ml-8">{{ __('Category Name') }}</label>
                                                     
@@ -149,14 +146,7 @@
                                                             <!--Delete Account-->
                                                             </td>
                                                     </tr>
-
-                                               
-                                            
-                                          
-                                            
-                                            
-
-                                              
+   
                                         </tbody>
                                     
                                   </table>

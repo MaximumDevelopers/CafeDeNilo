@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\categories;
+use Auth;
 
 class CategoriesController extends Controller
 {
@@ -13,7 +15,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        //
+        $categories = categories::all();
+        return view('users.admin.items.categories')->with('categories', $categories);
     }
 
     /**
@@ -26,6 +29,13 @@ class CategoriesController extends Controller
         //
     }
 
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'category' => 'required|string|max:255',
+        ]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -34,7 +44,14 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /* $post = new Post;
+        $post->title = $request->input('title');
+        $post->body = $request->input('body');
+        $post->user_id = auth()->user()->id;
+        $post->cover_image = $fileNameToStore;
+        $post->save();
+
+        return redirect('/posts')->with('success', 'Post Created');*/
     }
 
     /**
