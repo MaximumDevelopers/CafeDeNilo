@@ -43250,6 +43250,12 @@ $(document).ready(function () {
 
     });
     $('.dataTables_length').addClass('bs-select');
+
+    $('#dtCategories').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [6, 7] }]
+
+    });
+    $('.dataTables_length').addClass('bs-select');
 });
 
 //Accounts Edit
