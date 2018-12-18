@@ -55,7 +55,7 @@
                 
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                         <div class="card-body">
-                                <a href="items">
+                                <a href="/admin/item_list">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Item list
                                         <h6>        

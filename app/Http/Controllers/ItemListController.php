@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ItemList;
+use Auth;
+
 
 class ItemListController extends Controller
 {
@@ -13,7 +16,20 @@ class ItemListController extends Controller
      */
     public function index()
     {
-        //
+        $item_list = ItemList::all();
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.admin.items.item_list')->with('item_list', $item_list);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.items.item_list')->with('item_list', $item_list);
+            
+        }
+        else {
+            return view('users.captain_crew.items.item_list')->with('item_list', $item_list);
+        }
     }
 
     /**

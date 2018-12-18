@@ -7,6 +7,11 @@ $(document).ready(function () {
         'columnDefs': [{ 'orderable': false, 'targets': [1,2] }],
         
         });
+
+        $('#dtItems').DataTable({
+            'columnDefs': [{ 'orderable': false, 'targets': [7,8] }],
+            
+            });
         
         $('.dataTables_length').addClass('bs-select');    
 });

@@ -16,6 +16,11 @@ class CreateItemListsTable extends Migration
         Schema::create('item_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('item_name')->unique();
+            $table->string('category');
+            $table->smallInteger('quantity');
+            $table->decimal('price');
+            $table->decimal('cost');
+            $table->boolean('for_sale');
             $table->timestamps();
         });
     }
