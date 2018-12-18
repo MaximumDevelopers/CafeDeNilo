@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\categories;
+use Illuminate\Support\Facades\Validator;
 use Auth;
 
 class CategoriesController extends Controller
@@ -16,7 +17,19 @@ class CategoriesController extends Controller
     public function index()
     {
         $categories = categories::all();
-        return view('users.admin.items.categories')->with('categories', $categories);
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.admin.items.categories')->with('categories', $categories);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.items.categories')->with('categories', $categories);
+            
+        }
+        else {
+            return view('users.captain_crew.items.categories')->with('categories', $categories);
+        }
     }
 
     /**
@@ -32,7 +45,7 @@ class CategoriesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'category' => 'required|string|max:255',
+            'category_name' => 'required|string|max:255',
         ]);
     }
 
@@ -44,14 +57,12 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        /* $post = new Post;
-        $post->title = $request->input('title');
-        $post->body = $request->input('body');
-        $post->user_id = auth()->user()->id;
-        $post->cover_image = $fileNameToStore;
-        $post->save();
+        $this->validator($request->all())->validate();
 
-        return redirect('/posts')->with('success', 'Post Created');*/
+        $post = new categories;
+        $post->category_name = $request->input('category_name');
+        $post->save();
+        return redirect()->route('admin.categories.index');
     }
 
     /**
@@ -85,7 +96,31 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //$this->validator($request->all())->validate();
+
+        $category_id = $request->get('cat_id');
+
+        $category = categories::find($category_id);
+        $category->category_name = $request->get('category_name');
+        $category->save();
+        return $this->redirect_route();
+        
+    }
+
+    protected function redirect_route()
+    {
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return redirect()->route('owner.categories.index');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'captain crew') {
+            return redirect('/captaincrew');
+        }
+        else {
+            return redirect()->route('admin.categories.index');
+        }
     }
 
     /**
@@ -94,8 +129,11 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $category_id = $request->get('cat_id');
+        $category = categories::find($category_id);
+        $category->delete();
+        return $this->redirect_route();
     }
 }

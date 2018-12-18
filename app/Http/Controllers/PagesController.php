@@ -16,7 +16,7 @@ class PagesController extends Controller
 
     public function about()
     {
-        return view('login');
+        return view('pages.about');
     }
 
     public function MSample()
@@ -29,8 +29,5 @@ class PagesController extends Controller
     {
         return view('login');
     }
-    public function categories()
-    {
-        return view('pages.categories');
-    }
+    
 }

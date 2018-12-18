@@ -18,7 +18,19 @@ class UsersController extends Controller
     public function index()
     {
         $accounts = account::all();
-        return view('users.admin.accounts')->with('accounts', $accounts);
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.accounts')->with('accounts', $accounts);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.accounts')->with('accounts', $accounts);
+            
+        }
+        else {
+            return redirect('/captaincrew');
+        }
     }
 
         
@@ -90,9 +102,25 @@ class UsersController extends Controller
           $accounts->role = $request->get('role');
           $accounts->password = Hash::make($request->get('password'));
           $accounts->save();
-          return back();
+          return $this->redirect_route();
+          //return redirect()->route('admin.accounts.index');
           
-          
+    }
+
+    protected function redirect_route()
+    {
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return redirect()->route('owner.accounts.index');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'captain crew') {
+            return redirect('/captaincrew');
+        }
+        else {
+            return redirect()->route('admin.accounts.index');
+        }
     }
 
     protected function validator(array $data)
@@ -119,6 +147,6 @@ class UsersController extends Controller
         $user_id = $request->get('user_id');
         $accounts = account::find($user_id);
         $accounts->delete();
-        return redirect()->route('accounts.index');
+        return $this->redirect_route();
     }
 }

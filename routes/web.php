@@ -16,8 +16,6 @@ Route::get('/', 'PagesController@index');
 Route::get('/Msample', 'PagesController@Msample')->middleware('auth','admin');
 
 Route::get('/about', 'PagesController@about');
-
-Route::get('/categories', 'PagesController@categories');
  
 Auth::routes();
 
@@ -29,17 +27,17 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/admin', 'User\AdminController@index')->middleware('auth','admin');
     //accounts
     Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/accounts', 'UsersController'); 
+        Route::resource('admin/accounts', 'UsersController', ['as' => 'admin']); 
     });
     //categories
     Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/categories', 'CategoriesController'); 
+        Route::resource('admin/categories', 'CategoriesController', ['as' => 'admin']); 
     }); 
-    
+
 //Owner
 Route::get('/owner', 'User\OwnerController@index')->middleware('auth','owner');
 Route::group(['middleware' => ['auth', 'owner']], function() {
-    Route::resource('owner/accounts', 'UsersController'); 
+    Route::resource('owner/accounts', 'UsersController', ['as' => 'owner']); 
 });
 
 

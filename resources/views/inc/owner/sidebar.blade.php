@@ -1,6 +1,6 @@
 <!-- Sidebar -->
 <div class="sidebar-fixed position-fixed" style="overflow-y: auto;">
-    <div class="sidebar-header ">
+    <div class="sidebar-header">
  <a class="logo-wrapper waves-effect">
       <img src={{ asset('images/CafeDe\'Nilo.png') }} class="img-fluid" alt="">
   </a>
@@ -61,7 +61,7 @@
                                         <h6>        
                                 </a>
     
-                                <a href="/admin/categories">
+                                <a href="categories">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Categories
                                         <h6>        
@@ -110,7 +110,7 @@
 
                 <!-- #4-->
                 <div class="card-header waves-effect" id="headingFour">
-                    <a href="/admin/accounts">
+                    <a href="/owner/accounts">
                             <h6 class="mb-0">
                                     <i class="fa fa-user mr-3"></i>Accounts
                             </h6>           

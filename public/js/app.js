@@ -43244,6 +43244,11 @@ $(document).ready(function () {
     $('#dtBasicExample').DataTable({
         'columnDefs': [{ 'orderable': false, 'targets': [4, 5] }]
     });
+
+    $('#dtCategories').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [1, 2] }]
+
+    });
     $('.dataTables_length').addClass('bs-select');
 });
 
@@ -43287,6 +43292,32 @@ $(document).ready(function () {
 
         var modal = $(this);
         modal.find('.modal-body #user_id').val(id);
+    });
+});
+
+//Category Edit
+$(document).ready(function () {
+
+    $('#modalCategoryEdit').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var category_name = button.data("category");
+        var id = button.data("id");
+
+        var modal = $(this);
+        modal.find('.modal-body #cat_edit').val(category_name);
+        modal.find('.modal-body #cat_id').val(id);
+    });
+});
+
+//Category Del
+$(document).ready(function () {
+
+    $('#modalCategoryDel').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data("id");
+
+        var modal = $(this);
+        modal.find('.modal-body #cat_id').val(id);
     });
 });
 
