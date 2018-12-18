@@ -1,12 +1,13 @@
 $(document).ready(function () {
-    $('#dtBasicExample').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [4,5] }],
-        });
+        $('#dtBasicExample').DataTable({
+            'columnDefs': [{ 'orderable': false, 'targets': [4,5] }],
+            });
 
     $('#dtCategories').DataTable({
         'columnDefs': [{ 'orderable': false, 'targets': [1,2] }],
         
         });
+        
         $('.dataTables_length').addClass('bs-select');    
 });
 

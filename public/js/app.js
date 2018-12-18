@@ -43249,12 +43249,7 @@ $(document).ready(function () {
         'columnDefs': [{ 'orderable': false, 'targets': [1, 2] }]
 
     });
-    $('.dataTables_length').addClass('bs-select');
 
-    $('#dtCategories').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [6, 7] }]
-
-    });
     $('.dataTables_length').addClass('bs-select');
 });
 
