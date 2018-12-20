@@ -8,8 +8,8 @@ $(document).ready(function () {
         
         });
 
-        $('#dtItems').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [7,8] }],
+        $('#dtItem').DataTable({
+            'columnDefs': [{ 'orderable': false, 'targets': [5,6] }],
             
             });
         

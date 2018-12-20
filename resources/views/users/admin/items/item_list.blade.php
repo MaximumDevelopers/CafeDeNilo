@@ -68,7 +68,7 @@
                     
                     <div class="table-reponsive text-nowrap">
 
-                            <table id="dtItems" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                            <table id="dtItem" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
                                             
@@ -77,10 +77,10 @@
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">Cost</th>
-                                            <th scope="col">For Sale</th>
+                                            
 
                                             <th scope="col"></th>
-                                                <th scope="col"></th>
+                                            <th scope="col"></th>
                                     
                                         </tr>
                                         <tbody>
@@ -88,12 +88,14 @@
                                        
                                                 
                                                 <tr>
+                                                       
+                                                      
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
-                                                        <td></td>
+
                                                         
                                                                     
                                                         <td>
@@ -182,7 +184,5 @@
                 </div> 
         
                 </div>
-        
-    </div>
-
+            </div> 
 @endsection
