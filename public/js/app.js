@@ -43250,6 +43250,11 @@ $(document).ready(function () {
 
     });
 
+    $('#dtItems').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [7, 8] }]
+
+    });
+
     $('.dataTables_length').addClass('bs-select');
 });
 
