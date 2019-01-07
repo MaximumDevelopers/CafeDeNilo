@@ -43242,25 +43242,62 @@ var WOW;jQuery.easing.jswing = jQuery.easing.swing, jQuery.extend(jQuery.easing,
 
 $(document).ready(function () {
     $('#dtBasicExample').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [4, 5] }]
+        'columnDefs': [{ 'orderable': false, 'targets': [4, 5] }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
     });
 
     $('#dtCategories').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [1, 2] }]
-
+        'columnDefs': [{ 'orderable': false, 'targets': [1, 2] }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
     });
 
-<<<<<<< HEAD
-    $('#dtItems').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [7, 8] }]
-=======
     $('#dtItem').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [5, 6] }]
->>>>>>> 89e6a45a41ad96c33bc256068acbb6970eab8e2b
+        order: [[1, 'desc']],
+        'columnDefs': [{ 'orderable': false, 'targets': [0, 5, 6] }, { "width": "3%", "targets": 0 }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
+    $('#dtSupplier').DataTable({
+        order: [[1, 'desc']],
+        'columnDefs': [{ 'orderable': false, 'targets': [0, 2, 3, 4] }, { "width": "3%", "targets": 0 }],
 
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
     });
 
     $('.dataTables_length').addClass('bs-select');
+
+    //Pickers
+    $('.categoryPicker').selectpicker({
+        liveSearch: true
+    });
+
+    $('.supplierPicker').selectpicker({
+        liveSearch: true
+    });
+});
+
+//input number max-min filter
+$(document).ready(function () {
+
+    $('.filterNum').on('input', function (ev) {
+        var $this = $(this);
+        var maxlength = $this.attr('max').length;
+        var value = $this.val();
+        if (value && value.length >= maxlength) {
+            $this.val(value.substr(0, maxlength));
+        }
+    });
 });
 
 //Accounts Edit
@@ -43329,6 +43366,41 @@ $(document).ready(function () {
 
         var modal = $(this);
         modal.find('.modal-body #cat_id').val(id);
+    });
+});
+
+//Supplier
+$(document).ready(function () {
+    //Supplier Edit
+    $('#modalSupplierEdit').on('show.bs.modal', function (event) {
+
+        var button = $(event.relatedTarget);
+        var id = button.data("id");
+        var supplier_name = button.data("sname");
+        var email = button.data("semail");
+        var phone = button.data("sphone");
+        var address = button.data("saddress");
+        var note = button.data("snote");
+
+        var modal = $(this);
+        modal.find('.modal-body #supplier_id').val(id);
+        modal.find('.modal-body #supplier_name').val(supplier_name);
+        modal.find('.modal-body #email').val(email);
+        modal.find('.modal-body #pNum').val(phone);
+        modal.find('.modal-body #address').val(address);
+        modal.find('.modal-body #note').val(note);
+    });
+});
+
+//Category Del
+$(document).ready(function () {
+
+    $('#modalSupplierDel').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data("id");
+
+        var modal = $(this);
+        modal.find('.modal-body #supplier_id').val(id);
     });
 });
 

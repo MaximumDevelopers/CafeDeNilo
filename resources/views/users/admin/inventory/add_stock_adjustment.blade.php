@@ -23,8 +23,7 @@
                         <input id="note" type="text" class="form-control" name="note" required>
                         <label for="note" class="ml-8">{{ __('Note..') }}</label>                     
                 </div>
-
-
+                
                </form>
          </div>
        </div>

@@ -94,7 +94,7 @@
                             </a>
 
 
-                            <a href="items">
+                            <a href="/admin/supplier">
                                     <h6 class="mb-2">
                                         <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Suppliers
                                     <h6>        

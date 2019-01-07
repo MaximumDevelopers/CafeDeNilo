@@ -39,6 +39,11 @@ Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('admin/item_list', 'ItemListController', ['as' => 'admin']); 
     }); 
 
+    //supplier
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/supplier', 'SuppliersController', ['as' => 'admin']); 
+    }); 
+
 //Owner
 Route::get('/owner', 'User\OwnerController@index')->middleware('auth','owner');
 Route::group(['middleware' => ['auth', 'owner']], function() {

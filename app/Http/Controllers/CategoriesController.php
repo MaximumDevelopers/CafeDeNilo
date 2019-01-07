@@ -62,7 +62,7 @@ class CategoriesController extends Controller
         $post = new categories;
         $post->category_name = $request->input('category_name');
         $post->save();
-        return redirect()->route('admin.categories.index');
+        return $this->redirect_route();
     }
 
     /**

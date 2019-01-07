@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\account;
-use Illuminate\Support\Facades\Hash;
+use App\Supplier;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
-class UsersController extends Controller
+class SuppliersController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,23 +16,21 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $accounts = account::all();
+        $suppliers = supplier::all();
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.accounts')->with('accounts', $accounts);
+            return view('users.owner.inventory.suppliers')->with('suppliers', $suppliers);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.accounts')->with('accounts', $accounts);
+            return view('users.admin.inventory.suppliers')->with('suppliers', $suppliers);
+            
         }
         else {
-            return redirect('/captaincrew');
+            return view('users.captain_crew.inventory.suppliers')->with('suppliers', $suppliers);
         }
     }
-
-        
-    
 
     /**
      * Show the form for creating a new resource.
@@ -53,7 +50,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-       
+        $this->validator($request->all())->validate();
+
+        $supplier = new supplier;
+        $supplier->supplier_name = $request->input('supplier_name');
+        $supplier->email = $request->input('email');
+        $supplier->phone_number = $request->input('phone_number');
+        $supplier->address = $request->input('address');
+        $supplier->note = $request->input('note');
+        $supplier->save();
+        return redirect()->route('admin.supplier.index');
     }
 
     /**
@@ -73,10 +79,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
     public function edit($id)
     {
-        //Todo
+        //
     }
 
     /**
@@ -87,23 +92,25 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {          
-          $this->validator($request->all())->validate();
+    {
+        $this->validator($request->all())->validate();
 
-          $hashed = Hash::make($request->get('password'));
-          $user_id = $request->get('user_id');
+        $supplier_id = $request->get('supplier_id');
+        $supplier = supplier::find($supplier_id);
+        $supplier->supplier_name = $request->get('sName');
+        $accounts->email = $request->get('email');
+        $supplier->phone_number = $request->input('pNum');
+        $supplier->address = $request->input('address');
+        $supplier->note = $request->input('note');
+        $supplier->save();
+        return $this->redirect_route();
+    }
 
-          $accounts = account::find($user_id);
-          //$accounts->id = $request->get('user_id');
-          $accounts->first_name = $request->get('first_name');
-          $accounts->last_name = $request->get('last_name');
-          $accounts->email = $request->get('email');
-          $accounts->role = $request->get('role');
-          $accounts->password = Hash::make($request->get('password'));
-          $accounts->save();
-          return $this->redirect_route();
-          //return redirect()->route('admin.accounts.index');
-          
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'supplier_name' => 'required|string|max:130|unique:suppliers',
+        ]);
     }
 
     protected function redirect_route()
@@ -112,40 +119,28 @@ class UsersController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return redirect()->route('owner.accounts.index');
+            return redirect()->route('owner.supplier.index');
         }
         elseif (Auth::check() && Auth::user()->role == 'captain crew') {
             return redirect('/captaincrew');
         }
         else {
-            return redirect()->route('admin.accounts.index');
+            return redirect()->route('admin.supplier.index');
         }
-    }
-
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'first_name' => 'required|string|max:255',
-            'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-            'user_id' => 'required',
-        ]);
     }
 
     /**
      * Remove the specified resource from storage.
-        *
+     *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Request $request, $id)
     {
-        //$this->validator($request->all())->validate();
-        
-        $user_id = $request->get('user_id');
-        $accounts = account::find($user_id);
-        $accounts->delete();
+        $supplier_id= $request->get('supplier_id');
+        $supplier = supplier::find($supplier_id);
+        $supplier->delete();
         return $this->redirect_route();
+
     }
 }

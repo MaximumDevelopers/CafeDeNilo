@@ -37,7 +37,12 @@
   
     
   }
-
+  
+/*body{
+   min-width:1000px;        // Suppose you want minimum width of 1000px 
+   width: auto !important;  // Firefox will set width as auto 
+   width:1000px;            // As IE6 ignores !important it will set width as 1000px; 
+}*/
 
 #mBody
 {
@@ -54,7 +59,7 @@ border-radius: 5px;
 {
   padding-top: 8rem; 
 }
-#logoY
+#logo
 {
   padding-top: 4rem;
 }
@@ -63,6 +68,9 @@ border-radius: 5px;
   margin-top: 2rem;
 }
 
+.categoryPicker {
+  padding: 0%
+}
 
 .table
 {

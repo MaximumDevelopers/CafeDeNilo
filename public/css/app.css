@@ -21980,6 +21980,12 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item .page-li
   }
 }
 
+/*body{
+   min-width:1000px;        // Suppose you want minimum width of 1000px 
+   width: auto !important;  // Firefox will set width as auto 
+   width:1000px;            // As IE6 ignores !important it will set width as 1000px; 
+}*/
+
 #mBody {
   max-height: 400px;
   overflow-y: auto;
@@ -21994,12 +22000,16 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item .page-li
   padding-top: 8rem;
 }
 
-#logoY {
+#logo {
   padding-top: 4rem;
 }
 
 #btnpass {
   margin-top: 2rem;
+}
+
+.categoryPicker {
+  padding: 0%;
 }
 
 .table {

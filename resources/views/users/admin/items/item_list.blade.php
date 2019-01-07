@@ -25,40 +25,73 @@
                                     </button>
                                 </div>
                                 
-                            <form method="POST" action="">
+                                <form method="POST" action="{{ route('admin.item_list.store')}}">
                                     @csrf
                                     <div class="modal-body mb-1">
-                                    <div class="form-group md-form ml-0 mr-0">
-                                            <i class="far fa-list-alt prefix"></i>
-                                            <input id="item_name" name="item_name" type="text" class="form-control" name="item" required>
-                                            <label for="item" class="ml-8">{{ __('Item Name') }}</label>
-      
-                                    </div>
-                                    <div class="form-group md-form ml-0 mr-0">
-                                        
-                                        <select name="role" id="role" class="form-control">
-                                            <option disabled selected>Select Category here..</option>
-                                            <option value="admin">Admin</option>
-                                            <option value="barista">Barista</option>
-                                            <option value="captain crew">Captain Crew</option>
-                                            <option value="owner">Owner</option>
-                                        </select>
+
+                                        <div class="form-group md-form ml-0 mr-0 mb-0">
+                                            <i class="fa fa-user prefix"></i>
+                                            <input id="item_name" type="text" class="form-control{{ $errors->has('item_name') ? ' is-invalid' : '' }}" name="item_name" value="item_name" required >
+                                            <label for="item_name" class="ml-8">{{ __('Item name') }}</label>
+            
+                                            @if ($errors->has('item_name'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('item_name') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                    <div class="form-group ml-4 mr-1 mb-0 mt-0 row">
+                                      
+                                        <select class="categoryPicker form-control md-form" data-style="btn-primary">
+                                                <option>Select Category Here..</option>
+                                                @foreach ($category as $category)
+                                                    <option>{{$category -> category_name}}</option>
+                                                @endforeach
+                                            
+                                        </select>                                          
                                        
                                     </div>
 
+                                    <div class="form-group ml-4 mr-1 mb-5 row">                                       
+                                            <select class="supplierPicker form-control md-form" data-style="btn-success">
+                                                <option>Select Supplier Here..</option>
+                                                @foreach ($suppliers as $supplier)
+                                                    <option>{{$supplier -> supplier_name}}</option>
+                                                @endforeach
+                                            </select>                                                                                  
+                                    </div>
 
-                                    <div class="form-group md-form ml-0 mr-0">
-                                        <i class="far fa-list-alt prefix"></i>
-                                        <input id="category_name" name="category_name" type="text" class="form-control" name="category" required>
-                                        <label for="category" class="ml-8">{{ __('Enter new category here..') }}</label>
-  
-                                </div>
+                                        <div class="form-group md-form ml-0 mr-0">
+                                           
+                                            <i class="far fa-money-bill-alt prefix"></i>
+                                            <input id="item_cost" type="number" class="form-control{{ $errors->has('item_cost') ? ' is-invalid' : '' }} filterNum" max="99999" name="item_cost" value="1" required >
+                                            <label for="item_cost" class="ml-8">{{ __('Item cost') }}</label>
+            
+                                            @if ($errors->has('item_cost'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('item_cost') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+
+                                        <div class="form-group md-form ml-0 mr-0">
+                                            <i class="fas fa-sort-amount-up prefix"></i>
+                                            <input id="item_quantity" max="999" type="number" class="form-control{{ $errors->has('item_quantity') ? ' is-invalid' : '' }} filterNum" name="item_quantity" value="1" required >
+                                            <label for="item_quantity" class="ml-8">{{ __('Item quantity') }}</label>
+            
+                                            @if ($errors->has('item_quantity'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('item_quantity') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
                                     </div>
 
                                     <div class="modal-footer">
-                                            <button type="button" class=" form-group btn btn-secondary" data-dismiss="modal">Close</button>
-                                            <button type="submit" class=" form-group btn btn-primary">Add item</button>
-                                        </div>
+                                        <button type="button" class=" form-group btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class=" form-group btn btn-primary">Add item</button>
+                                    </div>
 
                                 </form>
 
@@ -71,12 +104,11 @@
                             <table id="dtItem" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                     <thead>
                                         <tr>
-                                            
+                                            <th scope="col"></th>
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Category</th>
-                                            <th scope="col">Quantity</th>
+                                            <th scope="col">In stock</th>
                                             <th scope="col">Price</th>
-                                            <th scope="col">Cost</th>
                                             
 
                                             <th scope="col"></th>
@@ -85,22 +117,19 @@
                                         </tr>
                                         <tbody>
                                     </thead>
-                                       
-                                                
+                                        @if (count($item_list) >= 0)
+                                            @foreach ($item_list as $item_list)        
                                                 <tr>
-                                                       
-                                                      
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-                                                        <td></td>
-
-                                                        
+          
+                                                        <td id="dtShow"></td>
+                                                        <td>{{$item_list -> item_name}}</td>
+                                                        <td>Category</td>
+                                                        <td>{{$item_list -> quantity}}</td>
+                                                        <td>&#8369;{{$item_list -> price}}</td>
                                                                     
                                                         <td>
                                                             <div class="text-center">
-                                                                <button type="button" style="margin: 0%" class="far fa-edit btn btn-yellow btn-md" data-toggle="modal" data-target="#modalCategoryEdit" style="font-size: 1rem;"></button>
+                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#modalCategoryEdit" style="font-size: 1rem;">SHOW</button>
                                                             </div>
                                                         </td>
 
@@ -172,11 +201,13 @@
                                                         <!--Delete Account-->
                                                         
                                                 </tr>
-                                               
+                                                @endforeach                    
+                                                
+                                                @else
+                                                    <p>No post</p>
+                                                @endif 
                                         </tbody>    
-                            </table>
-        
-        
+                                </table>
                             </div>
                      
                 </div>
