@@ -43250,8 +43250,13 @@ $(document).ready(function () {
 
     });
 
+<<<<<<< HEAD
     $('#dtItems').DataTable({
         'columnDefs': [{ 'orderable': false, 'targets': [7, 8] }]
+=======
+    $('#dtItem').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [5, 6] }]
+>>>>>>> 89e6a45a41ad96c33bc256068acbb6970eab8e2b
 
     });
 
