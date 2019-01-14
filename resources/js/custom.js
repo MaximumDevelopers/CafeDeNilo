@@ -16,7 +16,7 @@ $(document).ready(function () {
         });
 
     $('#dtItem').DataTable({
-        order: [[1, 'desc']],
+        order: [[1, 'asc']],
         'columnDefs': [{ 'orderable': false, 'targets': [0, 5, 6] }, { "width": "3%", "targets": 0 }],
         rowReorder: {
             selector: 'td:nth-child(2)'
@@ -24,7 +24,7 @@ $(document).ready(function () {
         responsive: true  
         });        
     $('#dtSupplier').DataTable({
-        order: [[1, 'desc']],
+        order: [[1, 'asc']],
         'columnDefs': [{ 'orderable': false, 'targets': [0, 2,3, 4] }, { "width": "3%", "targets": 0 }],
 
         rowReorder: {
@@ -51,10 +51,17 @@ $(document).ready(function() {
     $('.filterNum').on('input', function(ev) {
       var $this = $(this);
       var maxlength = $this.attr('max').length;
+      var minlength = $this.attr('min').length;
       var value = $this.val();
-      if (value && value.length >= maxlength) {
+
+      if ($(this).val() > maxlength)
+      {
         $this.val(value.substr(0, maxlength));
       }
+      else if ($(this).val() < minlength)
+      {
+        $this.val(value.substr(0, minlength));
+      } 
     });
 
   });

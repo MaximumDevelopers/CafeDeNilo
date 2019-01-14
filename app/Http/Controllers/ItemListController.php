@@ -7,6 +7,7 @@ use App\ItemList;
 use App\categories;
 use App\Supplier;
 use Auth;
+use Illuminate\Support\Facades\Validator;
 
 
 class ItemListController extends Controller
@@ -19,8 +20,9 @@ class ItemListController extends Controller
     public function index()
     {
         $item_list = ItemList::all();
-        $category = categories::select('category_name')->get();
-        $suppliers = supplier::select('supplier_name')->get();
+        //$category = categories::select('category_name')->get();
+        $category = categories::select('id', 'category_name')->get();
+        $suppliers = supplier::select('id', 'supplier_name')->get();
         
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
@@ -55,18 +57,61 @@ class ItemListController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validator($request->all())->validate();
+        //$this->validator($request->all())->validate();
+        
+        //$suppliers = supplier::select('id')->get();
 
-        $item_list = new categories;
-        $item_list ->supplier_name = $request->input('supplier_name');
-        $item_list ->save();
+        $item_list = new ItemList;
+        $item_list ->item_name = $request->get('item_name');
+        $item_list ->cost = $request->get('item_cost');
+        $item_list ->quantity = $request->get('item_quantity');
+        $cost = $request->get('item_cost');
+        $item_list ->price = $this -> price($cost);
+        
+        //get CategoryID
+        if ( $request->input('addCategories') != 'empty')
+        {
+            $item_list ->category_id = $request->get('addCategories');
+        }
+        
+        if ( $request->input('addSupplier') != 'empty')
+        {
+            $item_list ->supplier_id = $request->get('addSupplier');
+        }
+        
+        $item_list -> save();
+       
         return $this->redirect_route();
+    }
+
+    public function price($cost)
+    {
+        $price = ($cost * .50) + $cost;
+        return $price;
+    }
+
+    protected function redirect_route()
+    {
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return redirect()->route('owner.item_list.index');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'captain crew') {
+            return redirect('/captaincrew');
+        }
+        else {
+            return redirect()->route('admin.item_list.index');
+        }
     }
 
     protected function validator(array $data)
     {
         return Validator::make($data, [
             'item_name' => 'required|string|max:130|unique:item_list',
+            'item_cost' => 'required|numeric|max:99999|min:0|unique:item_list',
+            'item_quantity' => 'required|numeric|max:9999|min:0|unique:item_list',
         ]);
     }
 

@@ -43,10 +43,10 @@
 
                                     <div class="form-group ml-4 mr-1 mb-0 mt-0 row">
                                       
-                                        <select class="categoryPicker form-control md-form" data-style="btn-primary">
-                                                <option>Select Category Here..</option>
+                                        <select name="addCategories" id="addCategories" class="categoryPicker form-control md-form" data-style="btn-primary">
+                                                <option value="empty">Select Category Here..</option>
                                                 @foreach ($category as $category)
-                                                    <option>{{$category -> category_name}}</option>
+                                                    <option value="{{$category -> id}}">{{$category -> category_name}}</option>
                                                 @endforeach
                                             
                                         </select>                                          
@@ -54,10 +54,10 @@
                                     </div>
 
                                     <div class="form-group ml-4 mr-1 mb-5 row">                                       
-                                            <select class="supplierPicker form-control md-form" data-style="btn-success">
-                                                <option>Select Supplier Here..</option>
+                                            <select name="addSupplier" id="addSupplier" class="supplierPicker form-control md-form" data-style="btn-success">
+                                                <option value="empty">Select Supplier Here..</option>
                                                 @foreach ($suppliers as $supplier)
-                                                    <option>{{$supplier -> supplier_name}}</option>
+                                                    <option value="{{$supplier -> id}}">{{$supplier -> supplier_name}}</option>
                                                 @endforeach
                                             </select>                                                                                  
                                     </div>
@@ -65,7 +65,7 @@
                                         <div class="form-group md-form ml-0 mr-0">
                                            
                                             <i class="far fa-money-bill-alt prefix"></i>
-                                            <input id="item_cost" type="number" class="form-control{{ $errors->has('item_cost') ? ' is-invalid' : '' }} filterNum" max="99999" name="item_cost" value="1" required >
+                                            <input id="item_cost" name="item_cost" type="number" class="form-control{{ $errors->has('item_cost') ? ' is-invalid' : '' }} filterNum" max="99999" min="0" name="item_cost" value="1" required >
                                             <label for="item_cost" class="ml-8">{{ __('Item cost') }}</label>
             
                                             @if ($errors->has('item_cost'))
@@ -77,7 +77,7 @@
 
                                         <div class="form-group md-form ml-0 mr-0">
                                             <i class="fas fa-sort-amount-up prefix"></i>
-                                            <input id="item_quantity" max="999" type="number" class="form-control{{ $errors->has('item_quantity') ? ' is-invalid' : '' }} filterNum" name="item_quantity" value="1" required >
+                                            <input id="item_quantity" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity') ? ' is-invalid' : '' }} filterNum" name="item_quantity" value="1" required >
                                             <label for="item_quantity" class="ml-8">{{ __('Item quantity') }}</label>
             
                                             @if ($errors->has('item_quantity'))

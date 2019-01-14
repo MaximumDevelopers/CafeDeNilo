@@ -8,5 +8,6 @@ require('./bootstrap');
 require('./jquery-3.3.1.min');
 require('./popper.min');
 require('./mdb.min');
+require('./bootstrap-select');
 require('./custom');
 

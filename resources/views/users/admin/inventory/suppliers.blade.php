@@ -164,8 +164,8 @@
                                                                 <div class="form-group md-form ml-0 mr-0">
                                                                         
 
-                                                                                <i class="fa fa-envelope prefix grey-text"></i>
-                                                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"  value="{{$supplier->email}}" >
+                                                                                <i class="fa fa-envelope prefix "></i>
+                                                                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"  value="email" >
                                                                                 <label for="email" class="float ml-8">{{ __('Email Address') }}</label>
                                                 
                                                         

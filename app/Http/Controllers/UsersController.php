@@ -86,11 +86,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    
     public function update(Request $request, $id)
     {          
           $this->validator($request->all())->validate();
 
-          $hashed = Hash::make($request->get('password'));
+          //$hashed = Hash::make($request->get('password'));
           $user_id = $request->get('user_id');
 
           $accounts = account::find($user_id);
@@ -99,7 +100,7 @@ class UsersController extends Controller
           $accounts->last_name = $request->get('last_name');
           $accounts->email = $request->get('email');
           $accounts->role = $request->get('role');
-          $accounts->password = Hash::make($request->get('password'));
+          $accounts->password = ($request->get('password'));
           $accounts->save();
           return $this->redirect_route();
           //return redirect()->route('admin.accounts.index');
@@ -127,7 +128,7 @@ class UsersController extends Controller
         return Validator::make($data, [
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:6|confirmed',
             'user_id' => 'required',
         ]);

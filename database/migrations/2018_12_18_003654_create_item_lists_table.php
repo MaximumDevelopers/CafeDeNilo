@@ -16,8 +16,8 @@ class CreateItemListsTable extends Migration
         Schema::create('item_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('item_name')->unique();
-            $table->integer('category_id')->unsigned();
-            $table->integer('supplier_id')->unsigned();
+            $table->integer('category_id')->unsigned()->nullable();
+            $table->integer('supplier_id')->unsigned()->nullable();
             $table->smallInteger('quantity');
             $table->decimal('price');
             $table->decimal('cost');

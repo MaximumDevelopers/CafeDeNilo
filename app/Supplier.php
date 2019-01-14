@@ -11,4 +11,9 @@ class Supplier extends Model
     protected $table = 'suppliers';
     protected $primaryKey = 'id';
     protected $timeStamps = true;
+
+    public function item_list()
+    {
+        return $this->belongsTo('App\ItemList');
+    }
 }
