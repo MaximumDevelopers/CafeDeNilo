@@ -45,7 +45,7 @@
                                       
                                         <select name="addCategories" id="addCategories" class="categoryPicker form-control md-form" data-style="btn-primary">
                                                 <option value="empty">Select Category Here..</option>
-                                                @foreach ($category as $category)
+                                                @foreach ($categories as $category)
                                                     <option value="{{$category -> id}}">{{$category -> category_name}}</option>
                                                 @endforeach
                                             
@@ -86,6 +86,8 @@
                                                 </span>
                                             @endif
                                         </div>
+
+                                        
                                     </div>
 
                                     <div class="modal-footer">
@@ -120,7 +122,6 @@
                                         @if (count($item_list) >= 0)
                                             @foreach ($item_list as $item_list)        
                                                 <tr>
-          
                                                         <td id="dtShow"></td>
                                                         <td>{{$item_list -> item_name}}</td>
                                                         <td>Category</td>
@@ -129,37 +130,102 @@
                                                                     
                                                         <td>
                                                             <div class="text-center">
-                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-target="#modalCategoryEdit" style="font-size: 1rem;">SHOW</button>
-                                                            </div>
+                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-id="{{$item_list -> id}}" data-cost="{{$item_list -> cost}}" data-price="{{$item_list -> price}}" data-quantity="{{$item_list -> quantity}}" data-item_name="{{$item_list -> item_name}}" data-sup_id="{{$item_list -> supplier_id}}" data-cat_id="{{$item_list -> category_id}}" data-target="#modalItemEdit" style="font-size: 1rem;">SHOW</button>
+                                                       s     </div>
                                                         </td>
 
                                                         <td class="text-center">      
-                                                            <button type="submit" style="margin: 0%" class="fa fa-trash btn btn-red btn-md" data-toggle="modal"  data-target="#modalCategoryDel" style="font-size: 1rem; "></button>
+                                                            <button type="submit" style="margin: 0%" class="fa fa-trash btn btn-red btn-md" data-toggle="modal" data-id="{{$item_list -> id}}" data-target="#modalItemDel" style="font-size: 1rem; "></button>
                                                         </td>
                                                          
                                                         <!--Edit Account-->
-                                                        <div class="modal fade" id="modalCategoryEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                        <div class="modal fade" id="modalItemEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                                                         aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header yellow darken-2">
-                                                                        <h5 class="modal-title" id="exampleModalLabel">Edit Category</h5>
+                                                                        <h5 class="modal-title" id="itemModalLabel">Edit Category</h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form method="POST" action="">
+                                                                    <form method="POST" action="{{ route('admin.item_list.update', $category -> id) }}">
                                                                     @csrf
                                                                     @method('PATCH')
                                                                     <div class="modal-body mx-3">
 
-                                                                        <div class="form-group md-form ml-0 mr-0">
-                                                                                <i class="far fa-list-alt prefix grey-text"></i>
-                                                                                <input id="cat_edit" type="text" class="form-control" name="category_name" value="" required>
-                                                                                <label for="cat_edit" class="ml-8">{{ __('Category Name') }}</label>
-                                                                                <input type="hidden" name="cat_id" id="cat_id" value=""> 
-                                                                        </div>
-                                                                          
+                                                                            <div class="form-group md-form ml-0 mr-0 mb-0">
+                                                                                    <i class="fa fa-user prefix"></i>
+                                                                                    <input id="item_name" type="text" class="form-control{{ $errors->has('item_name') ? ' is-invalid' : '' }}" name="item_name" value="item_name" required >
+                                                                                    <label for="item_name" class="ml-8">{{ __('Item name') }}</label>
+                                                    
+                                                                                    @if ($errors->has('item_name'))
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $errors->first('item_name') }}</strong>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                </div>
+                                        
+                                                                            <div class="form-group md-form ml-0 mr-0 mb-0 mt-3  row">
+                                                                              <p class="font-weight-bold mb-0">CATEGORY</p>
+                                                                                <select name="editCategories" id="editCategories" class=" form-control md-form" data-style="btn-primary">
+                                                                                        <option value="empty">Select Category Here..</option>
+                                                                                        @foreach ($categories as $category)
+                                                                                            <option value="{{$category -> id}}">{{$category -> category_name}}</option>
+                                                                                        @endforeach
+                                                                                    
+                                                                                </select>                                          
+                                                                               
+                                                                            </div>
+                                        
+                                                                            <div class=" md-form form-group ml-0 mr-0 mb-0 row">   
+                                                                                    <p class="font-weight-bold mb-0">SUPPLIER</p>                                   
+                                                                                    <select name="editSupplier" id="editSupplier" class=" form-control md-form" data-style="btn-success">
+                                                                                        <option value="empty">Select Supplier Here..</option>
+                                                                                        @foreach ($suppliers as $supplier)
+                                                                                            <option value="{{$supplier -> id}}">{{$supplier -> supplier_name}}</option>
+                                                                                        @endforeach
+                                                                                    </select>                                                                                  
+                                                                            </div>
+                                        
+                                                                                <div class="form-group md-form ml-0 mr-0">
+                                                                                   
+                                                                                    <i class="far fa-money-bill-alt prefix"></i>
+                                                                                    <input id="item_cost" name="item_cost" type="number" class="form-control{{ $errors->has('item_cost') ? ' is-invalid' : '' }} filterNum" max="99999" min="0" name="item_cost" value="1" required >
+                                                                                    <label for="item_cost" class="ml-8">{{ __('Item cost') }}</label>
+                                                    
+                                                                                    @if ($errors->has('item_cost'))
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $errors->first('item_cost') }}</strong>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                </div>
+
+                                                                                <div class="form-group md-form ml-0 mr-0">
+                                                                                   
+                                                                                        <i class="far fa-money-bill-alt prefix"></i>
+                                                                                        <input id="item_price" name="item_price" type="number" class="form-control{{ $errors->has('item_price') ? ' is-invalid' : '' }} filterNum" max="99999" min="0" name="item_price" value="1" disabled >
+                                                                                        <label for="item_price" class="disabled ml-8">{{ __('Item price') }}</label>
+                                                        
+                                                                                        @if ($errors->has('item_price'))
+                                                                                            <span class="invalid-feedback" role="alert">
+                                                                                                <strong>{{ $errors->first('item_price') }}</strong>
+                                                                                            </span>
+                                                                                        @endif
+                                                                                    </div>
+                                        
+                                                                                <div class="form-group md-form ml-0 mr-0">
+                                                                                    <i class="fas fa-sort-amount-up prefix"></i>
+                                                                                    <input id="item_quantity" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity') ? ' is-invalid' : '' }} filterNum" name="item_quantity" value="1" required >
+                                                                                    <label for="item_quantity" class="ml-8">{{ __('Item quantity') }}</label>
+                                                    
+                                                                                    @if ($errors->has('item_quantity'))
+                                                                                        <span class="invalid-feedback" role="alert">
+                                                                                            <strong>{{ $errors->first('item_quantity') }}</strong>
+                                                                                        </span>
+                                                                                    @endif
+                                                                                </div>
+                                                                                <input type="hidden" name="item_id" id="item_id" value="item_id">
                                                                         </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
@@ -172,7 +238,7 @@
                                                         <!--Edit Account-->
                                                         
                                                         <!--Delete Account-->
-                                                            <div class="modal fade" id="modalCategoryDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                            <div class="modal fade" id="modalItemDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                                                             aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
@@ -182,12 +248,12 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form action="" method="post">
+                                                                    <form action="{{ route('admin.item_list.destroy', $category -> id) }}" method="post">
                                                                             @csrf
                                                                             @method('DELETE')
                                                                     <div class="modal-body">
-                                                                        <h5><p>Are you sure you want to delete this category?</p></h5>
-                                                                        <input type="hidden" name="cat_id" id="cat_id" value="">
+                                                                        <h5><p>Are you sure you want to delete this item?</p></h5>
+                                                                        <input type="hidden" name="item_id" id="item_id" value="">
                                                                     </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>

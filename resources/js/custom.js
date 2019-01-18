@@ -25,7 +25,7 @@ $(document).ready(function () {
         });        
     $('#dtSupplier').DataTable({
         order: [[1, 'asc']],
-        'columnDefs': [{ 'orderable': false, 'targets': [0, 2,3, 4] }, { "width": "3%", "targets": 0 }],
+        'columnDefs': [{ 'orderable': false, 'targets': [0, 2,3, 4, 5] }, { "width": "3%", "targets": 0 }],
 
         rowReorder: {
             selector: 'td:nth-child(2)'
@@ -43,6 +43,8 @@ $(document).ready(function () {
         $('.supplierPicker').selectpicker({
             liveSearch: true
         });
+
+        
 });
 
 //input number max-min filter
@@ -188,6 +190,64 @@ $(document).ready(function () {
 
         var modal = $(this)
         modal.find('.modal-body #supplier_id').val(id)   
+    });
+ 
+}); 
+
+//Item Edit
+$(document).ready(function () {  
+
+    $('#modalItemEdit').on('show.bs.modal', function(event)
+    {
+        var button = $(event.relatedTarget)
+        var id = button.data("id")
+        var item_name = button.data("item_name")
+        var supplier_id = button.data("sup_id")
+        var cat_id = button.data("cat_id")
+        var cost = button.data("cost")
+        var price = button.data("price")
+        var quantity = button.data("quantity")
+           
+
+        var modal = $(this)
+        modal.find('.modal-body #item_id').val(id)    
+        modal.find('.modal-body #item_name').val(item_name)
+        modal.find('.modal-body #item_cost').val(cost) 
+        modal.find('.modal-body #item_price').val(price)  
+        modal.find('.modal-body #item_quantity').val(quantity) 
+
+        if(supplier_id)
+        {modal.find('.modal-body #editSupplier').val(supplier_id)}
+        else 
+        modal.find('.modal-body #editSupplier').val("empty")
+        if(cat_id)
+        modal.find('.modal-body #editCategories').val(cat_id) 
+        else 
+        modal.find('.modal-body #editCategories').val("empty")
+        $('.editsupplierPickeselect').selectpicker('refresh',
+        {
+            liveSearch: true
+        })  
+        
+
+       /* //modalLabel
+        $('#itemModalLabel').text(function(i, oldText) {
+            return oldText === 'Edit Category' ? item_name : oldText;
+        });*/
+    });
+ 
+}); 
+
+//Item Del
+$(document).ready(function () {  
+
+    $('#modalItemDel').on('show.bs.modal', function(event)
+    {
+        var button = $(event.relatedTarget)
+        var id = button.data("id")
+
+        var modal = $(this)
+        modal.find('.modal-body #item_id').val(id)   
     });
  
 }); 

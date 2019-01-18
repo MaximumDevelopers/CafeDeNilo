@@ -167,8 +167,7 @@
                                                                                 <i class="fa fa-envelope prefix "></i>
                                                                                 <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email"  value="email" >
                                                                                 <label for="email" class="float ml-8">{{ __('Email Address') }}</label>
-                                                
-                                                        
+                                            
                                                                                 @if ($errors->has('email'))
                                                                                     <span class="invalid-feedback" role="alert">
                                                                                         <strong>{{ $errors->first('email') }}</strong>

@@ -21,21 +21,21 @@ class ItemListController extends Controller
     {
         $item_list = ItemList::all();
         //$category = categories::select('category_name')->get();
-        $category = categories::select('id', 'category_name')->get();
+        $categories = categories::select('id', 'category_name')->get();
         $suppliers = supplier::select('id', 'supplier_name')->get();
         
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.items.item_list')->with('item_list', $item_list)->with('category', $category)->with('suppliers', $suppliers);
+            return view('users.admin.items.item_list')->with('item_list', $item_list)->with('categories', $categories)->with('suppliers', $suppliers);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.items.item_list')->with('item_list', $item_list)->with('category', $category)->with('suppliers', $suppliers);
+            return view('users.admin.items.item_list')->with('item_list', $item_list)->with('categories', $categories)->with('suppliers', $suppliers);
             
         }
         else {
-            return view('users.captain_crew.items.item_list')->with('item_list', $item_list)->with('category', $category)->with('suppliers', $suppliers);
+            return view('users.captain_crew.items.item_list')->with('item_list', $item_list)->with('categories', $categories)->with('suppliers', $suppliers);
         }
     }
 
@@ -147,7 +147,38 @@ class ItemListController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $item_id = $request->get('item_id');
+        $item_list= ItemList::find($item_id);
+        
+        $item_list ->item_name = $request->get('item_name');
+        $item_list ->cost = $request->get('item_cost');
+        $item_list ->quantity = $request->get('item_quantity');
+        $cost = $request->get('item_cost');
+        $item_list ->price = $this -> price($cost);
+
+        //get CategoryID
+        if ( $request->input('editCategories') != 'empty')
+        {
+            $item_list ->category_id = $request->get('editCategories');
+        }
+
+        else
+        {
+            $item_list ->category_id = $request->get('');
+        }
+        
+        if ( $request->input('editSupplier') != 'empty')
+        {
+            $item_list ->supplier_id = $request->get('editSupplier');
+        }  
+
+        else
+        {
+            $item_list ->supplier_id = $request->get('');
+        }
+        
+        $item_list->save();
+        return $this->redirect_route();
     }
 
     /**
@@ -156,8 +187,11 @@ class ItemListController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $item_id = $request->get('item_id');
+        $item = ItemList::find($item_id);
+        $item->delete();
+        return $this->redirect_route();
     }
 }

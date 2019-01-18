@@ -100,7 +100,7 @@ class UsersController extends Controller
           $accounts->last_name = $request->get('last_name');
           $accounts->email = $request->get('email');
           $accounts->role = $request->get('role');
-          $accounts->password = ($request->get('password'));
+          $accounts->password = Hash::make($request->get('password'));
           $accounts->save();
           return $this->redirect_route();
           //return redirect()->route('admin.accounts.index');

@@ -93,12 +93,12 @@ class SuppliersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $this->validator($request->all())->validate();
+        //$this->validator($request->all())->validate();
 
         $supplier_id = $request->get('supplier_id');
         $supplier = supplier::find($supplier_id);
         $supplier->supplier_name = $request->get('sName');
-        $accounts->email = $request->get('email');
+        $supplier->email = $request->get('email');
         $supplier->phone_number = $request->input('pNum');
         $supplier->address = $request->input('address');
         $supplier->note = $request->input('note');

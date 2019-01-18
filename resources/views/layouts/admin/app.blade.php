@@ -8,7 +8,7 @@
         
         <!-- Styles -->
         <link href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css" rel="stylesheet">
-        
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/css/bootstrap-select.min.css">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <!-- Fonts -->
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
@@ -34,5 +34,6 @@
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.5/js/bootstrap-select.min.js"></script>
     </body>
 </html>
