@@ -63,7 +63,33 @@
     
                                 <a href="/admin/categories">
                                         <h6 class="mb-2">
-                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Categories
+                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Item Categories
+                                        <h6>        
+                                </a>
+                        </div>
+                </div>
+
+                <!-- #2.5 -->
+                <div class="card-header" id="headingTwoFive">
+                        <a data-toggle="collapse" href="#collapseTwoFive" aria-expanded="false" aria-controls="collapseTwoFive">
+                                <h6 class="mb-0">
+                                        <i class="fa fa-shopping-bag mr-3"></i>Products
+                                    <i class="fa fa-angle-down float-right mt-1"></i>
+                                </h6>     
+                            </a>
+                </div>
+                
+                <div id="collapseTwoFive" class="collapse" aria-labelledby="headingTwoFive" data-parent="#accordionExample">
+                        <div class="card-body">
+                                <a href="/admin/products">
+                                        <h6 class="mb-2">
+                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Products
+                                        <h6>        
+                                </a>
+    
+                                <a href="/admin/productcategories">
+                                        <h6 class="mb-2">
+                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Product Categories
                                         <h6>        
                                 </a>
                         </div>
@@ -78,6 +104,8 @@
                         </h6>     
                     </a>
                 </div>
+
+                
 
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">

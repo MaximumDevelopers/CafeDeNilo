@@ -124,14 +124,20 @@
                                                 <tr>
                                                         <td id="dtShow"></td>
                                                         <td>{{$item_list -> item_name}}</td>
-                                                        <td>Category</td>
+                                                        <!-- Supplier email -->  
+                                                        @if (empty($item_list -> category_id))
+                                                            <td>No Email</td>
+                                                        @else
+                                                            <td>{{$item_list -> category_id}}</td>
+                                                        @endif 
+                                                        
                                                         <td>{{$item_list -> quantity}}</td>
                                                         <td>&#8369;{{$item_list -> price}}</td>
                                                                     
                                                         <td>
                                                             <div class="text-center">
                                                                 <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-id="{{$item_list -> id}}" data-cost="{{$item_list -> cost}}" data-price="{{$item_list -> price}}" data-quantity="{{$item_list -> quantity}}" data-item_name="{{$item_list -> item_name}}" data-sup_id="{{$item_list -> supplier_id}}" data-cat_id="{{$item_list -> category_id}}" data-target="#modalItemEdit" style="font-size: 1rem;">SHOW</button>
-                                                       s     </div>
+                                                            </div>
                                                         </td>
 
                                                         <td class="text-center">      

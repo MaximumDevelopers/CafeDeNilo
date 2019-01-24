@@ -29,7 +29,7 @@ Route::get('/home', 'HomeController@index')->name('home');
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/accounts', 'UsersController', ['as' => 'admin']); 
     });
-    //categories
+    //item_categories
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/categories', 'CategoriesController', ['as' => 'admin']); 
     }); 
@@ -37,7 +37,23 @@ Route::get('/home', 'HomeController@index')->name('home');
     //item_list
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/item_list', 'ItemListController', ['as' => 'admin']); 
+    });
+
+    //products
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/products', 'ProductController', ['as' => 'admin']); 
+    });
+
+    //products_show
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/products_show', 'ProductController', ['as' => 'admin']); 
+    });
+    
+    //products_categories
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/productcategories', 'ProductCategoriesController', ['as' => 'admin']); 
     }); 
+    
 
     //supplier
     Route::group(['middleware' => ['auth', 'admin']], function() {

@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.admin.graphs')
 @section('content')
 
 <!--Main Navigation-->

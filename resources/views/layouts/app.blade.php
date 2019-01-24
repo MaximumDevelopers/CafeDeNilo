@@ -25,12 +25,12 @@
         </header>
         
             <div class="container-fluid mt-0 pt-0">
-            
+                    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+                    <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
                 @yield('content')
                
             </div>
         
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-        <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
+        
     </body>
 </html>

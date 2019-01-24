@@ -10,8 +10,8 @@ class ItemList extends Model
     protected $primaryKey = 'id';
     protected $timeStamps = true;
 
-    public function suppliers()
+    public function product()
     {
-        return $this->hasMany('App\Supplier');
+        return $this->belongsToMany(product::class);
     }
 }
