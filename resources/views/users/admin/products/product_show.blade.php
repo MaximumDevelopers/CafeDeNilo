@@ -12,34 +12,62 @@
                                     
                             </div>
 
-                                                        <!-- Default form subscription -->
+                            <!-- Choose file -->
                             <form class="text-center border border-light p-5">
-
-                                <p class="h4 mb-4">Subscribe</p>
-
-                                <p>Join our mailing list. We write rarely, but only the best content.</p>
-
-                                <p>
-                                    <a href="" target="_blank">See the last newsletter</a>
-                                </p>
-
-                                <!-- Name -->
-                                <input type="text" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="Name">
-
-                                <!-- Email -->
-                                <input type="email" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="E-mail">
-
-                                <!-- Sign in button -->
-                                <button class="btn btn-info btn-block" type="submit">Sign in</button>
-
-
+                                    <div class="form-group">
+                                            <label for="exampleInputFile" class="bmd-label-floating">Input a file: </label>
+                                            <input type="file" class="form-control-file" id="exampleInputFile">
+                                            
+                                          </div>
                             </form>
-                            <!-- Default form subscription -->
+                            <!-- Choose file-->
     
                 
                     </div>
                 </div>
         </div>
     </div>        
+
+<br>
+<br>
+
+    <div id="cf1" class="container-fluid">
+
+            <div class="col-lg-10">
+                    <div class="card shadow-md mb-6">
+                        <div class="card-body">
+                                <div class="row">
+                                                <div class="table-responsive">
+                                                 <table class="table table-bordered" id="crud_table">
+                                                 <tr>
+                                                 <th width="30%">Item Name</th>
+                                                 <th width="10%">Item Code</th>
+                                                 <th width="45%">Description</th>
+                                                 <th width="10%">Price</th>
+                                                 <th width="5%"></th>
+                                                 </tr>
+                                                 <tr>
+                                                 <td contenteditable="true" class="item_name"></td>
+                                                 <td contenteditable="true" class="item_code"></td>
+                                                 <td contenteditable="true" class="item_desc"></td>
+                                                 <td contenteditable="true" class="item_price"></td>
+                                                 <td></td>
+                                                 </tr>
+                                                 </table>
+                                                 <div class="right">
+                                                 <button type="button" name="add" id="add" class="btn btn-success btn-xs">+</button>
+                                                 </div>
+                                                 <div class="center">
+                                                 <button type="button" name="save" id="save" class="btn btn-info">Save</button>
+                                                 </div>
+                                                 <br />
+                                                 <div id="inserted_item_data"></div>
+                                                 </div>
+                                        
+                                </div>
+                        </div>
+                    </div>
+            </div>
+        </div>        
 
 @endsection
