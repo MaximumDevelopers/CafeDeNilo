@@ -20,17 +20,20 @@
     <body class="grey lighten-3 ">
 
         <header>
-           
+                @include('inc.owner.navbar')
+                @include('inc.owner.sidebar')
             
         </header>
-        
-            <div class="container-fluid mt-0 pt-0">
-                    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-                    <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
-                @yield('content')
-               
-            </div>
-        
-        
+        <main class="pt-5 mx-lg-5">
+                <div class="container-fluid mt-5">
+                
+                    @yield('content')
+                   
+                </div>
+            </main>
+            <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
+
+
     </body>
 </html>

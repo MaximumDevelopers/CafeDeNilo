@@ -32,7 +32,7 @@
             </div>
         </main>
         <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
+            <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
         <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>

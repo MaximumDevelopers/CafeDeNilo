@@ -34,7 +34,7 @@
                                         <h6>        
                                 </a>
 
-                                <a href="items">
+                                <a href="/receipts">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Receipts
                                         <h6>        

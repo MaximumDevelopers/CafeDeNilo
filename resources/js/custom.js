@@ -14,6 +14,7 @@ $(document).ready(function () {
         },
         responsive: true
         });
+        
 
     $('#dtItem').DataTable({
         order: [[1, 'asc']],

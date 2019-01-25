@@ -16,6 +16,8 @@ Route::get('/', 'PagesController@index');
 Route::get('/Msample', 'PagesController@Msample')->middleware('auth','admin');
 
 Route::get('/about', 'PagesController@about');
+
+Route::get('/receipts', 'PagesController@receipts');
  
 Auth::routes();
 

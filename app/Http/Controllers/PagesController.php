@@ -29,5 +29,10 @@ class PagesController extends Controller
     {
         return view('login');
     }
+
+    public function receipts()
+    {
+        return view('pages.receipts');
+    }
     
 }
