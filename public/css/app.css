@@ -22036,6 +22036,14 @@ div.dataTables_wrapper div.dataTables_paginate ul.pagination .page-item .page-li
   /* Added */
 }
 
+#btnsales {
+  border-radius: 15px;
+}
+
+#salemodal {
+  overflow-x: auto;
+}
+
 table.dataTable thead > tr > td.sorting,
 table.dataTable thead > tr > td.sorting_asc,
 table.dataTable thead > tr > td.sorting_desc,

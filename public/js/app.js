@@ -43249,6 +43249,29 @@ $(document).ready(function () {
         },
         responsive: true
     });
+    $('#dtProductSales').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [2] }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
+
+    $('#dtReceipts').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [5] }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
+
+    $('#dtSaleSummary').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [2] }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
 
     $('#dtCategories').DataTable({
         'columnDefs': [{ 'orderable': false, 'targets': [1, 2] }],

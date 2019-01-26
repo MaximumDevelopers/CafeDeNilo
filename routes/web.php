@@ -18,6 +18,10 @@ Route::get('/Msample', 'PagesController@Msample')->middleware('auth','admin');
 Route::get('/about', 'PagesController@about');
 
 Route::get('/receipts', 'PagesController@receipts');
+
+Route::get('/salesummary', 'PagesController@salesummary');
+
+Route::get('/sales_item', 'PagesController@sales_item');
  
 Auth::routes();
 

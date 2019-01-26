@@ -10,8 +10,9 @@
                 <div id="c2" class="card shadow-md mb-6">
                     <div class="card-body">
                             <div class="row">
-                                    <h2 id="ct1" class="card-title">Receipts</h2>
-                                    
+                                    <h2 id="ct1" class="card-title">Sales by Item</h2>
+
+                                
                                     
                             </div>
                         <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
@@ -19,11 +20,13 @@
                             <div class="modal-dialog" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header blue darken-2">
-                                        <h5 class="modal-title" id="exampleModalLabel">Add Account</h5>
+                                        
                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
+
+                                 
                                     
                                 <form method="POST" action="">
                                         @csrf
@@ -106,26 +109,48 @@
     
                                         <div class="modal-footer">
                                                 <button type="button" class=" form-group btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class=" form-group btn btn-primary">Add account</button>
+                                                
                                             </div>
     
                                     </form>
     
                                 </div>
                             </div>
-                        </div>        
+                            
+                          
+                        </div>       
                         
-                        <div class="table-reponsive text-nowrap">
+                        
+
+                        <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Today
+                            </button>
+
+                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Week
+                                </button>
+
+                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Month
+                                    </button>
+
+                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Year
+                                        </button>
+
+                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">See all
+                                            </button>
+
+                                            <br>
+                                            <br>
+                    
+              
     
-                                <table id="dtReceipts" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                        <div class="table-reponsive text-nowrap">
+                                
+                             <table id="dtProductSales" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                  
-                                              <th scope="col">Receipt No.</th>
-                                              <th scope="col">Employee Name</th>
-                                              <th scope="col">Amount</th>
-                                              <th scope="col">Cash</th>
-                                              <th scope="col">Date</th>
+                                              
+                                              <th scope="col">Product Name</th>
+                                              <th scope="col">Price</th>
                                               <th scope="col"></th>
                                               
                               
@@ -136,73 +161,71 @@
                                                
                                                     <tr>
                                                                 
-                                                            <td>1</td>
-                                                            <td>Ron Justin</td>
-                                                            <td>150</td>
-                                                            <td>150</td>
-                                                            <td>1/20/19</td>
+                                                            
+                                                            <td>BUrger</td>
+                                                            <td>300</td>
+
                                                           
                                                             <td class="text-center">
-                                                                <button type="button" style="margin: 0%" class="fas fa-info-circle btn btn-blue btn-md" data-id="" data-toggle="modal"  data-target="#modalInfo" style="font-size: 1rem; "></button>
-                                                               <!--Receipts Details -->
-                                                               <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                                               aria-hidden="true">
-                                                               <div class="modal-dialog" role="document">
-                                                                   <div class="modal-content">
-                                                                       <div class="modal-header" style="background-color: dark-blue;">
-                                                                           <h5 class="modal-title" id="exampleModalLabel">Sales Details</h5>
-                                                                           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                               <span aria-hidden="true">&times;</span>
-                                                                           </button>
-                                                                       </div>
-                                                                       <form action="" method="post">
-                                                                         
-                                                                           <div class="modal-body">
-                                                                               
-                                                                                <table id="dtReceipts1" class="table table-bordered" cellspacing="0" width="100%">
-                                                                                        <thead>
-                                                                                            <tr>
-                                                                                                 
-                                                                                              <th scope="col">Employee Name</th>
-                                                                                              <th scope="col">Orders</th>
-                                                                                              <th scope="col">Quantity</th>
-                                                                                              <th scope="col">Price</th>
-                                                                                              <th scope="col">Date</th>
-                                                                                              
-                                                                                              
-                                                                              
-                                                                                            </tr>
-                                                                                          </thead>
-                                                                                          <tbody>
-                                                    
-                                                                                               
-                                                                                                    <tr>
-                                                                                                                
-                                                                                                            <td>1</td>
-                                                                                                            <td>Ron Justin</td>
-                                                                                                            <td>150</td>
-                                                                                                            <td>150</td>
-                                                                                                            <td>1/20/19</td>
-                                                                                                    </tr>
-                                                                                                </tbody>
-                                                                                </table>
-                                                               
-                                                                           </div>
-                                                                       <div class="modal-footer">
-                                                                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>   
+                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-md" data-id="" data-toggle="modal"  data-target="#modalInfo" style="font-size: 1rem; ">Show</button>
+
+                                                             <!--Sales Details -->
+                                                             <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+                                                             aria-hidden="true">
+                                                             <div class="modal-dialog" role="document">
+                                                                 <div class="modal-content">
+                                                                     <div class="modal-header" style="background-color: dark-blue;">
+                                                                         <h5 class="modal-title" id="exampleModalLabel">Sales Details</h5>
+                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                             <span aria-hidden="true">&times;</span>
+                                                                         </button>
+                                                                     </div>
+                                                                     <form action="" method="post">
+                                                                       
+                                                                         <div class="modal-body">
+                                                                             
+                                                                            
+
+                                                                             <table id="dtProductSales1" class="table table-bordered table-sm" cellspacing="0" width="100%">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                             
+                                                                                          
+                                                                                          <th scope="col">Ordered Date</th>
+                                                                                          <th scope="col">Price</th>
+                                                                                          
+                                                                                          
                                                                           
-                                                                       </div>
-                                                                   </form>
-                                                                   </div>
-                                                               </div>
-                                                           </div>
-                                                           <!--Receipts Details-->
+                                                                                        </tr>
+                                                                                      </thead>
+                                                                                      <tbody>
+                                                
+                                                                                           
+                                                                                                <tr>
+                                                                                                            
+                                                                                                        
+                                                                                                        <td>1/20/19</td>
+                                                                                                        <td>300</td>
+                                                                                                </tr>
+                                                                                      </tbody>
+                                                                             </table>
+                                                                                
+                                                                            
+
+                                                             
+                                                                         </div>
+                                                                     
+                                                                 </form>
+                                                                 </div>
+                                                             </div>
+                                                         </div>
+                                                         <!--Sales Details-->
 
                                                             </td>
     
                                                                  
                                                             
-                                                           
+                                                            
                                                             
                                                     </tr>
                                                   
@@ -215,9 +238,6 @@
                                       </table>
             
             
-                               </div>
-                         
-                    </div>
         
         
                        

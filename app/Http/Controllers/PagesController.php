@@ -35,4 +35,13 @@ class PagesController extends Controller
         return view('pages.receipts');
     }
     
+    public function salesummary()
+    {
+        return view('pages.salesummary');
+    }
+    public function sales_item()
+    {
+        return view('pages.sales_item');
+    }
+    
 }
