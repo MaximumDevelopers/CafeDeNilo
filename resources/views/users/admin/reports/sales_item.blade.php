@@ -5,8 +5,9 @@
 <!--Frappenilo Cups -->
 
 <div id="cf" class="container-fluid">
-
-        <div class="col-lg-11">
+   <div class="row">
+   <div class="col-md-7">
+       
                 <div id="c2" class="card shadow-md mb-6">
                     <div class="card-body">
                             <div class="row">
@@ -162,7 +163,7 @@
                                                     <tr>
                                                                 
                                                             
-                                                            <td>BUrger</td>
+                                                            <td>Burger</td>
                                                             <td>300</td>
 
                                                           
@@ -242,58 +243,75 @@
         
                        
                         </div>
-                  
+                   
                        
             
                     </div>
+                </div>
+
+                  
+   
+
+           
+        
+
+   </div>
+
+   <div class="col-md-5">
+        <!--Card-->
+        <div class="card">
+       
+               <!-- Card header -->
+               <div class="card-header">Doughnut Chart</div>
+       
+               <!--Card content-->
+               <div class="card-body">
+       
+                   <canvas id="doughnutChart"></canvas>
+       
+               </div>
+       
+           </div>
+           <!--/.Card-->
+       
+       </div>
+       </div>
+
+  
+
+</div>
+</div>
+
+
+
+
+
+        <script>
+                //doughnut
+                var ctxD = document.getElementById("doughnutChart").getContext('2d');
+                var myLineChart = new Chart(ctxD, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
+                        datasets: [{
+                            data: [300, 50, 100, 40, 120],
+                            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
+                            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+        </script>
    
         </div>
 
-        <!-- Frappenilo Cups -->
+        
+         
 
 
-        <br>
-        <br>
+      
 
 
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-6 mb-4">
-
-                <!--Card-->
-                <div class="card">
-
-                    <!-- Card header -->
-                    <div class="card-header">Doughnut Chart</div>
-
-                    <!--Card content-->
-                    <div class="card-body">
-
-                        <canvas id="doughnutChart"></canvas>
-
-                    </div>
-
-                </div>
-                <!--/.Card-->
-
-            </div>
-            <!--Grid column-->
-
-<script>
-        //doughnut
-        var ctxD = document.getElementById("doughnutChart").getContext('2d');
-        var myLineChart = new Chart(ctxD, {
-            type: 'doughnut',
-            data: {
-                labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-                datasets: [{
-                    data: [300, 50, 100, 40, 120],
-                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-                }]
-            },
-            options: {
-                responsive: true
-            }
-        });
-</script>
 @endsection
