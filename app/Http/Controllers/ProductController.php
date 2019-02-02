@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Products;
+use App\ItemList;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
@@ -50,8 +51,31 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+
+        $product = new Products;
+        $product->product_name = 'God tae';
+        
+
+        $product->save();
+        $data = ['quantity' => 1, 'quantity' => 2,  ];
+        $category = ItemList::find([11, 13]);
+        $product->ItemList()->attach($category,$data);
+         
+        
+
+        /*$data=$request->all();
+        if(count($request->product_name) > 0)
+        {
+        foreach($request->product_name as $item=>$v){
+            $data2=array(
+                'product_name'=>$request->product_name[$item]
+            );
+        Products::insert($data2);
+      }
+        }
+        return redirect()->back()->with('success','data insert successfully');*/
+            
+    }   
 
     /**
      * Display the specified resource.

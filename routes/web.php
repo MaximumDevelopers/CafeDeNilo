@@ -41,9 +41,10 @@ Route::get('/home', 'HomeController@index')->name('home');
 
     //products
     Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/products', 'ProductController', ['as' => 'admin']); 
+        Route::resource('admin/products', 'ProductController', ['as' => 'admin']);
+        
     });
-
+    Route::post('/admin/product/post', 'ProductController@store'); 
     //products_show
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/products_show', 'ProductController', ['as' => 'admin']); 
@@ -58,7 +59,10 @@ Route::get('/home', 'HomeController@index')->name('home');
     //supplier
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/supplier', 'SuppliersController', ['as' => 'admin']); 
-    }); 
+    });
+    
+    //loginMobile
+    Route::get('/mobile/login', 'LoginController@index');
 
 //Owner
 Route::get('/owner', 'User\OwnerController@index')->middleware('auth','owner');

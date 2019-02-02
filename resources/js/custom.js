@@ -290,33 +290,101 @@ $(document).ready(function(){
    $('.item_price').each(function(){
    item_price.push($(this).text());
    });
+
+   $.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+
    $.ajax({
-   url:"insert.php",
+   url:"/admin/product/post",
    method:"POST",
-   data:{item_name:item_name, item_code:item_code, item_desc:item_desc, item_price:item_price},
+   dataType: "json",
+   data:{item_name:item_name},
    success:function(data){
-   alert(data);
-   $("td[contentEditable='true']").text("");
-   for(var i=2; i<= count; i++)
-   {
-    $('tr#'+i+'').remove();
-   }
-   fetch_item_data();
+    /*alert(data);
+    $("td[contentEditable='true']").text("");
+    for(var i=2; i<= count; i++)
+    {
+        $('tr#'+i+'').remove();
+    }*/
    }
     });
+    
     });
    
-    function fetch_item_data()
-     {
-    $.ajax({
-    url:"fetch.php",
-    method:"POST",
-    success:function(data)
-    {
-     $('#inserted_item_data').html(data);
-    }
-     })
-     }
-     fetch_item_data();
+    
    
       });
+
+
+//Dan
+
+$('tbody').delegate('.quantity,.budget','keyup',function(){
+    var tr=$(this).parent().parent();
+    var quantity=tr.find('.quantity').val();
+    var budget=tr.find('.budget').val();
+    var amount=(quantity*budget);
+    tr.find('.amount').val(amount);
+    total();
+});
+function total(){
+    var total=0;
+    $('.amount').each(function(i,e){
+        var amount=$(this).val()-0;
+    total +=amount;
+});
+$('.total').html('&#8369;'+total+".00 ");    
+}
+$('.addRow').on('click',function(){
+    addRow();
+});
+function addRow()
+{
+    var tr='<tr>'+
+    '<td><input type="text" name="product_name[]" class="form-control " required=""></td>'+
+    '<td><input type="text" name="quantity[]" class="form-control quantity" ></td>'+
+    '<td><input type="text" name="budget[]" class="form-control budget"></td>'+
+    ' <td><input type="text" name="amount[]" class="form-control amount"></td>'+
+    '<td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>'+
+    '</tr>';
+    $('tbody').append(tr);
+};
+$('body').on('click', '.remove', function(){
+    var last=$('tbody tr').length;
+    if(last==1){
+        alert("you can not remove last row");
+    }
+    else{
+         $(this).parent().parent().remove();
+    }
+ 
+});
+
+//auto complete
+$(document).ready(function(){
+
+    $('#country_name').keyup(function(){ 
+           var query = $(this).val();
+           if(query != '')
+           {
+            var _token = $('input[name="_token"]').val();
+            $.ajax({
+             url:"{{ route('autocomplete.fetch') }}",
+             method:"POST",
+             data:{query:query, _token:_token},
+             success:function(data){
+              $('#countryList').fadeIn();  
+                       $('#countryList').html(data);
+             }
+            });
+           }
+       });
+   
+       $(document).on('click', 'li', function(){  
+           $('#country_name').val($(this).text());  
+           $('#countryList').fadeOut();  
+       });  
+   
+   });

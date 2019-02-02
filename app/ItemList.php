@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Products;
+use App\ItemList;
 
 class ItemList extends Model
 {
@@ -10,8 +12,8 @@ class ItemList extends Model
     protected $primaryKey = 'id';
     protected $timeStamps = true;
 
-    public function product()
+    public function roduct()
     {
-        return $this->belongsToMany(product::class);
+        return $this->belongsToMany(Products::class, 'product_items')->withTimestamps();;
     }
 }

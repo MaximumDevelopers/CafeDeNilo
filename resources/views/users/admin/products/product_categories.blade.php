@@ -9,7 +9,7 @@
                         <div class="row">
                                 <h2 id="ct1" class="card-title">Product Categories</h2>
                                 
-                                <button type="button" class="btn btn-primary btn-sm ml-auto btnLogin" 
+                                <button type="button" class="btn btn-primary btn-sm smml-auto btnLogin" 
                                 data-toggle="modal" data-target="#modalAdd">Add Category
                                 </button>
                         </div>
