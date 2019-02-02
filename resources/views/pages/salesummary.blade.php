@@ -157,7 +157,7 @@
                                                           
                                                             <td class="text-center">
                                                                 <button type="button" style="margin: 0%" class="btn btn-blue btn-md" data-id="" data-toggle="modal"  data-target="#modalInfo" style="font-size: 1rem; ">Show</button>
-                                                            </td>
+                                                        
     
                                                                  
                                                             
@@ -176,7 +176,29 @@
                                                                           
                                                                             <div class="modal-body">
                                                                                 
-                                                                                <input type="hidden" name="user_id" id="user_id" value="">
+                                                                                <table id="dtSaleSummary1" class="table table-bordered table-sm" cellspacing="0" width="100%">
+                                                                                    <thead>
+                                                                                        <tr>
+                                                                                             
+                                                                                          
+                                                                                          <th scope="col">Ordered Date</th>
+                                                                                          <th scope="col">Price</th>
+                                                                                          
+                                                                                          
+                                                                          
+                                                                                        </tr>
+                                                                                      </thead>
+                                                                                      <tbody>
+                                                
+                                                                                           
+                                                                                                <tr>
+                                                                                                            
+                                                                                                        
+                                                                                                        <td>1/20/19</td>
+                                                                                                        <td>300</td>
+                                                                                                </tr>
+                                                                                      </tbody>
+                                                                             </table>
                                                                 
                                                                             </div>
                                                                         
@@ -185,7 +207,7 @@
                                                                 </div>
                                                             </div>
                                                             <!--Sales Details-->
-                                                            
+                                                        </td>
                                                     </tr>
                                                   
                                                   
