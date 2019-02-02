@@ -21,6 +21,12 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/receipts', 'PagesController@receipts');
+
+Route::get('/salesummary', 'PagesController@salesummary');
+
+Route::get('/sales_item', 'PagesController@sales_item');
+
 
 //ADMIN ROUTES
 

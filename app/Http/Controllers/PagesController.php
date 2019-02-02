@@ -30,4 +30,17 @@ class PagesController extends Controller
         return view('login');
     }
     
+    public function receipts()
+    {
+        return view('users.admin.reports.receipts');
+    }
+    
+    public function salesummary()
+    {
+        return view('users.admin.reports.salesummary');
+    }
+    public function sales_item()
+    {
+        return view('users.admin.reports.sales_item');
+    }
 }
