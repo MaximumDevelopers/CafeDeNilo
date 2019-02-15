@@ -27,6 +27,8 @@ Route::get('/salesummary', 'PagesController@salesummary');
 
 Route::get('/sales_item', 'PagesController@sales_item');
 
+Route::Post('/showP', 'SalesSummaryController@showProduct');
+
 
 //ADMIN ROUTES
 
@@ -65,6 +67,11 @@ Route::get('/sales_item', 'PagesController@sales_item');
     //supplier
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/supplier', 'SuppliersController', ['as' => 'admin']); 
+    });
+
+    //Sales
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesummary', 'SalesSummaryController', ['as' => 'admin']); 
     });
     
     //loginMobile

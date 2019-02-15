@@ -12,7 +12,7 @@ class ItemList extends Model
     protected $primaryKey = 'id';
     protected $timeStamps = true;
 
-    public function roduct()
+    public function Product()
     {
         return $this->belongsToMany(Products::class, 'product_items')->withTimestamps();;
     }
