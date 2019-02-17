@@ -22,19 +22,19 @@
                     <div class="card-body">
                         <a href="items">
                                 
-                                <a href="/salesummary">
+                                <a href="/admin/salesummary">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Sales summary
                                         <h6>        
                                 </a>
 
-                                <a href="sales_item">
+                                <a href="/sales_item">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Sales by item
                                         <h6>        
                                 </a>
 
-                                <a href="receipts">
+                                <a href="/receipts">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Receipts
                                         <h6>        

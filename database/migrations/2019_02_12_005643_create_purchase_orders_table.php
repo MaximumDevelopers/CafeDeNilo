@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ProductItems extends Migration
+class CreatePurchaseOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,10 @@ class ProductItems extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('purchase_orders', function (Blueprint $table) {
+            $table->increments('id');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +26,6 @@ class ProductItems extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('purchase_orders');
     }
 }

@@ -158,8 +158,8 @@
                                                                         </button>
                                                                     </div>
                                                                     <form id="edit-form" method="POST" action=" {{route('admin.accounts.update',$account->id)}} ">
-                                                                    @csrf
-                                                                    @method('PATCH')
+                                                                        @csrf
+                                                                        @method('PATCH')
                                                                     <div class="modal-body mx-3">
 
                                                                         <div class="form-group md-form ml-0 mr-0">

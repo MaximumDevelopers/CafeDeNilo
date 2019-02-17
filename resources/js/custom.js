@@ -34,7 +34,7 @@ $(document).ready(function () {
         });
 
     $('#dtProductSales').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [2] }],
+            'columnDefs': [{ 'orderable': false, 'targets': [1,2] }],
             rowReorder: {
                 selector: 'td:nth-child(2)'
             },
@@ -42,7 +42,7 @@ $(document).ready(function () {
             });
 
         $('#dtReceipts').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [5] }],
+        'columnDefs': [{ 'orderable': false, 'targets': [5,2,3] }],
         rowReorder: {
             selector: 'td:nth-child(2)'
         },
@@ -50,7 +50,7 @@ $(document).ready(function () {
         });             
 
         $('#dtSaleSummary').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [2] }],
+            'columnDefs': [{ 'orderable': false, 'targets': [1,3] }],
             rowReorder: {
             selector: 'td:nth-child(2)'
             },
@@ -278,6 +278,46 @@ $(document).ready(function () {
     });
  
 }); 
+
+//product show
+$(document).ready(function () {  
+
+    $('#modalInfo').on('show.bs.modal', function(event)
+    {
+        
+        var button = $(event.relatedTarget)
+        var productID = button.data("id")
+        $.ajax({
+            url:"/admin/salesummary/create",
+            method: "Get",
+            dataType:"JSON",
+            success:function(data)
+            {   
+               
+                for (var i = 0; i < data.array.length; i++) {
+                    $('#tdDate').html(data.array[i].date);
+                    $('#tdPrice').html(data.array[i].total_price);
+                    //addTR()
+                    }
+                
+                
+            }
+            
+        })  
+        
+    });
+
+}); 
+
+function addTR()
+{
+    var tr='<tr>'+
+    '<td id="tdDate"></td>'+
+    '<td id="tdPrice"></td>'+
+    '</tr>';                                                                                       
+    
+    $('#shProducts').append(tr);
+};
 
 
 //Product_MultipleInline

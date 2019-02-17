@@ -262,7 +262,7 @@
         <div class="card h-80">
        
                <!-- Card header -->
-               <div class="card-header">Doughnut Chart</div>
+               <div class="card-header">Top 5 Item</div>
        
                <!--Card content-->
                <div class="card-body">
