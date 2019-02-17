@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Auth;
+use App\StockAdjustment;
 
-class PurchaseOrder extends Controller
+
+class StockAdjustmentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +17,20 @@ class PurchaseOrder extends Controller
      */
     public function index()
     {
-        //
+        $StockAdjustment= StockAdjustment::all();
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+            
+        }
+        else {
+            return view('users.captain_crew.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+        }
     }
 
     /**
@@ -23,7 +40,7 @@ class PurchaseOrder extends Controller
      */
     public function create()
     {
-        //
+        return view('users.admin.inventory.add_stock_adjustment');
     }
 
     /**

@@ -39,8 +39,8 @@ class PagesController extends Controller
     {
         return view('users.admin.reports.salesummary');
     }
-    public function sales_item()
+    public function stock_adj()
     {
-        return view('users.admin.reports.sales_item');
+        return view('users.admin.inventory.add_stock_adjustment');
     }
 }

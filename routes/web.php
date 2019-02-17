@@ -25,7 +25,7 @@ Route::get('/receipts', 'PagesController@receipts');
 
 Route::get('/salesummary', 'PagesController@salesummary');
 
-Route::get('/sales_item', 'PagesController@sales_item');
+Route::get('/stockadjustment', 'PagesController@stock_adj');
 
 Route::Post('/showP', 'SalesSummaryController@showProduct');
 
@@ -74,6 +74,11 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
         Route::resource('admin/salesummary', 'SalesSummaryController', ['as' => 'admin']); 
     });
     
+    //StockAdjust.
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/stockadjustment', 'StockAdjustmentController', ['as' => 'admin']); 
+    });
+
     //loginMobile
     Route::get('/mobile/login', 'LoginController@index');
 

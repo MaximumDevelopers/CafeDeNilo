@@ -43260,7 +43260,7 @@ $(document).ready(function () {
 
     $('#dtItem').DataTable({
         order: [[1, 'asc']],
-        'columnDefs': [{ 'orderable': false, 'targets': [0, 5, 6] }, { "width": "3%", "targets": 0 }],
+        'columnDefs': [{ 'orderable': false, 'targets': [0, 3, 4, 5] }, { "width": "3%", "targets": 0 }],
         rowReorder: {
             selector: 'td:nth-child(2)'
         },

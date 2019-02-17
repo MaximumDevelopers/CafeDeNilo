@@ -43,31 +43,7 @@
                     </div>
                 </div>
 
-                <!-- #2 -->
-                <div class="card-header" id="headingTwo">
-                        <a data-toggle="collapse" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                <h6 class="mb-0">
-                                        <i class="fa fa-shopping-bag mr-3"></i>Items
-                                    <i class="fa fa-angle-down float-right mt-1"></i>
-                                </h6>     
-                            </a>
-                </div>
                 
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
-                        <div class="card-body">
-                                <a href="/admin/item_list">
-                                        <h6 class="mb-2">
-                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Item list
-                                        <h6>        
-                                </a>
-    
-                                <a href="/admin/categories">
-                                        <h6 class="mb-2">
-                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Item Categories
-                                        <h6>        
-                                </a>
-                        </div>
-                </div>
 
                 <!-- #2.5 -->
                 <div class="card-header" id="headingTwoFive">
@@ -109,30 +85,31 @@
 
                 <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
                     <div class="card-body">
-                            <a href="items">
-                                    <h6 class="mb-2">
-                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Purchase Orders
-                                    <h6>        
-                            </a>
 
-                            <a href="items">
+                                <a href="/admin/item_list">
+                                        <h6 class="mb-2">
+                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Item list
+                                        <h6>        
+                                </a>
+    
+                                <a href="/admin/categories">
+                                        <h6 class="mb-2">
+                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Item Categories
+                                        <h6>        
+                                </a>
+
+                                <a href="/admin/stockadjustment">
                                     <h6 class="mb-2">
                                         <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Stock Adjustment
                                     <h6>        
-                            </a>
-
-
-                            <a href="/admin/supplier">
-                                    <h6 class="mb-2">
-                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Suppliers
-                                    <h6>        
-                            </a>
-                            
-                            <a href="items">
+                                </a>
+                                
+                                <a href="items">
                                     <h6 class="mb-2">
                                         <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Inventory history
                                     <h6>        
                             </a>
+                        </div>
                     </div>
                 </div>
 

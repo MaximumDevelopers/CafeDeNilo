@@ -9,8 +9,8 @@
 
                 <div class="form-group md-form ml-0 mr-0">
                         <select class="browser-default custom-select">
-                                <option  disabled selected>Reason</option>
-                                <option value="1">All Reasons</option>
+                                
+                                <option value="1">Select Reason</option>
                                 <option value="2">Receive Items</option>
                                 <option value="3">Inventory Count</option>
                                 <option value="4">Loss</option>
@@ -19,9 +19,12 @@
                 </div>
                 
                 <div class="form-group md-form ml-0 mr-0">
-                        <i class="far fa-sticky-note prefix"></i>
-                        <input id="note" type="text" class="form-control" name="note" required>
-                        <label for="note" class="ml-8">{{ __('Note..') }}</label>                     
+                        
+                        
+                        <div class="md-form">
+                                        <textarea id="note textarea-char-counter" name="note" class="form-control md-textarea" length="120" rows="1s"></textarea>
+                                        <label for="textarea-char-counter">Note</label>
+                         </div>                     
                 </div>
                 
                </form>

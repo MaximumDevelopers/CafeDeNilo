@@ -17,7 +17,6 @@ class CreateItemListsTable extends Migration
             $table->increments('id');
             $table->string('item_name')->unique();
             $table->integer('category_id')->unsigned()->nullable();
-            $table->integer('supplier_id')->unsigned()->nullable();
             $table->smallInteger('quantity');
             $table->decimal('price');
             $table->decimal('cost');
@@ -26,7 +25,6 @@ class CreateItemListsTable extends Migration
     
        Schema::table('item_lists', function($table) {
            $table->foreign('category_id')->references('id')->on('categories');
-           $table->foreign('supplier_id')->references('id')->on('suppliers');
        });
     }
  

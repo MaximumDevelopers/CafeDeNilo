@@ -41,7 +41,7 @@
                                             @endif
                                         </div>
 
-                                    <div class="form-group ml-4 mr-1 mb-0 mt-0 row">
+                                    <div class="form-group ml-4 mr-1 mb-5 mt-0 row">
                                       
                                         <select name="addCategories" id="addCategories" class="categoryPicker form-control md-form" data-style="btn-primary">
                                                 <option value="empty">Select Category Here..</option>
@@ -53,14 +53,7 @@
                                        
                                     </div>
 
-                                    <div class="form-group ml-4 mr-1 mb-5 row">                                       
-                                            <select name="addSupplier" id="addSupplier" class="supplierPicker form-control md-form" data-style="btn-success">
-                                                <option value="empty">Select Supplier Here..</option>
-                                                @foreach ($suppliers as $supplier)
-                                                    <option value="{{$supplier -> id}}">{{$supplier -> supplier_name}}</option>
-                                                @endforeach
-                                            </select>                                                                                  
-                                    </div>
+                                    
 
                                         <div class="form-group md-form ml-0 mr-0">
                                            
@@ -108,13 +101,12 @@
                                         <tr>
                                             <th scope="col"></th>
                                             <th scope="col">Item Name</th>
-                                            <th scope="col">Category</th>
-                                            <th scope="col">In stock</th>
                                             <th scope="col">Price</th>
+                                            <th scope="col">In stock</th>
+                                            <th scope="col"></th>
+                                            <th scope="col"></th>
                                             
-
-                                            <th scope="col"></th>
-                                            <th scope="col"></th>
+                                            
                                     
                                         </tr>
                                         <tbody>
@@ -124,19 +116,14 @@
                                                 <tr>
                                                         <td id="dtShow"></td>
                                                         <td>{{$item_list -> item_name}}</td>
-                                                        <!-- Supplier email -->  
-                                                        @if (empty($item_list -> category_id))
-                                                            <td>No Email</td>
-                                                        @else
-                                                            <td>{{$item_list -> category_id}}</td>
-                                                        @endif 
-                                                        
-                                                        <td>{{$item_list -> quantity}}</td>
+                                
                                                         <td>&#8369;{{$item_list -> price}}</td>
+                                                        <td>{{$item_list -> quantity}}</td>
+                                                        
                                                                     
                                                         <td>
                                                             <div class="text-center">
-                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-id="{{$item_list -> id}}" data-cost="{{$item_list -> cost}}" data-price="{{$item_list -> price}}" data-quantity="{{$item_list -> quantity}}" data-item_name="{{$item_list -> item_name}}" data-sup_id="{{$item_list -> supplier_id}}" data-cat_id="{{$item_list -> category_id}}" data-target="#modalItemEdit" style="font-size: 1rem;">SHOW</button>
+                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-id="{{$item_list -> id}}" data-cost="{{$item_list -> cost}}" data-price="{{$item_list -> price}}" data-quantity="{{$item_list -> quantity}}" data-item_name="{{$item_list -> item_name}}" data-cat_id="{{$item_list -> category_id}}" data-target="#modalItemEdit" style="font-size: 1rem;">SHOW</button>
                                                             </div>
                                                         </td>
 
@@ -144,7 +131,7 @@
                                                             <button type="submit" style="margin: 0%" class="fa fa-trash btn btn-red btn-md" data-toggle="modal" data-id="{{$item_list -> id}}" data-target="#modalItemDel" style="font-size: 1rem; "></button>
                                                         </td>
                                                          
-                                                        <!--Edit Account-->
+                                                        <!--Edit Item_list-->
                                                         <div class="modal fade" id="modalItemEdit" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
                                                         aria-hidden="true">
                                                             <div class="modal-dialog" role="document">
@@ -166,8 +153,7 @@
                                                                                     <label for="item_name" class="ml-8">{{ __('Item name') }}</label>
                                                     
                                                                                     @if ($errors->has('item_name'))
-                                                                                        <span class="invalid-feedback" role="alert">
-                                                                                            <strong>{{ $errors->first('item_name') }}</strong>
+                                                                                        <span class="invalid-feedback" role="alert">`<strong>{{ $errors->first('item_name') }}</strong>
                                                                                         </span>
                                                                                     @endif
                                                                                 </div>
@@ -184,15 +170,7 @@
                                                                                
                                                                             </div>
                                         
-                                                                            <div class=" md-form form-group ml-0 mr-0 mb-0 row">   
-                                                                                    <p class="font-weight-bold mb-0">SUPPLIER</p>                                   
-                                                                                    <select name="editSupplier" id="editSupplier" class=" form-control md-form" data-style="btn-success">
-                                                                                        <option value="empty">Select Supplier Here..</option>
-                                                                                        @foreach ($suppliers as $supplier)
-                                                                                            <option value="{{$supplier -> id}}">{{$supplier -> supplier_name}}</option>
-                                                                                        @endforeach
-                                                                                    </select>                                                                                  
-                                                                            </div>
+                                                                            
                                         
                                                                                 <div class="form-group md-form ml-0 mr-0">
                                                                                    
@@ -219,17 +197,12 @@
                                                                                             </span>
                                                                                         @endif
                                                                                     </div>
-                                        
-                                                                                <div class="form-group md-form ml-0 mr-0">
-                                                                                    <i class="fas fa-sort-amount-up prefix"></i>
-                                                                                    <input id="item_quantity" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity') ? ' is-invalid' : '' }} filterNum" name="item_quantity" value="1" required >
-                                                                                    <label for="item_quantity" class="ml-8">{{ __('Item quantity') }}</label>
-                                                    
-                                                                                    @if ($errors->has('item_quantity'))
-                                                                                        <span class="invalid-feedback" role="alert">
-                                                                                            <strong>{{ $errors->first('item_quantity') }}</strong>
-                                                                                        </span>
-                                                                                    @endif
+                                                                                
+                                                                                <div class="form-group md-form">
+                                                                                        <form>
+                                                                                            <a class="form-control btn btn-outline-warning" href="/admin/stockadjustment/create" role="button">Stock Adjustment</a>
+                                                                                        </form>   
+                                                                                    
                                                                                 </div>
                                                                                 <input type="hidden" name="item_id" id="item_id" value="item_id">
                                                                         </div>
