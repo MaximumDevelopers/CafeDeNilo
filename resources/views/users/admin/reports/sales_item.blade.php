@@ -259,13 +259,15 @@
 
    <div class="col-md-5">
         <!--Card-->
-        <div class="card">
+        <div class="card h-80">
        
                <!-- Card header -->
                <div class="card-header">Doughnut Chart</div>
        
                <!--Card content-->
                <div class="card-body">
+                   <br>
+                   <br>
        
                    <canvas id="doughnutChart"></canvas>
        
