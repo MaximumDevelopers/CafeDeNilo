@@ -73,6 +73,11 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesummary', 'SalesSummaryController', ['as' => 'admin']); 
     });
+
+    //Sales By Product
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesbyproduct', 'SalesByProductController', ['as' => 'admin']); 
+    });
     
     //StockAdjust.
     Route::group(['middleware' => ['auth', 'admin']], function() {
