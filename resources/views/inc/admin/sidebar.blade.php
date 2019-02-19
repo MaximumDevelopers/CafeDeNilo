@@ -29,7 +29,7 @@
 
                                 <a href="/admin/salesbyproduct">
                                         <h6 class="mb-2">
-                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Sales by item
+                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Sales by Product
                                         <h6>        
                                 </a>
 
