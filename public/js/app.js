@@ -43250,6 +43250,14 @@ $(document).ready(function () {
         responsive: true
     });
 
+    $('#dtStockAdjustment').DataTable({
+        'columnDefs': [{ 'orderable': false, 'targets': [2, 3, 4] }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
+
     $('#dtCategories').DataTable({
         'columnDefs': [{ 'orderable': false, 'targets': [1, 2] }],
         rowReorder: {

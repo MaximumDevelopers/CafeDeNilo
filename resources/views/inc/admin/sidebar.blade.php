@@ -17,7 +17,6 @@
                         </h6>     
                     </a>
                 </div>
-              
                 <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         <a href="items">
@@ -34,7 +33,7 @@
                                         <h6>        
                                 </a>
 
-                                
+                            
                         </a>
                     </div>
                 </div>

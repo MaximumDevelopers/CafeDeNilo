@@ -15,10 +15,11 @@ class CreateStockAdjustmentsTable extends Migration
     {
         Schema::create('stock_adjustments', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('item_name');
             $table->string('reason');
             $table->string('note');
             $table->integer('stock_before');
-            $table->decimal('stock_after');
+            $table->integer('stock_after');
             $table->timestamps();
         });
     }

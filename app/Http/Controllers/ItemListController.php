@@ -8,7 +8,6 @@ use App\categories;
 use Auth;
 use Illuminate\Support\Facades\Validator;
 
-
 class ItemListController extends Controller
 {
     /**
@@ -72,9 +71,7 @@ class ItemListController extends Controller
         {
             $item_list ->category_id = $request->get('addCategories');
         }
-        
-        
-        
+
         $item_list -> save();
        
         return $this->redirect_route();
@@ -110,7 +107,6 @@ class ItemListController extends Controller
             'item_quantity' => 'required|numeric|max:9999|min:0|unique:item_list',
         ]);
     }
-
 
     /**
      * Display the specified resource.
@@ -148,7 +144,7 @@ class ItemListController extends Controller
         
         $item_list ->item_name = $request->get('item_name');
         $item_list ->cost = $request->get('item_cost');
-        $item_list ->quantity = $request->get('item_quantity');
+        //$item_list ->quantity = $request->get('item_quantity');
         $cost = $request->get('item_cost');
         $item_list ->price = $this -> price($cost);
 
@@ -162,9 +158,7 @@ class ItemListController extends Controller
         {
             $item_list ->category_id = $request->get('');
         }
-        
-        
-        
+                
         $item_list->save();
         return $this->redirect_route();
     }

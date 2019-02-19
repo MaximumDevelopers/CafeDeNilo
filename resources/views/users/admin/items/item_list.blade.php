@@ -105,6 +105,7 @@
                                             <th scope="col">In stock</th>
                                             <th scope="col"></th>
                                             <th scope="col"></th>
+                                            <th scope="col"></th>
                                             
                                             
                                     
@@ -126,6 +127,12 @@
                                                                 <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-id="{{$item_list -> id}}" data-cost="{{$item_list -> cost}}" data-price="{{$item_list -> price}}" data-quantity="{{$item_list -> quantity}}" data-item_name="{{$item_list -> item_name}}" data-cat_id="{{$item_list -> category_id}}" data-target="#modalItemEdit" style="font-size: 1rem;">SHOW</button>
                                                             </div>
                                                         </td>
+                                                        <td>
+                                                            <div class="text-center">
+                                                                    <a class=" btn-sm form-control btn btn-outline-warning" href="{{ route('admin.stockadjustment.edit',$item_list -> id)}}" role="button">Stock Adjustment</a>
+                                                            </div>
+                                
+                                                        </td>
 
                                                         <td class="text-center">      
                                                             <button type="submit" style="margin: 0%" class="fa fa-trash btn btn-red btn-md" data-toggle="modal" data-id="{{$item_list -> id}}" data-target="#modalItemDel" style="font-size: 1rem; "></button>
@@ -137,12 +144,13 @@
                                                             <div class="modal-dialog" role="document">
                                                                 <div class="modal-content">
                                                                     <div class="modal-header yellow darken-2">
-                                                                        <h5 class="modal-title" id="itemModalLabel">Edit Category</h5>
+                                                                        <h5 class="modal-title" id="itemModalLabel">Edit item</h5>
                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
                                                                     <form method="POST" action="{{ route('admin.item_list.update', $category -> id) }}">
+                                                                        
                                                                     @csrf
                                                                     @method('PATCH')
                                                                     <div class="modal-body mx-3">
@@ -198,13 +206,20 @@
                                                                                         @endif
                                                                                     </div>
                                                                                 
-                                                                                <div class="form-group md-form">
-                                                                                        <form>
-                                                                                            <a class="form-control btn btn-outline-warning" href="/admin/stockadjustment/create" role="button">Stock Adjustment</a>
-                                                                                        </form>   
-                                                                                    
-                                                                                </div>
+                                                                                    <div class="form-group md-form ml-0 mr-0">
+                                                                                            <i class="fas fa-sort-amount-up prefix"></i>
+                                                                                            <input id="item_quantity" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity') ? ' is-invalid' : '' }} filterNum" name="item_quantity" value="1" disabled >
+                                                                                            <label for="item_quantity" class="ml-8">{{ __('Item quantity') }}</label>
+                                                                    
+                                                                                            @if ($errors->has('item_quantity'))
+                                                                                                    <span class="invalid-feedback" role="alert">
+                                                                                                    <strong>{{ $errors->first('item_quantity') }}</strong>
+                                                                                                    </span>
+                                                                                            @endif
+                                                                                    </div>    
                                                                                 <input type="hidden" name="item_id" id="item_id" value="item_id">
+                                                                                
+                                                                                
                                                                         </div>
                                                                     <div class="modal-footer">
                                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
@@ -215,6 +230,7 @@
                                                             </div>
                                                         </div>
                                                         <!--Edit Account-->
+                                                        
                                                         
                                                         <!--Delete Account-->
                                                             <div class="modal fade" id="modalItemDel" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
