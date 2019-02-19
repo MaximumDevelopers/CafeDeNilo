@@ -11,7 +11,7 @@
                 <div id="c2" class="card shadow-md mb-6">
                     <div class="card-body">
                             <div class="row">
-                                    <h2 id="ct1" class="card-title">Sales by Item</h2>
+                                    <h2 id="ct1" class="card-title">Sales by Product</h2>
 
                                 
                                     
@@ -121,25 +121,7 @@
                           
                         </div>       
                         
-                        
-
-                        <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Today
-                            </button>
-
-                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Week
-                                </button>
-
-                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Month
-                                    </button>
-
-                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Year
-                                        </button>
-
-                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">See all
-                                            </button>
-
-                                            <br>
-                                            <br>
+                       
                     
               
     
@@ -149,88 +131,27 @@
                                         <thead>
                                             <tr>
                                                  
-                                              
+                                              <th scope="col">Date</th>
                                               <th scope="col">Product Name</th>
-                                              <th scope="col">Price</th>
-                                              <th scope="col"></th>
+                                              <th scope="col">Total Price</th>
+                                              <th scope="col">Quantity</th>
                                               
                               
                                             </tr>
                                           </thead>
                                           <tbody>
     
-                                               
+                                            @foreach ($ordered_products as $order)
                                                     <tr>
-                                                                
-                                                            
-                                                            <td>Burger</td>
-                                                            <td>300</td>
-
-                                                          
-                                                            <td class="text-center">
-                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-md" data-id="" data-toggle="modal"  data-target="#modalInfo" style="font-size: 1rem; ">Show</button>
-
-                                                             <!--Sales Details -->
-                                                             <div class="modal fade" id="modalInfo" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-                                                             aria-hidden="true">
-                                                             <div class="modal-dialog" role="document">
-                                                                 <div class="modal-content">
-                                                                     <div class="modal-header" style="background-color: dark-blue;">
-                                                                         <h5 class="modal-title" id="exampleModalLabel">Sales Details</h5>
-                                                                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                             <span aria-hidden="true">&times;</span>
-                                                                         </button>
-                                                                     </div>
-                                                                     <form action="" method="post">
-                                                                       
-                                                                         <div class="modal-body">
-                                                                             
-                                                                            
-
-                                                                             <table id="dtProductSales1" class="table table-bordered table-sm" cellspacing="0" width="100%">
-                                                                                    <thead>
-                                                                                        <tr>
-                                                                                             
-                                                                                          
-                                                                                          <th scope="col">Ordered Date</th>
-                                                                                          <th scope="col">Price</th>
-                                                                                          
-                                                                                          
-                                                                          
-                                                                                        </tr>
-                                                                                      </thead>
-                                                                                      <tbody>
-                                                
-                                                                                           
-                                                                                                <tr>
-                                                                                                            
-                                                                                                        
-                                                                                                        <td>1/20/19</td>
-                                                                                                        <td>300</td>
-                                                                                                </tr>
-                                                                                      </tbody>
-                                                                             </table>
-                                                                                
-                                                                            
-
-                                                             
-                                                                         </div>
-                                                                     
-                                                                 </form>
-                                                                 </div>
-                                                             </div>
-                                                         </div>
-                                                         <!--Sales Details-->
-
-                                                            </td>
-    
-                                                                 
-                                                            
-                                                            
+                                                        
+                                                            <td>{{$order -> created_at}}</td>
+                                                            <td>{{$order -> product_name}}</td>
+                                                            <td>{{$order -> price}}</td>
+                                                            <td>{{$order -> quantity}}</td> 
                                                             
                                                     </tr>
                                                   
-                                                  
+                                                    @endforeach      
         
                                                 
                                                   
@@ -262,7 +183,7 @@
         <div class="card h-80">
        
                <!-- Card header -->
-               <div class="card-header">Top 5 Item</div>
+               <div class="card-header">Top 5 Product</div>
        
                <!--Card content-->
                <div class="card-body">

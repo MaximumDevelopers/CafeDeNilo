@@ -74,10 +74,21 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
         Route::resource('admin/salesummary', 'SalesSummaryController', ['as' => 'admin']); 
     });
 
-    //Sales By Product
+    //Sales By Product - Per Day
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesbyproduct', 'SalesByProductController', ['as' => 'admin']); 
     });
+
+    //Sales By Product - Per Month
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesbyproductm', 'SalesMonthController', ['as' => 'admin']); 
+    });
+
+    //Sales By Product - Per Year
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesbyproducty', 'SalesYearController', ['as' => 'admin']); 
+    });
+
     
     //StockAdjust.
     Route::group(['middleware' => ['auth', 'admin']], function() {

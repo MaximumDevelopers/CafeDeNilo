@@ -9,8 +9,7 @@
                         <div class="row">
                                 <h2 id="ct1" class="card-title">Products</h2>
                                 <form action="{{ route('admin.products.create') }}" class="ml-auto">
-                                    <button type="submit"  class="btn btn-primary btn-sm btnLogin" 
-                                    >Add Products
+                                    <button type="submit"  class="btn btn-primary btn-sm btnLogin">Add Products
                                     </button>
                                 </form>    
                         </div>

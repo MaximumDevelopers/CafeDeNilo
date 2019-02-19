@@ -17,10 +17,7 @@
                         
                         <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Today
                             </button>
-
-                            <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Week
-                                </button>
-
+                            
                             <button id="btnsales" type="button" class="btn btn-primary btn-sm ml-auto btnLogin">Month
                                     </button>
 

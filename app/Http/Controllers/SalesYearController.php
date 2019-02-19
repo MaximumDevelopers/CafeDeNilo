@@ -3,13 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\transaction;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Validator;
 use Auth;
 
-class SalesByProductController extends Controller
+class SalesYearController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,26 +15,24 @@ class SalesByProductController extends Controller
      */
     public function index()
     {
-        
-        
         $ordered_products = DB::table('ordered_products')
-                     ->select(DB::raw('sum(price) as price , sum(quantity) as quantity, product_name, created_at'))
-                     ->groupBy(DB::raw('date_format(created_at, \'%d\')'), 'product_name')
-                     ->get();    
+        ->select(DB::raw('sum(price) as price , sum(quantity) as quantity, product_name, created_at'))
+        ->groupBy(DB::raw('date_format(created_at, \'%Y\')'), 'product_name')
+        ->get();
 
-        if (Auth::check() && Auth::user()->role == 'barista') {
-            return redirect('/barista');
-        }
-        elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.sales_by_product')->with('ordered_products', $ordered_products);
-        }
-        elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products);
-            
-        }
-        else {
-            return view('users.captain_crew.inventory.sales_by_product')->with('ordered_products', $ordered_products);
-        }    
+    if (Auth::check() && Auth::user()->role == 'barista') {
+        return redirect('/barista');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'owner') {
+        return view('users.owner.inventory.sales_by_product')->with('ordered_products', $ordered_products);
+    }
+    elseif (Auth::check() && Auth::user()->role == 'admin') {
+        return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products);
+        
+    }
+    else {
+        return view('users.captain_crew.inventory.sales_by_product')->with('ordered_products', $ordered_products);
+    }    
     }
 
     /**
