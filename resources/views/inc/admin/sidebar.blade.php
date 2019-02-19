@@ -17,7 +17,6 @@
                         </h6>     
                     </a>
                 </div>
-              
                 <div id="collapseOne" class="collapse " aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
                         <a href="items">
@@ -28,17 +27,13 @@
                                         <h6>        
                                 </a>
 
-                                <a href="/sales_item">
+                                <a href="/admin/salesbyproduct">
                                         <h6 class="mb-2">
                                             <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Sales by item
                                         <h6>        
                                 </a>
 
-                                <a href="/receipts">
-                                        <h6 class="mb-2">
-                                            <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Receipts
-                                        <h6>        
-                                </a>
+                            
                         </a>
                     </div>
                 </div>

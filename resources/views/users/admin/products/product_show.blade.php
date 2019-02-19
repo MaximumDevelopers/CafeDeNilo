@@ -28,10 +28,6 @@
                                                             <div class="form-group">
                                                                 <input type="text" name="product_name" class="form-control" placeholder="Please enter product name">
                                                             </div></div>
-                                                            <div class="col-md-6">
-                                                            <div class="form-group">
-                                                                <input type="text" name="customer_address" class="form-control" placeholder="Please enter your Address">
-                                                            </div></div>
                                            
                                                         </div>
 

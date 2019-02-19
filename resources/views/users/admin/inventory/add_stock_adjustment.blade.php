@@ -5,16 +5,15 @@
    <div class="col-lg-11">
       <div class="card shadow-md mb-6">
            <div class="card-body">
-               <form>
-
+               <form method="POST" action="{{ route('admin.stockadjustment.store') }}">
+                @csrf
+                
                 <div class="form-group md-form ml-0 mr-0">
-                        <select class="browser-default custom-select">
+                        <select name="reason" id="reason" class="browser-default custom-select">
                                 
-                                <option value="1">Select Reason</option>
-                                <option value="2">Receive Items</option>
-                                <option value="3">Inventory Count</option>
-                                <option value="4">Loss</option>
-                                <option value="5">Damage</option>
+                                <option value="Inventory Count">Inventory Count</option>
+                                <option value="Loss">Loss</option>
+                                <option value="Damage">Damage</option>
                         </select>                                       
                 </div>
                 
@@ -26,6 +25,62 @@
                                         <label for="textarea-char-counter">Note</label>
                          </div>                     
                 </div>
+
+                <div class="modal-header yellow darken-2">
+                                <h5 class="modal-title" id="itemModalLabel">Item</h5>
+                                
+                            </div>
+                            
+                                
+                            
+                            <div class="modal-body mx-3">
+                                @foreach ($ItemList as $items)
+
+                                <div class="form-group md-form ml-0 mr-0">
+                                                        <i class="fas fa-sort-amount-up prefix"></i>
+                                                        <input readonly id="item_name" type="text" class="form-control{{ $errors->has('item_name') ? ' is-invalid' : '' }} filterNum" name="item_name" value="{{$items -> item_name}}"  >
+                                                        <label for="item_name" class="ml-8">{{ __('Item Name') }}</label>
+                                
+                                                        @if ($errors->has('item_name'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('item_name') }}</strong>
+                                                                </span>
+                                                        @endif
+                                                </div>        
+
+                                        <div class="form-group md-form ml-0 mr-0">
+                                                        <i class="fas fa-sort-amount-up prefix"></i>
+                                                        <input readonly id="item_quantity_before" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity_before') ? ' is-invalid' : '' }} filterNum" name="item_quantity_before" value="{{$items -> quantity}}" >
+                                                        <label for="item_quantity_before" class="ml-8">{{ __('Item stock before') }}</label>
+                                
+                                                        @if ($errors->has('item_quantity_before'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('item_quantity_before') }}</strong>
+                                                                </span>
+                                                        @endif
+                                                </div>
+                                        
+
+                                        <div class="form-group md-form ml-0 mr-0">
+                                                        <i class="fas fa-sort-amount-up prefix"></i>
+                                                        <input id="item_quantity_after" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity_after') ? ' is-invalid' : '' }} filterNum" name="item_quantity_after" value="1" required >
+                                                        <label for="item_quantity_after" class="ml-8">{{ __('Item stock after') }}</label>
+                                
+                                                        @if ($errors->has('item_quantity_after'))
+                                                                <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $errors->first('item_quantity_after') }}</strong>
+                                                                </span>
+                                                        @endif
+                                                </div>
+                                  
+                                        <input type="hidden" name="item_id" id="item_id" value="{{$items -> id}}">
+                                        @endforeach
+                                </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        
                 
                </form>
          </div>
@@ -34,46 +89,6 @@
 </div>
 <br>
 
-<div class="container-fluid">
-        <div class="col-lg-11">
-           <div class="card shadow-md mb-6">
-                <div class="card-body">
-                        <h3 id="ct2" class="card-title">Items</h3>
-
-                        <div class="table-responsive text-nowrap">
-                    
-                                 <table class="table table-striped table-bordered table-sm" cellspacing="0">
-                                 <thead>
-                                         <tr>
-                                                 
-                                           <th scope="col">No.</th>
-                                           <th scope="col">Name</th>
-                                           <th scope="col">Weight</th>
-                                           <th scope="col">Symbol</th>
-                                           
-                                           
-                           
-                                         </tr>
-                                       </thead>
-                 
-                                 </table>
-                         </div>
-     
-     
-     
-     
-                    
-              </div>
-            </div>
-            <div id="btnAdj" class="row mr-auto">
-                <a href="stockadj">
-                    <button type="button" class="btn btn-primary btn-sm">Cancel</button>
-                </a>
-                    <button type="button" class="btn btn-primary btn-sm">Adjust</button>
-              </div>
-         </div>
-        
-     </div>
      
     
 @endsection

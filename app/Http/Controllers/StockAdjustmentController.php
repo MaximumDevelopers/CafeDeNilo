@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\StockAdjustment;
+use App\ItemList;
 
 
 class StockAdjustmentController extends Controller
@@ -51,7 +52,18 @@ class StockAdjustmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $StockAdjustment = new StockAdjustment;
+        $item_id = $request->get('item_id');
+        $item_list= ItemList::find($item_id);
+        $item_list ->quantity = $request->get('item_quantity_after');
+        $item_list->save();
+        $StockAdjustment->note = $request->input('note');
+        $StockAdjustment->reason = $request->get('reason');
+        $StockAdjustment->item_name= $request->get('item_name');
+        $StockAdjustment->stock_before = $request->get('item_quantity_before');
+        $StockAdjustment->stock_after = $request->get('item_quantity_after');
+        $StockAdjustment->save();
+        return redirect()->route('admin.stockadjustment.index');
     }
 
     /**
@@ -62,7 +74,7 @@ class StockAdjustmentController extends Controller
      */
     public function show($id)
     {
-        //
+        
     }
 
     /**
@@ -71,9 +83,12 @@ class StockAdjustmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit(Request $request, $id)
+    {           
+        $ItemList = ItemList::where('id', $id)
+        ->get();
+
+        return view('users.admin.inventory.add_stock_adjustment')->with('ItemList', $ItemList);
     }
 
     /**

@@ -17,7 +17,7 @@ class CreateProductItemsTable extends Migration
             $table->increments('id');
             $table->integer('product_id')->unsigned();
             $table->integer('item_id')->unsigned();
-            $table->float('quantity');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
