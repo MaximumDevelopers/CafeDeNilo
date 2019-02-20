@@ -425,13 +425,14 @@ $('.addRow').on('click',function(){
 function addRow()
 {
     var tr='<tr>'+
-    '<td>' + '<select name="item_name[]" class="form-control" required="">' + '<option value="empty">Select Item Here..</option>' + ' @foreach ($ItemList as $category)' + '</td>'+
+    
      '<td><input type="text" name="quantity[]" class="form-control quantity" ></td>'+
     '<td><input type="text" name="budget[]" class="form-control budget"></td>'+
     ' <td><input type="text" name="amount[]" class="form-control amount"></td>'+
     '<td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>'+
     '</tr>';
     $('tbody').append(tr);
+    $('tbody').append( '<select name="item_name[]" class="form-control" required=""><option value="empty">Select Item Here..</option>@foreach ($ItemList as $category)<option value="{{$category -> id}}">{{$category -> item_name}}</option> @endforeach</select>')
 };
 $('body').on('click', '.remove', function(){
     var last=$('tbody tr').length;
