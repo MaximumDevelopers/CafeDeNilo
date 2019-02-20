@@ -39,7 +39,7 @@
                                               
                                               <th scope="col">Date</th>
                                               <th scope="col">Price</th>
-                                              <th scope="col">Account</th>
+                                             
                                               <th scope="col"></th>
                                               
                               
@@ -52,7 +52,7 @@
                                                             
                                                             <td>{{$transaction -> date}}</td>
                                                             <td>&#8369;{{$transaction -> total_price}}</td>
-                                                            <td>{{$transaction -> email}}</td>
+                                                           
 
                                                           
                                                             <td class="text-center">

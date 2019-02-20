@@ -65,7 +65,7 @@ $(document).ready(function () {
         });             
 
         $('#dtSaleSummary').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [3,3] }],
+            'columnDefs': [{ 'orderable': false, 'targets': [2,2] }],
             rowReorder: {
             selector: 'td:nth-child(2)'
             },
