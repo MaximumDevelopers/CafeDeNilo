@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
 use App\ItemList;
-use App\categories;
+
 
 class CriticalStockController extends Controller
 {
@@ -17,23 +17,26 @@ class CriticalStockController extends Controller
      */
     public function index()
     {
-        $item_list = ItemList::all();
-        $categories = categories::select('id', 'category_name')
-        ->get();
+       
+        
+
+        $item_list = DB::table('item_lists')
+                ->whereRaw('quantity <= low_stock')
+                ->get();
         
         
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.inventory.critical_stock')->with('critical_stock', $item_list)->with('categories', $categories);
+            return view('users.admin.inventory.critical_stock')->with('critical_stock', $item_list);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.inventory.critical_stock')->with('critical_stock', $item_list)->with('categories', $categories);
+            return view('users.admin.inventory.critical_stock')->with('critical_stock', $item_list);
             
         }
         else {
-            return view('users.captain_crew.inventory.critical_stock')->with('critical_stock', $item_list)->with('categories', $categories);
+            return view('users.captain_crew.inventory.critical_stock')->with('critical_stock', $item_list);
         } 
     }
 

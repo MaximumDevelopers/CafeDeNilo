@@ -50,7 +50,20 @@
 
                                                
 
-                                        <td><input type="text" name="product_name[]" class="form-control" required=""></td>  
+                                        <td>
+                                        
+                                            <select name="item_name[]" class="form-control" required="">
+                                                <option value="empty">Select Item Here..</option>
+                                                    @foreach ($ItemList as $category)
+                                                        <option value="{{$category -> id}}">{{$category -> item_name}}</option>
+                                                    @endforeach
+                                            </select>
+
+                                            
+                                            
+                                        </select> 
+                                           
+                                        </td>  
                                           <td><input type="text" name="quantity[]" class="form-control quantity"></td>
                                           <td><input type="text" name="budget[]" class="form-control budget"></td>
                                           <td><input type="text" name="amount[]" class="form-control amount"></td>

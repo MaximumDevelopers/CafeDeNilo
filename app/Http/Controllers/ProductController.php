@@ -40,7 +40,22 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('users.admin.products.product_show');
+        $ItemList = ItemList::all();
+        $Product = Products::all();
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.admin.products.product_show')->with('Product', $Product)->with('ItemList', $ItemList);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.products.product_show')->with('Product', $Product)->with('ItemList', $ItemList);
+            
+        }
+        else {
+            return view('users.captain_crew.products.product_show')->with('Product', $Product)->with('ItemList', $ItemList);
+        }
+        
     }
 
     /**

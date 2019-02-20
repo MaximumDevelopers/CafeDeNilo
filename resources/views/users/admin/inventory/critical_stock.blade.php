@@ -105,7 +105,7 @@
                                     </thead>
                                         @foreach ($critical_stock as $item)
                                                 <tr>
-                                                        <td></td>
+                                                <td>{{$item -> item_name}}</td>
                                                         <td></td>
                                 
                                                         <td></td>
