@@ -18,7 +18,7 @@ class SalesSummaryController extends Controller
     public function index()
     {
         $transaction = DB::table('transactions')
-            ->select('id','date', 'email', 'total_price as total')
+            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date, id,  email, total_price as total_price'))
             ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {

@@ -69,25 +69,29 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
         Route::resource('admin/supplier', 'SuppliersController', ['as' => 'admin']); 
     });
 
-    //Sales
+    //SalesS
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesummary', 'SalesSummaryController', ['as' => 'admin']); 
     });
+    //SalesSDay
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesummaryd', 'SMdayController', ['as' => 'admin']); 
+    });
+    //SalesSMonth
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesummarym', 'SMmonthController', ['as' => 'admin']); 
+    });
+    //SalesSYear
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesummaryy', 'SMyearController', ['as' => 'admin']); 
+    });
 
-    //Sales By Product - Per Day
+    //Sales By Product
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesbyproduct', 'SalesByProductController', ['as' => 'admin']); 
     });
 
-    //Sales By Product - Per Month
-    Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/salesbyproductm', 'SalesMonthController', ['as' => 'admin']); 
-    });
-
-    //Sales By Product - Per Year
-    Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/salesbyproducty', 'SalesYearController', ['as' => 'admin']); 
-    });
+  
 
     
     //StockAdjust.

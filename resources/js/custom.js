@@ -42,7 +42,7 @@ $(document).ready(function () {
         });
 
     $('#dtProductSales').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [2,3] }],
+            'columnDefs': [{ 'orderable': false, 'targets': [1,1] }],
             rowReorder: {
                 selector: 'td:nth-child(2)'
             },

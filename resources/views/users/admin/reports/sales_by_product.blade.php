@@ -130,8 +130,7 @@
                              <table id="dtProductSales" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                                 
-                                              <th scope="col">Date</th>
+                                        
                                               <th scope="col">Product Name</th>
                                               <th scope="col">Total Price</th>
                                               <th scope="col">Quantity</th>
@@ -144,7 +143,7 @@
                                             @foreach ($ordered_products as $order)
                                                     <tr>
                                                         
-                                                            <td>{{$order -> created_at}}</td>
+                                                            
                                                             <td>{{$order -> product_name}}</td>
                                                             <td>{{$order -> price}}</td>
                                                             <td>{{$order -> quantity}}</td> 
