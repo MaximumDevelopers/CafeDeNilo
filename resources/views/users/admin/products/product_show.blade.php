@@ -1,5 +1,8 @@
 @extends('layouts.admin.app')
 @section('content')
+{{-- Code in your template file, e.g., view.blade.php --}}
+
+
 <form action="/admin/product/post" method="POST">
                                         {{csrf_field()}}
 <div id="cf" class="container-fluid">
@@ -11,7 +14,7 @@
                                     <h2 id="ct1" class="card-title">NEW PRODUCT</h2>
      
                             </div>
-                        
+                            
                             <div class="container mt-0">
                                 <br>
                                 @if(Session::has('success'))
@@ -42,7 +45,7 @@
                                                             <th>Price</th>
                                                             <th>Total</th>
                                                             
-                                                            <th><a href="#" class="fas fa-plus btn btn-sm btn-blue addRow"><i class="glyphicon glyphicon-plus"></i></a></th>
+                                                            <th><a href="#" class="fas fa-plus btn btn-sm btn-blue addRow" onclick="addRow()"><i class="glyphicon glyphicon-plus"></i></a></th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -54,9 +57,14 @@
                                         
                                             <select name="item_name[]" class="form-control" required="">
                                                 <option value="empty">Select Item Here..</option>
+                                                
                                                     @foreach ($ItemList as $category)
-                                                        <option value="{{$category -> id}}">{{$category -> item_name}}</option>
+                                                    
+                                                    <option value="{{$category -> id}}"> {{$category -> item_name}} </option>
+                                                    
+                                                 
                                                     @endforeach
+                                                    
                                             </select>
 
                                             
@@ -81,6 +89,31 @@
                                                         </tr>
                                                     </tfoot>
                                                 </table>
+                                                <script type="text/javascript">
+
+function addRow()
+{
+    var locations = [
+        @foreach ($ItemList as $category)
+    [ "{{$category -> id}}" ], 
+@endforeach
+];
+    
+    var tr='<tr>'+ 
+    
+    '<td> <select name="item_name[]" class="form-control" required=""> <option value="empty">Select Item Here..</option>'+
+        @foreach ($ItemList as $category) 
+        '<option value="{{$category -> id}}" >  {{$category -> item_name}}  </option>'+
+        @endforeach
+        ' </select> </td>'+
+     '<td><input type="text" name="quantity[]" class="form-control quantity" ></td>'+
+    '<td><input type="text" name="budget[]" class="form-control budget"></td>'+
+    ' <td><input type="text" name="amount[]" class="form-control amount"></td>'+
+    '<td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>'+
+    '</tr>';
+    $('tbody').append(tr);
+};
+                                                        </script>
                                             </div>
 
                                             <div class="row mr-auto">
@@ -100,11 +133,7 @@
         </div>
     </div> 
 
-    <script>
-
-
-        
-        </script>
+    
 
 
 

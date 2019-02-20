@@ -419,20 +419,24 @@ function total(){
 });
 $('.total').html('&#8369;'+total+".00 ");    
 }
-$('.addRow').on('click',function(){
+/*$('.addRow').on('click',function(){
     addRow();
 });
 function addRow()
 {
-    var tr='<tr>'+
-    '<td> <select name="item_name[]" class="form-control" required=""> </td>'+
+
+    
+    var tr='<tr>'+ 
+    
+    '<td> <select name="item_name[]" class="form-control" required=""> </select></td>'+
      '<td><input type="text" name="quantity[]" class="form-control quantity" ></td>'+
     '<td><input type="text" name="budget[]" class="form-control budget"></td>'+
     ' <td><input type="text" name="amount[]" class="form-control amount"></td>'+
     '<td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>'+
     '</tr>';
     $('tbody').append(tr);
-};
+};*/
+
 $('body').on('click', '.remove', function(){
     var last=$('tbody tr').length;
     if(last==1){
