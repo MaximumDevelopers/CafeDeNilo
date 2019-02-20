@@ -46,6 +46,10 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/item_list', 'ItemListController', ['as' => 'admin']); 
     });
+     //critical_stock
+     Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/critical_stock', 'CriticalStockController', ['as' => 'admin']); 
+    });
 
     //products
     Route::group(['middleware' => ['auth', 'admin']], function() {

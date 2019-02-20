@@ -48,6 +48,13 @@ $(document).ready(function () {
             },
             responsive: true
             });
+            $('#dtCS').DataTable({
+                'columnDefs': [{ 'orderable': false, 'targets': [1,3] }],
+                rowReorder: {
+                    selector: 'td:nth-child(2)'
+                },
+                responsive: true
+                });
 
         $('#dtReceipts').DataTable({
         'columnDefs': [{ 'orderable': false, 'targets': [5,2,3] }],

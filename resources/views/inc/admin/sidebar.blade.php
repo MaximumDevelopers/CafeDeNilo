@@ -95,13 +95,13 @@
 
                                 <a href="/admin/stockadjustment">
                                     <h6 class="mb-2">
-                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Stock Adjustment
+                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Stock Adjustment History
                                     <h6>        
                                 </a>
                                 
-                                <a href="items">
+                                <a href="/admin/critical_stock">
                                     <h6 class="mb-2">
-                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Inventory history
+                                        <i class="fa fa-shopping-bag mr-3" style="visibility: hidden;"></i>Critical Stock
                                     <h6>        
                             </a>
                         </div>
