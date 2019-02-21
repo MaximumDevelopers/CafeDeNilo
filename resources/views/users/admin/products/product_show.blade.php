@@ -73,7 +73,9 @@
                                            
                                         </td>  
                                           <td><input type="text" name="quantity[]" class="form-control quantity"></td>
+                                          
                                           <td><input type="text" name="budget[]" class="form-control budget"></td>
+                                          
                                           <td><input type="text" name="amount[]" class="form-control amount"></td>
                                         <td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>
                                         </tr>

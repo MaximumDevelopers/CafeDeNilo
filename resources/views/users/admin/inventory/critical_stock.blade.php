@@ -106,9 +106,9 @@
                                         @foreach ($critical_stock as $item)
                                                 <tr>
                                                 <td>{{$item -> item_name}}</td>
-                                                        <td></td>
+                                                        <td>{{$item -> quantity}}</td>
                                 
-                                                        <td></td>
+                                                        <td>{{$item -> low_stock}}</td>
                                                         
                                                         
                                                                     
