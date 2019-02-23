@@ -99,7 +99,7 @@ class ProductCategoriesController extends Controller
         $category_id = $request->get('cat_id');
 
         $category = ProductCategories::find($category_id);
-        $category->category_name = $request->get('category_name');
+        $category->category_name = $request->get('product_category_name');
         $category->save();
         return $this->redirect_route();
     }

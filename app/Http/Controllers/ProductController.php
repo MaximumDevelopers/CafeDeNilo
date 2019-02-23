@@ -131,25 +131,6 @@ class ProductController extends Controller
                      ->where('product_items.products_id', '=', $id)
                      ->get();
 
-                     /*$Product = DB::table('product_items')
-                     ->select(DB::raw(' item_list_id, quantity'))
-                     ->where('products_id', '=', $id)
-                     ->get();
-        
-                     foreach($Product as $user ) {
-                        $item_id[] =  $user->item_list_id;
-                        
-                    }
-                
-                    $item_id2 = DB::table('item_lists')
-                        ->select(DB::raw('item_name'))
-                        ->whereIn('id', $item_id)
-                        ->get();
-                    
-                        foreach ($item_id2 as $user  => $ivalue ) {
-                            $item_name["dan"] =  $ivalue ->item_name;
-                        }*/
-
     }
 
     /**
