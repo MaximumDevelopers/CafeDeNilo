@@ -79,7 +79,15 @@ $(document).ready(function () {
             selector: 'td:nth-child(2)'
             },
             responsive: true
-            });         
+            });    
+            
+        $('#dtSaleSummary1').DataTable({
+                'columnDefs': [{ 'orderable': false, 'targets': [1] }],
+                rowReorder: {
+                selector: 'td:nth-child(2)'
+                },
+                responsive: true
+                });    
     
         $('.dataTables_length').addClass('bs-select');    
         

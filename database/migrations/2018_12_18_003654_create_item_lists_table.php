@@ -20,7 +20,7 @@ class CreateItemListsTable extends Migration
             $table->smallInteger('quantity');
             $table->decimal('price');
             $table->decimal('cost');
-            $table->decimal('low_stock');
+            $table->integer('low_stock');
             $table->timestamps();
         });
     
