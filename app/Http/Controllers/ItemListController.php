@@ -63,6 +63,7 @@ class ItemListController extends Controller
         $item_list ->item_name = $request->get('item_name');
         $item_list ->cost = $request->get('item_cost');
         $item_list ->quantity = $request->get('item_quantity');
+        $item_list ->low_stock = $request->get('low_stock');
         $cost = $request->get('item_cost');
         $item_list ->price = $this -> price($cost);
         

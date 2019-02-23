@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Products;
 use App\ItemList;
+use App\ProductItems;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Auth;
 
@@ -17,7 +19,14 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $Product = Products::all();
+
+        
+        $Product = DB::select("select p.id, p.product_name, (sum(i.price * ing.quantity)) price
+        from products p
+        Join product_items ing on p.id = ing.products_id
+        JOIN  item_lists i ON ing.item_list_id = i.id
+        group by p.product_name");
+
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
@@ -41,6 +50,9 @@ class ProductController extends Controller
     public function create()
     {
         $ItemList = ItemList::all();
+
+        
+
         $Product = Products::all();
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
@@ -68,27 +80,27 @@ class ProductController extends Controller
     {
 
         $product = new Products;
-        $product->product_name = 'God tae';
-        
+        $product->product_name =  $request->input('product_name');
 
         $product->save();
-        $data = ['quantity' => 1, 'quantity' => 2,  ];
-        $category = ItemList::find([11, 13]);
-        $product->ItemList()->attach($category,$data);
-         
-        
 
-        /*$data=$request->all();
-        if(count($request->product_name) > 0)
+    
+        
+        $id = DB::getPdo()->lastInsertId();
+        
+        if(count($request->item_name) > 0)
         {
-        foreach($request->product_name as $item=>$v){
+        foreach($request->item_name as $item=>$v){
             $data2=array(
-                'product_name'=>$request->product_name[$item]
+                'item_list_id'=>$request->item_name[$item],
+                'quantity' =>$request->quantity[$item],
+                'products_id'=>$id,
             );
-        Products::insert($data2);
+            ProductItems::insert($data2);
       }
+      
         }
-        return redirect()->back()->with('success','data insert successfully');*/
+        return redirect()->back()->with('success','data insert successfully');
             
     }   
 
@@ -111,7 +123,33 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+
+
+        return $Product = DB::table('product_items')
+                     ->join('item_lists', 'product_items.item_list_id', '=', 'item_lists.id')
+                     ->select('item_lists.item_name', 'product_items.quantity')
+                     ->where('product_items.products_id', '=', $id)
+                     ->get();
+
+                     /*$Product = DB::table('product_items')
+                     ->select(DB::raw(' item_list_id, quantity'))
+                     ->where('products_id', '=', $id)
+                     ->get();
+        
+                     foreach($Product as $user ) {
+                        $item_id[] =  $user->item_list_id;
+                        
+                    }
+                
+                    $item_id2 = DB::table('item_lists')
+                        ->select(DB::raw('item_name'))
+                        ->whereIn('id', $item_id)
+                        ->get();
+                    
+                        foreach ($item_id2 as $user  => $ivalue ) {
+                            $item_name["dan"] =  $ivalue ->item_name;
+                        }*/
+
     }
 
     /**
@@ -123,7 +161,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
     }
 
     /**

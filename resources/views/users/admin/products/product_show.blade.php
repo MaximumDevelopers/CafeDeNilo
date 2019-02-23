@@ -73,9 +73,7 @@
                                            
                                         </td>  
                                           <td><input type="text" name="quantity[]" class="form-control quantity"></td>
-                                          
                                           <td><input type="text" name="budget[]" class="form-control budget"></td>
-                                          
                                           <td><input type="text" name="amount[]" class="form-control amount"></td>
                                         <td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>
                                         </tr>
@@ -93,13 +91,11 @@
                                                 </table>
                                                 <script type="text/javascript">
 
+                                                
+
 function addRow()
 {
-    var locations = [
-        @foreach ($ItemList as $category)
-    [ "{{$category -> id}}" ], 
-@endforeach
-];
+    
     
     var tr='<tr>'+ 
     

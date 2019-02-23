@@ -125,14 +125,7 @@
                     </div>
                 </div>
                 
-                <!-- #5 -->
-                <div class="card-header" id="headingFive">
-                        <a href="Settings">
-                                <h6 class="mb-0">
-                                    <i class="fa fa-cog mr-3"></i>Settings
-                                <h6>     
-                        </a>
-                </div>
+                
 
                 <!-- #6 -->
                 <div class="card-header" id="headingFive">

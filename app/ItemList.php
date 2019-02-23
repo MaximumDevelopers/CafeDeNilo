@@ -14,6 +14,8 @@ class ItemList extends Model
 
     public function Product()
     {
-        return $this->belongsToMany(Products::class, 'product_items')->withTimestamps();;
+        return $this->belongsToMany(Products::class, 'product_items')
+        ->withPivot('quantity')
+        ->withTimestamps();
     }
 }

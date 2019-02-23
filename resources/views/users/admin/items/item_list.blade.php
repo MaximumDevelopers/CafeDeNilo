@@ -80,6 +80,18 @@
                                             @endif
                                         </div>
 
+                                        <div class="form-group md-form ml-0 mr-0">
+                                                <i class="fas fa-sort-amount-up prefix"></i>
+                                                <input id="low_stock" max="9999" min="0" type="number" class="form-control{{ $errors->has('low_stock') ? ' is-invalid' : '' }} filterNum" name="low_stock" value="1" required >
+                                                <label for="low_stock" class="ml-8">{{ __('low_stock') }}</label>
+                
+                                                @if ($errors->has('low_stock'))
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $errors->first('low_stock') }}</strong>
+                                                    </span>
+                                                @endif
+                                            </div>
+
                                         
                                     </div>
 

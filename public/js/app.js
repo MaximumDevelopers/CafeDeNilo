@@ -43274,6 +43274,15 @@ $(document).ready(function () {
         },
         responsive: true
     });
+
+    $('#dtproducts').DataTable({
+        order: [[1, 'asc']],
+        'columnDefs': [{ 'orderable': false, 'targets': [0, 2] }, { "width": "3%", "targets": 0 }],
+        rowReorder: {
+            selector: 'td:nth-child(2)'
+        },
+        responsive: true
+    });
     $('#dtSupplier').DataTable({
         order: [[1, 'asc']],
         'columnDefs': [{ 'orderable': false, 'targets': [0, 2, 3, 4, 5] }, { "width": "3%", "targets": 0 }],

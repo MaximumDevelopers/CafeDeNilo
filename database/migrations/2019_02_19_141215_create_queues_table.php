@@ -14,8 +14,7 @@ class CreateQueuesTable extends Migration
     public function up()
     {
         Schema::create('queues', function (Blueprint $table) {
-            $table->increments('receipt_num');
-            $table->integer('queue_number');
+            $table->increments('queue_number');
             $table->timestamps();
         });
     }
