@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Products;
 use App\ItemList;
 use App\ProductItems;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Auth;
+use App\Products;
 
 class ProductController extends Controller
 {

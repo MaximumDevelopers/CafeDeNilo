@@ -21,7 +21,7 @@
                         
                         
                         <div class="md-form">
-                                        <textarea id="note textarea-char-counter" name="note" class="form-control md-textarea" length="120" rows="1s"></textarea>
+                                        <textarea id="note textarea-char-counter" name="note" class="form-control md-textarea" length="120" rows="1s" required></textarea>
                                         <label for="textarea-char-counter">Note</label>
                          </div>                     
                 </div>
