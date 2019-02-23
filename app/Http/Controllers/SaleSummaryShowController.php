@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\transaction;
+use Auth;
+
 
 class SaleSummaryShowController extends Controller
 {
@@ -13,7 +16,10 @@ class SaleSummaryShowController extends Controller
      */
     public function index()
     {
-        //
+        $SSummaryShow = DB::table('transactions')
+        ->select()
+        ->get();
+
     }
 
     /**
