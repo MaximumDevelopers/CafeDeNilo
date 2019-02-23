@@ -61,6 +61,11 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/products_show', 'ProductController', ['as' => 'admin']); 
     });
+
+      //product_details
+      Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/product_details', 'ProductDetailsController', ['as' => 'admin']); 
+    });
     
     //products_categories
     Route::group(['middleware' => ['auth', 'admin']], function() {
@@ -118,5 +123,3 @@ Route::get('/barista', 'User\BaristaController@index')->middleware('auth','baris
 
 //CAPTAIN CREW ROUTES
 Route::get('/captaincrew', 'User\CaptainCrewController@index')->middleware('auth','captaincrew');
-
-
