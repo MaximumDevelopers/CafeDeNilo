@@ -84,7 +84,7 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     });
     //SalesSsummaryShow
     Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/salesummaryshow', 'SaleSummaryShowController', ['as' => 'admin']); 
+        Route::resource('admin/salessummaryshow', 'SaleSummaryShowController', ['as' => 'admin']); 
     });
     //SalesSDay
     Route::group(['middleware' => ['auth', 'admin']], function() {

@@ -14,16 +14,16 @@
                                     
                             </div>
                             
-                            <a id="btnsales" type="button" href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
+                            <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
                             </a>
                         
-                        <a id="btnsales" type="button" href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Today
+                        <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Today
                         </a>
                             
-                            <a id="btnsales" type="button"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Month
+                            <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Month
                             </a>
 
-                            <a id="btnsales" type="button"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Year
+                            <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Year
                             </a>
 
                                         <br>
@@ -46,7 +46,7 @@
                                             </tr>
                                           </thead>
                                           <tbody>
-                                                @foreach ($transactions as $transaction)
+                                                @foreach ($ordered_products as $transaction)
                                                 <tr>
                                                                   
                                                             
@@ -56,7 +56,7 @@
 
                                                           
                                                             <td class="text-center">
-                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-md" data-id="{{$transaction -> id}}" data-toggle="modal"  data-target="#modalInfo" style="font-size: 1rem; ">Show</button>
+                                                                <a style="margin: 0%" href="/admin/salessummaryshow" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
 
                                                            
                                                         </td>

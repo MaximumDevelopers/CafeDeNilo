@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\User;
-use App\transaction;
+use App\ordered_products;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -17,22 +17,22 @@ class SalesSummaryController extends Controller
      */
     public function index()
     {
-        $transaction = DB::table('transactions')
-            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date, id,  email, total_price as total_price'))
+        $transaction = DB::table('ordered_products')
+            ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, price as total_price'))
             ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.suppliers')->with('transactions', $transaction);
+            return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.reports.salessummary')->with('transactions', $transaction);
+            return view('users.admin.reports.salessummary')->with('ordered_products', $transaction);
             
         }
         else {
-            return view('users.captain_crew.inventory.suppliers')->with('transactions', $transaction);
+            return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction);
         }    
             
     }

@@ -16,7 +16,7 @@ class SMmonthController extends Controller
     public function index()
     {
         $transaction = DB::table('transactions')
-            ->select(DB::raw('date_format(date, \'%M %Y\') as date, id, email, total_price as total_price'))
+            ->select(DB::raw('date_format(date, \'%M %Y\') as date, id, email, sum(total_price) as total_price'))
             ->groupBy(DB::raw('date_format(date, \'%m\')'))
             ->get();
 

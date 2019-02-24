@@ -22,12 +22,14 @@
                         
                         <div class="table-reponsive text-nowrap">
     
-                                <table id="dtSaleSummary" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                <table id="dtSaleSummary1" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                  
                                               
                                               <th scope="col">Date</th>
+                                              <th scope="col">Product Name</th>
+                                              <th scope="col">Quantity</th>
                                               <th scope="col">Price</th>
                                              
                                               
@@ -36,11 +38,13 @@
                                             </tr>
                                           </thead>
                                           <tbody>
-                                                @foreach ($transactions as $transaction)
+                                                @foreach ($ordered_products as $transaction)
                                                 <tr>
                                                                   
                                                             
                                                             <td>{{$transaction -> date}}</td>
+                                                            <td>{{$transaction -> product_name}}</td>
+                                                            <td>{{$transaction -> quantity }}</td>
                                                             <td>&#8369;{{$transaction -> total_price}}</td>
                                                            
 
