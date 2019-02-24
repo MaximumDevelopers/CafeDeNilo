@@ -13736,6 +13736,8 @@ __webpack_require__(13);
 __webpack_require__(36);
 __webpack_require__(38);
 __webpack_require__(39);
+__webpack_require__(86);
+__webpack_require__(87);
 //require('./bootstrap-select');
 __webpack_require__(40);
 
@@ -43678,6 +43680,1188 @@ $(document).ready(function () {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 42 */,
+/* 43 */,
+/* 44 */,
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */
+/***/ (function(module, exports) {
+
+$(function () {
+
+  'use strict';
+
+  /* ChartJS
+   * -------
+   * Here we will create a few charts using ChartJS
+   */
+
+  //-----------------------
+  //- MONTHLY SALES CHART -
+  //-----------------------
+
+  // Get context with jQuery - using jQuery's .get() method.
+
+  var salesChartCanvas = $('#salesChart').get(0).getContext('2d');
+  // This will get the first returned node in the jQuery collection.
+  var salesChart = new Chart(salesChartCanvas);
+
+  var salesChartData = {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [{
+      label: 'Electronics',
+      fillColor: '#dee2e6',
+      strokeColor: '#ced4da',
+      pointColor: '#ced4da',
+      pointStrokeColor: '#c1c7d1',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgb(220,220,220)',
+      data: [65, 59, 80, 81, 56, 55, 40]
+    }, {
+      label: 'Digital Goods',
+      fillColor: 'rgba(0, 123, 255, 0.9)',
+      strokeColor: 'rgba(0, 123, 255, 1)',
+      pointColor: '#3b8bba',
+      pointStrokeColor: 'rgba(0, 123, 255, 1)',
+      pointHighlightFill: '#fff',
+      pointHighlightStroke: 'rgba(0, 123, 255, 1)',
+      data: [28, 48, 40, 19, 86, 27, 90]
+    }]
+  };
+
+  var salesChartOptions = {
+    //Boolean - If we should show the scale at all
+    showScale: true,
+    //Boolean - Whether grid lines are shown across the chart
+    scaleShowGridLines: false,
+    //String - Colour of the grid lines
+    scaleGridLineColor: 'rgba(0,0,0,.05)',
+    //Number - Width of the grid lines
+    scaleGridLineWidth: 1,
+    //Boolean - Whether to show horizontal lines (except X axis)
+    scaleShowHorizontalLines: true,
+    //Boolean - Whether to show vertical lines (except Y axis)
+    scaleShowVerticalLines: true,
+    //Boolean - Whether the line is curved between points
+    bezierCurve: true,
+    //Number - Tension of the bezier curve between points
+    bezierCurveTension: 0.3,
+    //Boolean - Whether to show a dot for each point
+    pointDot: false,
+    //Number - Radius of each point dot in pixels
+    pointDotRadius: 4,
+    //Number - Pixel width of point dot stroke
+    pointDotStrokeWidth: 1,
+    //Number - amount extra to add to the radius to cater for hit detection outside the drawn point
+    pointHitDetectionRadius: 20,
+    //Boolean - Whether to show a stroke for datasets
+    datasetStroke: true,
+    //Number - Pixel width of dataset stroke
+    datasetStrokeWidth: 2,
+    //Boolean - Whether to fill the dataset with a color
+    datasetFill: true,
+    //String - A legend template
+    legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<datasets.length; i++){%><li><span style="background-color:<%=datasets[i].lineColor%>"></span><%=datasets[i].label%></li><%}%></ul>',
+    //Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+    maintainAspectRatio: false,
+    //Boolean - whether to make the chart responsive to window resizing
+    responsive: true
+
+    //Create the line chart
+  };salesChart.Line(salesChartData, salesChartOptions);
+
+  //---------------------------
+  //- END MONTHLY SALES CHART -
+  //---------------------------
+
+  //-------------
+  //- PIE CHART -
+  //-------------
+  // Get context with jQuery - using jQuery's .get() method.
+  var pieChartCanvas = $('#pieChart').get(0).getContext('2d');
+  var pieChart = new Chart(pieChartCanvas);
+  var PieData = [{
+    value: 700,
+    color: '#dc3545',
+    highlight: '#dc3545',
+    label: 'Chrome'
+  }, {
+    value: 500,
+    color: '#28a745',
+    highlight: '#28a745',
+    label: 'IE'
+  }, {
+    value: 400,
+    color: '#ffc107',
+    highlight: '#ffc107',
+    label: 'FireFox'
+  }, {
+    value: 600,
+    color: '#17a2b8',
+    highlight: '#17a2b8',
+    label: 'Safari'
+  }, {
+    value: 300,
+    color: '#007bff',
+    highlight: '#007bff',
+    label: 'Opera'
+  }, {
+    value: 100,
+    color: '#6c757d',
+    highlight: '#6c757d',
+    label: 'Navigator'
+  }];
+  var pieOptions = {
+    //Boolean - Whether we should show a stroke on each segment
+    segmentShowStroke: true,
+    //String - The colour of each segment stroke
+    segmentStrokeColor: '#fff',
+    //Number - The width of each segment stroke
+    segmentStrokeWidth: 1,
+    //Number - The percentage of the chart that we cut out of the middle
+    percentageInnerCutout: 50, // This is 0 for Pie charts
+    //Number - Amount of animation steps
+    animationSteps: 100,
+    //String - Animation easing effect
+    animationEasing: 'easeOutBounce',
+    //Boolean - Whether we animate the rotation of the Doughnut
+    animateRotate: true,
+    //Boolean - Whether we animate scaling the Doughnut from the centre
+    animateScale: false,
+    //Boolean - whether to make the chart responsive to window resizing
+    responsive: true,
+    // Boolean - whether to maintain the starting aspect ratio or not when responsive, if set to false, will take up entire container
+    maintainAspectRatio: false,
+    //String - A legend template
+    legendTemplate: '<ul class="<%=name.toLowerCase()%>-legend"><% for (var i=0; i<segments.length; i++){%><li><span style="background-color:<%=segments[i].fillColor%>"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>',
+    //String - A tooltip template
+    tooltipTemplate: '<%=value %> <%=label%> users'
+    //Create pie or douhnut chart
+    // You can switch between pie and douhnut using the method below.
+  };pieChart.Doughnut(PieData, pieOptions);
+  //-----------------
+  //- END PIE CHART -
+  //-----------------
+
+  /* jVector Maps
+   * ------------
+   * Create a world map with markers
+   */
+  $('#world-map-markers').vectorMap({
+    map: 'world_mill_en',
+    normalizeFunction: 'polynomial',
+    hoverOpacity: 0.7,
+    hoverColor: false,
+    backgroundColor: 'transparent',
+    regionStyle: {
+      initial: {
+        fill: 'rgba(210, 214, 222, 1)',
+        'fill-opacity': 1,
+        stroke: 'none',
+        'stroke-width': 0,
+        'stroke-opacity': 1
+      },
+      hover: {
+        'fill-opacity': 0.7,
+        cursor: 'pointer'
+      },
+      selected: {
+        fill: 'yellow'
+      },
+      selectedHover: {}
+    },
+    markerStyle: {
+      initial: {
+        fill: '#00a65a',
+        stroke: '#111'
+      }
+    },
+    markers: [{
+      latLng: [41.90, 12.45],
+      name: 'Vatican City'
+    }, {
+      latLng: [43.73, 7.41],
+      name: 'Monaco'
+    }, {
+      latLng: [-0.52, 166.93],
+      name: 'Nauru'
+    }, {
+      latLng: [-8.51, 179.21],
+      name: 'Tuvalu'
+    }, {
+      latLng: [43.93, 12.46],
+      name: 'San Marino'
+    }, {
+      latLng: [47.14, 9.52],
+      name: 'Liechtenstein'
+    }, {
+      latLng: [7.11, 171.06],
+      name: 'Marshall Islands'
+    }, {
+      latLng: [17.3, -62.73],
+      name: 'Saint Kitts and Nevis'
+    }, {
+      latLng: [3.2, 73.22],
+      name: 'Maldives'
+    }, {
+      latLng: [35.88, 14.5],
+      name: 'Malta'
+    }, {
+      latLng: [12.05, -61.75],
+      name: 'Grenada'
+    }, {
+      latLng: [13.16, -61.23],
+      name: 'Saint Vincent and the Grenadines'
+    }, {
+      latLng: [13.16, -59.55],
+      name: 'Barbados'
+    }, {
+      latLng: [17.11, -61.85],
+      name: 'Antigua and Barbuda'
+    }, {
+      latLng: [-4.61, 55.45],
+      name: 'Seychelles'
+    }, {
+      latLng: [7.35, 134.46],
+      name: 'Palau'
+    }, {
+      latLng: [42.5, 1.51],
+      name: 'Andorra'
+    }, {
+      latLng: [14.01, -60.98],
+      name: 'Saint Lucia'
+    }, {
+      latLng: [6.91, 158.18],
+      name: 'Federated States of Micronesia'
+    }, {
+      latLng: [1.3, 103.8],
+      name: 'Singapore'
+    }, {
+      latLng: [1.46, 173.03],
+      name: 'Kiribati'
+    }, {
+      latLng: [-21.13, -175.2],
+      name: 'Tonga'
+    }, {
+      latLng: [15.3, -61.38],
+      name: 'Dominica'
+    }, {
+      latLng: [-20.2, 57.5],
+      name: 'Mauritius'
+    }, {
+      latLng: [26.02, 50.55],
+      name: 'Bahrain'
+    }, {
+      latLng: [0.33, 6.73],
+      name: 'São Tomé and Príncipe'
+    }]
+  });
+
+  /* SPARKLINE CHARTS
+   * ----------------
+   * Create a inline charts with spark line
+   */
+
+  //-----------------
+  //- SPARKLINE BAR -
+  //-----------------
+  $('.sparkbar').each(function () {
+    var $this = $(this);
+    $this.sparkline('html', {
+      type: 'bar',
+      height: $this.data('height') ? $this.data('height') : '30',
+      barColor: $this.data('color')
+    });
+  });
+
+  //-----------------
+  //- SPARKLINE PIE -
+  //-----------------
+  $('.sparkpie').each(function () {
+    var $this = $(this);
+    $this.sparkline('html', {
+      type: 'pie',
+      height: $this.data('height') ? $this.data('height') : '90',
+      sliceColors: $this.data('color')
+    });
+  });
+
+  //------------------
+  //- SPARKLINE LINE -
+  //------------------
+  $('.sparkline').each(function () {
+    var $this = $(this);
+    $this.sparkline('html', {
+      type: 'line',
+      height: $this.data('height') ? $this.data('height') : '90',
+      width: '100%',
+      lineColor: $this.data('linecolor'),
+      fillColor: $this.data('fillcolor'),
+      spotColor: $this.data('spotcolor')
+    });
+  });
+});
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+/*!
+ * AdminLTE v3.0.0-alpha (https://adminlte.io)
+ * Copyright 2014-2018 Abdullah Almsaeed <abdullah@almsaeedstudio.com>
+ * Licensed under MIT (https://github.com/almasaeed2010/AdminLTE/blob/master/LICENSE)
+ */
+(function (global, factory) {
+  ( false ? 'undefined' : _typeof2(exports)) === 'object' && typeof module !== 'undefined' ? factory(exports) :  true ? !(__WEBPACK_AMD_DEFINE_ARRAY__ = [exports], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)) : factory(global.adminlte = {});
+})(this, function (exports) {
+  'use strict';
+
+  var _typeof = typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol" ? function (obj) {
+    return typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+  } : function (obj) {
+    return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj === 'undefined' ? 'undefined' : _typeof2(obj);
+  };
+
+  var classCallCheck = function classCallCheck(instance, Constructor) {
+    if (!(instance instanceof Constructor)) {
+      throw new TypeError("Cannot call a class as a function");
+    }
+  };
+
+  /**
+   * --------------------------------------------
+   * AdminLTE ControlSidebar.js
+   * License MIT
+   * --------------------------------------------
+   */
+
+  var ControlSidebar = function ($) {
+    /**
+     * Constants
+     * ====================================================
+     */
+
+    var NAME = 'ControlSidebar';
+    var DATA_KEY = 'lte.control.sidebar';
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+    var Selector = {
+      CONTROL_SIDEBAR: '.control-sidebar',
+      DATA_TOGGLE: '[data-widget="control-sidebar"]',
+      MAIN_HEADER: '.main-header'
+    };
+
+    var ClassName = {
+      CONTROL_SIDEBAR_OPEN: 'control-sidebar-open',
+      CONTROL_SIDEBAR_SLIDE: 'control-sidebar-slide-open'
+    };
+
+    var Default = {
+      slide: true
+
+      /**
+       * Class Definition
+       * ====================================================
+       */
+
+    };
+    var ControlSidebar = function () {
+      function ControlSidebar(element, config) {
+        classCallCheck(this, ControlSidebar);
+
+        this._element = element;
+        this._config = this._getConfig(config);
+      }
+
+      // Public
+
+      ControlSidebar.prototype.show = function show() {
+        // Show the control sidebar
+        if (this._config.slide) {
+          $('body').removeClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+        } else {
+          $('body').removeClass(ClassName.CONTROL_SIDEBAR_OPEN);
+        }
+      };
+
+      ControlSidebar.prototype.collapse = function collapse() {
+        // Collapse the control sidebar
+        if (this._config.slide) {
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+        } else {
+          $('body').addClass(ClassName.CONTROL_SIDEBAR_OPEN);
+        }
+      };
+
+      ControlSidebar.prototype.toggle = function toggle() {
+        this._setMargin();
+
+        var shouldOpen = $('body').hasClass(ClassName.CONTROL_SIDEBAR_OPEN) || $('body').hasClass(ClassName.CONTROL_SIDEBAR_SLIDE);
+        if (shouldOpen) {
+          // Open the control sidebar
+          this.show();
+        } else {
+          // Close the control sidebar
+          this.collapse();
+        }
+      };
+
+      // Private
+
+      ControlSidebar.prototype._getConfig = function _getConfig(config) {
+        return $.extend({}, Default, config);
+      };
+
+      ControlSidebar.prototype._setMargin = function _setMargin() {
+        $(Selector.CONTROL_SIDEBAR).css({
+          top: $(Selector.MAIN_HEADER).outerHeight()
+        });
+      };
+
+      // Static
+
+      ControlSidebar._jQueryInterface = function _jQueryInterface(operation) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+
+          if (!data) {
+            data = new ControlSidebar(this, $(this).data());
+            $(this).data(DATA_KEY, data);
+          }
+
+          if (data[operation] === 'undefined') {
+            throw new Error(operation + ' is not a function');
+          }
+
+          data[operation]();
+        });
+      };
+
+      return ControlSidebar;
+    }();
+
+    /**
+     *
+     * Data Api implementation
+     * ====================================================
+     */
+
+    $(document).on('click', Selector.DATA_TOGGLE, function (event) {
+      event.preventDefault();
+
+      ControlSidebar._jQueryInterface.call($(this), 'toggle');
+    });
+
+    /**
+     * jQuery API
+     * ====================================================
+     */
+
+    $.fn[NAME] = ControlSidebar._jQueryInterface;
+    $.fn[NAME].Constructor = ControlSidebar;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return ControlSidebar._jQueryInterface;
+    };
+
+    return ControlSidebar;
+  }(jQuery);
+
+  /**
+   * --------------------------------------------
+   * AdminLTE Layout.js
+   * License MIT
+   * --------------------------------------------
+   */
+
+  var Layout = function ($) {
+    /**
+     * Constants
+     * ====================================================
+     */
+
+    var NAME = 'Layout';
+    var DATA_KEY = 'lte.layout';
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+    var Selector = {
+      SIDEBAR: '.main-sidebar',
+      HEADER: '.main-header',
+      CONTENT: '.content-wrapper',
+      CONTENT_HEADER: '.content-header',
+      WRAPPER: '.wrapper',
+      CONTROL_SIDEBAR: '.control-sidebar',
+      LAYOUT_FIXED: '.layout-fixed',
+      FOOTER: '.main-footer'
+    };
+
+    var ClassName = {
+      HOLD: 'hold-transition',
+      SIDEBAR: 'main-sidebar',
+      LAYOUT_FIXED: 'layout-fixed'
+
+      /**
+       * Class Definition
+       * ====================================================
+       */
+
+    };
+    var Layout = function () {
+      function Layout(element) {
+        classCallCheck(this, Layout);
+
+        this._element = element;
+
+        this._init();
+      }
+
+      // Public
+
+      Layout.prototype.fixLayoutHeight = function fixLayoutHeight() {
+        var heights = {
+          window: $(window).height(),
+          header: $(Selector.HEADER).outerHeight(),
+          footer: $(Selector.FOOTER).outerHeight(),
+          sidebar: $(Selector.SIDEBAR).height()
+        };
+        var max = this._max(heights);
+
+        $(Selector.CONTENT).css('min-height', max - heights.header);
+        $(Selector.SIDEBAR).css('min-height', max - heights.header);
+      };
+
+      // Private
+
+      Layout.prototype._init = function _init() {
+        var _this = this;
+
+        // Enable transitions
+        $('body').removeClass(ClassName.HOLD);
+
+        // Activate layout height watcher
+        this.fixLayoutHeight();
+        $(Selector.SIDEBAR).on('collapsed.lte.treeview expanded.lte.treeview collapsed.lte.pushmenu expanded.lte.pushmenu', function () {
+          _this.fixLayoutHeight();
+        });
+
+        $(window).resize(function () {
+          _this.fixLayoutHeight();
+        });
+
+        $('body, html').css('height', 'auto');
+      };
+
+      Layout.prototype._max = function _max(numbers) {
+        // Calculate the maximum number in a list
+        var max = 0;
+
+        Object.keys(numbers).forEach(function (key) {
+          if (numbers[key] > max) {
+            max = numbers[key];
+          }
+        });
+
+        return max;
+      };
+
+      // Static
+
+      Layout._jQueryInterface = function _jQueryInterface(operation) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+
+          if (!data) {
+            data = new Layout(this);
+            $(this).data(DATA_KEY, data);
+          }
+
+          if (operation) {
+            data[operation]();
+          }
+        });
+      };
+
+      return Layout;
+    }();
+
+    /**
+     * Data API
+     * ====================================================
+     */
+
+    $(window).on('load', function () {
+      Layout._jQueryInterface.call($('body'));
+    });
+
+    /**
+     * jQuery API
+     * ====================================================
+     */
+
+    $.fn[NAME] = Layout._jQueryInterface;
+    $.fn[NAME].Constructor = Layout;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return Layout._jQueryInterface;
+    };
+
+    return Layout;
+  }(jQuery);
+
+  /**
+   * --------------------------------------------
+   * AdminLTE PushMenu.js
+   * License MIT
+   * --------------------------------------------
+   */
+
+  var PushMenu = function ($) {
+    /**
+     * Constants
+     * ====================================================
+     */
+
+    var NAME = 'PushMenu';
+    var DATA_KEY = 'lte.pushmenu';
+    var EVENT_KEY = '.' + DATA_KEY;
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+    var Event = {
+      COLLAPSED: 'collapsed' + EVENT_KEY,
+      SHOWN: 'shown' + EVENT_KEY
+    };
+
+    var Default = {
+      screenCollapseSize: 768
+    };
+
+    var Selector = {
+      TOGGLE_BUTTON: '[data-widget="pushmenu"]',
+      SIDEBAR_MINI: '.sidebar-mini',
+      SIDEBAR_COLLAPSED: '.sidebar-collapse',
+      BODY: 'body',
+      OVERLAY: '#sidebar-overlay',
+      WRAPPER: '.wrapper'
+    };
+
+    var ClassName = {
+      SIDEBAR_OPEN: 'sidebar-open',
+      COLLAPSED: 'sidebar-collapse',
+      OPEN: 'sidebar-open',
+      SIDEBAR_MINI: 'sidebar-mini'
+
+      /**
+       * Class Definition
+       * ====================================================
+       */
+
+    };
+    var PushMenu = function () {
+      function PushMenu(element, options) {
+        classCallCheck(this, PushMenu);
+
+        this._element = element;
+        this._options = $.extend({}, Default, options);
+
+        if (!$(Selector.OVERLAY).length) {
+          this._addOverlay();
+        }
+      }
+
+      // Public
+
+      PushMenu.prototype.show = function show() {
+        $(Selector.BODY).addClass(ClassName.OPEN).removeClass(ClassName.COLLAPSED);
+
+        var shownEvent = $.Event(Event.SHOWN);
+        $(this._element).trigger(shownEvent);
+      };
+
+      PushMenu.prototype.collapse = function collapse() {
+        $(Selector.BODY).removeClass(ClassName.OPEN).addClass(ClassName.COLLAPSED);
+
+        var collapsedEvent = $.Event(Event.COLLAPSED);
+        $(this._element).trigger(collapsedEvent);
+      };
+
+      PushMenu.prototype.toggle = function toggle() {
+        var isShown = void 0;
+        if ($(window).width() >= this._options.screenCollapseSize) {
+          isShown = !$(Selector.BODY).hasClass(ClassName.COLLAPSED);
+        } else {
+          isShown = $(Selector.BODY).hasClass(ClassName.OPEN);
+        }
+
+        if (isShown) {
+          this.collapse();
+        } else {
+          this.show();
+        }
+      };
+
+      // Private
+
+
+      PushMenu.prototype._addOverlay = function _addOverlay() {
+        var _this = this;
+
+        var overlay = $('<div />', {
+          id: 'sidebar-overlay'
+        });
+
+        overlay.on('click', function () {
+          _this.collapse();
+        });
+
+        $(Selector.WRAPPER).append(overlay);
+      };
+
+      // Static
+
+      PushMenu._jQueryInterface = function _jQueryInterface(operation) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+
+          if (!data) {
+            data = new PushMenu(this);
+            $(this).data(DATA_KEY, data);
+          }
+
+          if (operation) {
+            data[operation]();
+          }
+        });
+      };
+
+      return PushMenu;
+    }();
+
+    /**
+     * Data API
+     * ====================================================
+     */
+
+    $(document).on('click', Selector.TOGGLE_BUTTON, function (event) {
+      event.preventDefault();
+
+      var button = event.currentTarget;
+
+      if ($(button).data('widget') !== 'pushmenu') {
+        button = $(button).closest(Selector.TOGGLE_BUTTON);
+      }
+
+      PushMenu._jQueryInterface.call($(button), 'toggle');
+    });
+
+    /**
+     * jQuery API
+     * ====================================================
+     */
+
+    $.fn[NAME] = PushMenu._jQueryInterface;
+    $.fn[NAME].Constructor = PushMenu;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return PushMenu._jQueryInterface;
+    };
+
+    return PushMenu;
+  }(jQuery);
+
+  /**
+   * --------------------------------------------
+   * AdminLTE Treeview.js
+   * License MIT
+   * --------------------------------------------
+   */
+
+  var Treeview = function ($) {
+    /**
+     * Constants
+     * ====================================================
+     */
+
+    var NAME = 'Treeview';
+    var DATA_KEY = 'lte.treeview';
+    var EVENT_KEY = '.' + DATA_KEY;
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+    var Event = {
+      SELECTED: 'selected' + EVENT_KEY,
+      EXPANDED: 'expanded' + EVENT_KEY,
+      COLLAPSED: 'collapsed' + EVENT_KEY,
+      LOAD_DATA_API: 'load' + EVENT_KEY
+    };
+
+    var Selector = {
+      LI: '.nav-item',
+      LINK: '.nav-link',
+      TREEVIEW_MENU: '.nav-treeview',
+      OPEN: '.menu-open',
+      DATA_WIDGET: '[data-widget="treeview"]'
+    };
+
+    var ClassName = {
+      LI: 'nav-item',
+      LINK: 'nav-link',
+      TREEVIEW_MENU: 'nav-treeview',
+      OPEN: 'menu-open'
+    };
+
+    var Default = {
+      trigger: Selector.DATA_WIDGET + ' ' + Selector.LINK,
+      animationSpeed: 300,
+      accordion: true
+
+      /**
+       * Class Definition
+       * ====================================================
+       */
+    };
+    var Treeview = function () {
+      function Treeview(element, config) {
+        classCallCheck(this, Treeview);
+
+        this._config = config;
+        this._element = element;
+      }
+
+      // Public
+
+      Treeview.prototype.init = function init() {
+        this._setupListeners();
+      };
+
+      Treeview.prototype.expand = function expand(treeviewMenu, parentLi) {
+        var _this = this;
+
+        var expandedEvent = $.Event(Event.EXPANDED);
+
+        if (this._config.accordion) {
+          var openMenuLi = parentLi.siblings(Selector.OPEN).first();
+          var openTreeview = openMenuLi.find(Selector.TREEVIEW_MENU).first();
+          this.collapse(openTreeview, openMenuLi);
+        }
+
+        treeviewMenu.slideDown(this._config.animationSpeed, function () {
+          parentLi.addClass(ClassName.OPEN);
+          $(_this._element).trigger(expandedEvent);
+        });
+      };
+
+      Treeview.prototype.collapse = function collapse(treeviewMenu, parentLi) {
+        var _this2 = this;
+
+        var collapsedEvent = $.Event(Event.COLLAPSED);
+
+        treeviewMenu.slideUp(this._config.animationSpeed, function () {
+          parentLi.removeClass(ClassName.OPEN);
+          $(_this2._element).trigger(collapsedEvent);
+          treeviewMenu.find(Selector.OPEN + ' > ' + Selector.TREEVIEW_MENU).slideUp();
+          treeviewMenu.find(Selector.OPEN).removeClass(ClassName.OPEN);
+        });
+      };
+
+      Treeview.prototype.toggle = function toggle(event) {
+        var $relativeTarget = $(event.currentTarget);
+        var treeviewMenu = $relativeTarget.next();
+
+        if (!treeviewMenu.is(Selector.TREEVIEW_MENU)) {
+          return;
+        }
+
+        event.preventDefault();
+
+        var parentLi = $relativeTarget.parents(Selector.LI).first();
+        var isOpen = parentLi.hasClass(ClassName.OPEN);
+
+        if (isOpen) {
+          this.collapse($(treeviewMenu), parentLi);
+        } else {
+          this.expand($(treeviewMenu), parentLi);
+        }
+      };
+
+      // Private
+
+      Treeview.prototype._setupListeners = function _setupListeners() {
+        var _this3 = this;
+
+        $(document).on('click', this._config.trigger, function (event) {
+          _this3.toggle(event);
+        });
+      };
+
+      // Static
+
+      Treeview._jQueryInterface = function _jQueryInterface(config) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+          var _config = $.extend({}, Default, $(this).data());
+
+          if (!data) {
+            data = new Treeview($(this), _config);
+            $(this).data(DATA_KEY, data);
+          }
+
+          if (config === 'init') {
+            data[config]();
+          }
+        });
+      };
+
+      return Treeview;
+    }();
+
+    /**
+     * Data API
+     * ====================================================
+     */
+
+    $(window).on(Event.LOAD_DATA_API, function () {
+      $(Selector.DATA_WIDGET).each(function () {
+        Treeview._jQueryInterface.call($(this), 'init');
+      });
+    });
+
+    /**
+     * jQuery API
+     * ====================================================
+     */
+
+    $.fn[NAME] = Treeview._jQueryInterface;
+    $.fn[NAME].Constructor = Treeview;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return Treeview._jQueryInterface;
+    };
+
+    return Treeview;
+  }(jQuery);
+
+  /**
+   * --------------------------------------------
+   * AdminLTE Widget.js
+   * License MIT
+   * --------------------------------------------
+   */
+
+  var Widget = function ($) {
+    /**
+     * Constants
+     * ====================================================
+     */
+
+    var NAME = 'Widget';
+    var DATA_KEY = 'lte.widget';
+    var EVENT_KEY = '.' + DATA_KEY;
+    var JQUERY_NO_CONFLICT = $.fn[NAME];
+
+    var Event = {
+      EXPANDED: 'expanded' + EVENT_KEY,
+      COLLAPSED: 'collapsed' + EVENT_KEY,
+      REMOVED: 'removed' + EVENT_KEY
+    };
+
+    var Selector = {
+      DATA_REMOVE: '[data-widget="remove"]',
+      DATA_COLLAPSE: '[data-widget="collapse"]',
+      CARD: '.card',
+      CARD_HEADER: '.card-header',
+      CARD_BODY: '.card-body',
+      CARD_FOOTER: '.card-footer',
+      COLLAPSED: '.collapsed-card'
+    };
+
+    var ClassName = {
+      COLLAPSED: 'collapsed-card'
+    };
+
+    var Default = {
+      animationSpeed: 'normal',
+      collapseTrigger: Selector.DATA_COLLAPSE,
+      removeTrigger: Selector.DATA_REMOVE
+    };
+
+    var Widget = function () {
+      function Widget(element, settings) {
+        classCallCheck(this, Widget);
+
+        this._element = element;
+        this._parent = element.parents(Selector.CARD).first();
+        this._settings = $.extend({}, Default, settings);
+      }
+
+      Widget.prototype.collapse = function collapse() {
+        var _this = this;
+
+        this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideUp(this._settings.animationSpeed, function () {
+          _this._parent.addClass(ClassName.COLLAPSED);
+        });
+
+        var collapsed = $.Event(Event.COLLAPSED);
+
+        this._element.trigger(collapsed, this._parent);
+      };
+
+      Widget.prototype.expand = function expand() {
+        var _this2 = this;
+
+        this._parent.children(Selector.CARD_BODY + ', ' + Selector.CARD_FOOTER).slideDown(this._settings.animationSpeed, function () {
+          _this2._parent.removeClass(ClassName.COLLAPSED);
+        });
+
+        var expanded = $.Event(Event.EXPANDED);
+
+        this._element.trigger(expanded, this._parent);
+      };
+
+      Widget.prototype.remove = function remove() {
+        this._parent.slideUp();
+
+        var removed = $.Event(Event.REMOVED);
+
+        this._element.trigger(removed, this._parent);
+      };
+
+      Widget.prototype.toggle = function toggle() {
+        if (this._parent.hasClass(ClassName.COLLAPSED)) {
+          this.expand();
+          return;
+        }
+
+        this.collapse();
+      };
+
+      // Private
+
+      Widget.prototype._init = function _init(card) {
+        var _this3 = this;
+
+        this._parent = card;
+
+        $(this).find(this._settings.collapseTrigger).click(function () {
+          _this3.toggle();
+        });
+
+        $(this).find(this._settings.removeTrigger).click(function () {
+          _this3.remove();
+        });
+      };
+
+      // Static
+
+      Widget._jQueryInterface = function _jQueryInterface(config) {
+        return this.each(function () {
+          var data = $(this).data(DATA_KEY);
+
+          if (!data) {
+            data = new Widget($(this), data);
+            $(this).data(DATA_KEY, typeof config === 'string' ? data : config);
+          }
+
+          if (typeof config === 'string' && config.match(/remove|toggle/)) {
+            data[config]();
+          } else if ((typeof config === 'undefined' ? 'undefined' : _typeof(config)) === 'object') {
+            data._init($(this));
+          }
+        });
+      };
+
+      return Widget;
+    }();
+
+    /**
+     * Data API
+     * ====================================================
+     */
+
+    $(document).on('click', Selector.DATA_COLLAPSE, function (event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      Widget._jQueryInterface.call($(this), 'toggle');
+    });
+
+    $(document).on('click', Selector.DATA_REMOVE, function (event) {
+      if (event) {
+        event.preventDefault();
+      }
+
+      Widget._jQueryInterface.call($(this), 'remove');
+    });
+
+    /**
+     * jQuery API
+     * ====================================================
+     */
+
+    $.fn[NAME] = Widget._jQueryInterface;
+    $.fn[NAME].Constructor = Widget;
+    $.fn[NAME].noConflict = function () {
+      $.fn[NAME] = JQUERY_NO_CONFLICT;
+      return Widget._jQueryInterface;
+    };
+
+    return Widget;
+  }(jQuery);
+
+  exports.ControlSidebar = ControlSidebar;
+  exports.Layout = Layout;
+  exports.PushMenu = PushMenu;
+  exports.Treeview = Treeview;
+  exports.Widget = Widget;
+
+  Object.defineProperty(exports, '__esModule', { value: true });
+});
+//# sourceMappingURL=adminlte.js.map
 
 /***/ })
 /******/ ]);

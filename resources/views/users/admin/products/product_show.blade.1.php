@@ -8,7 +8,6 @@
                     <div class="card-body">
                             <div class="row">
                                     <h2 id="ct1" class="card-title">Product Categories</h2>
-                                     
                                     
                             </div>
 

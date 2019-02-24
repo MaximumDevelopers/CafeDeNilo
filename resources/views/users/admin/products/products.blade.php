@@ -33,29 +33,24 @@
                                     </thead>
                                         
                                               @foreach ($Product as $item)
-                                                  
                                              
                                                 <tr>
                                                         <td id="dtShow"></td>
                                                         <td>{{$item -> product_name}}</td>
-                                                    
-                                                        
+
                                                         <td>BG</td>
                                                         <td>&#8369;{{$item -> price}}</td>
                                                                     
                                                         <td>
                                                             <div class="text-center">
-                                                                <button type="button" style="margin: 0%" class="btn btn-blue btn-sm"  data-id=""  style="font-size: 1rem;">SHOW</button>
+                                                                <a  href="{{ route('admin.products.edit', $item -> id) }}" style="margin: 0%" class="btn btn-blue btn-sm"  data-id=""  style="font-size: 1rem;">SHOW</a>
                                                             </div>
                                                         </td>
 
                                                         <td class="text-center">      
                                                             <button type="submit" style="margin: 0%" class="fa fa-trash btn btn-red btn-md"  style="font-size: 1rem; "></button>
                                                         </td>            
-                                                        
-                                                         
-                                                        
-                                                        
+             
                                                 </tr>
                                                 @endforeach
                                                              

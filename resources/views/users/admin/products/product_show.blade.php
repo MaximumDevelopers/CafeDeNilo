@@ -1,7 +1,5 @@
 @extends('layouts.admin.app')
 @section('content')
-{{-- Code in your template file, e.g., view.blade.php --}}
-
 
 <form action="/admin/product/post" method="POST">
                                         {{csrf_field()}}
@@ -51,17 +49,13 @@
                                                     <tbody>
                                         <tr>
 
-                                               
-
                                         <td>
                                         
                                             <select name="item_name[]" class="form-control" required="">
                                                 <option value="empty">Select Item Here..</option>
-                                                
-                                                    @foreach ($ItemList as $category)
+                                                    @foreach ($ItemList as $item_name)
                                                     
-                                                    <option value="{{$category -> id}}"> {{$category -> item_name}} </option>
-                                                    
+                                                        <option value="{{$item_name -> id}}"> {{$item_name -> item_name}} </option>     
                                                  
                                                     @endforeach
                                                     

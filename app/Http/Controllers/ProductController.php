@@ -123,22 +123,21 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $products = Products::all()
-            ->where('product_items.products_id', '=', $id);
+        $ItemList = ItemList::all();
 
-        $Product_item = DB::table('product_items')
-            ->join('item_lists', 'product_items.item_list_id', '=', 'item_lists.id')
-            ->select('item_lists.item_name', 'product_items.quantity')
-            ->where('product_items.products_id', '=', $id)
-            ->get();
+
+        $products = Products::all()
+            ->where('id', '=', $id);
     
         $Product_item = DB::table('product_items')
                      ->join('item_lists', 'product_items.item_list_id', '=', 'item_lists.id')
-                     ->select('item_lists.item_name', 'product_items.quantity')
+                     ->select('item_lists.item_name', 'product_items.quantity', 'item_lists.price')
                      ->where('product_items.products_id', '=', $id)
                      ->get();
 
-        return view('users.admin.products.product_details')->with('product_item', $Product_item)->with('products', $products);
+
+                        
+        return view('users.admin.products.product_details')->with('product_item', $Product_item)->with('products', $products)->with('ItemList', $ItemList);
 
     }
 
