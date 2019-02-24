@@ -6,7 +6,7 @@
 
 <div id="cf" class="container-fluid">
    <div class="row">
-   <div class="col-md-7">
+   <div class="col-lg-11">
        
                 <div id="c2" class="card shadow-md mb-6">
                     <div class="card-body">
@@ -126,43 +126,44 @@
               
     
                         <div class="table-reponsive text-nowrap">
-                                
-                             <table id="dtProductSales" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+    
+                                <table id="dtProducts" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
-                                        
-                                              <th scope="col">Product Name</th>
-                                              <th scope="col">Total Price</th>
-                                              <th scope="col">Quantity</th>
+                                                 
+                                              
+                                              <th scope="col">Date</th>
+                                              <th scope="col">Sales</th>
+                                             
+                                              <th scope="col"></th>
                                               
                               
                                             </tr>
                                           </thead>
                                           <tbody>
-    
-                                            @foreach ($ordered_products as $order)
-                                                    <tr>
-                                                        
+                                                @foreach ($ordered_products as $transaction)
+                                                <tr>
+                                                                  
                                                             
-                                                            <td>{{$order -> product_name}}</td>
-                                                            <td>{{$order -> price}}</td>
-                                                            <td>{{$order -> quantity}}</td> 
-                                                            
+                                                            <td>{{$transaction -> date}}</td>
+                                                            <td>&#8369;{{$transaction -> total_price}}</td>
+                                                           
+
+                                                          
+                                                            <td class="text-center">          
+                                                                <a style="margin: 0%" href="{{route('admin.salesummary.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
+
+                                                           
+                                                        </td>
                                                     </tr>
-                                                  
-                                                    @endforeach      
-        
-                                                
-                                                  
+                                                    @endforeach
+                        
                                             </tbody>
                                         
                                       </table>
             
             
-        
-        
-                       
-                        </div>
+                               </div>
                    
                        
             
@@ -177,57 +178,11 @@
 
    </div>
 
-   <div class="col-md-5">
-        <!--Card-->
-        <div class="card h-80">
-       
-               <!-- Card header -->
-               <div class="card-header">Top 5 Product</div>
-       
-               <!--Card content-->
-               <div class="card-body">
-                   <br>
-                   <br>
-       
-                   <canvas id="doughnutChart"></canvas>
-       
-               </div>
-       
-           </div>
-           <!--/.Card-->
-       
-       </div>
        </div>
 
   
 
 </div>
-</div>
-
-
-
-
-
-        <script>
-                //doughnut
-                var ctxD = document.getElementById("doughnutChart").getContext('2d');
-                var myLineChart = new Chart(ctxD, {
-                    type: 'doughnut',
-                    data: {
-                        labels: ["Red", "Green", "Yellow", "Grey", "Dark Grey"],
-                        datasets: [{
-                            data: [300, 50, 100, 40, 120],
-                            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C", "#949FB1", "#4D5360"],
-                            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870", "#A8B3C5", "#616774"]
-                        }]
-                    },
-                    options: {
-                        responsive: true
-                    }
-                });
-        </script>
-   
-        </div>
 
         
          

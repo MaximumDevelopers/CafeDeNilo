@@ -7,7 +7,7 @@
             <div id="c2" class="card shadow-md mb-6">
                 <div class="card-body">
                         <div class="row">
-                                <h2 id="ct1" class="card-title">Categories</h2>
+                                <h2 id="ct1" class="card-title">Item Categories</h2>
                                 
                                 <button type="button" class="btn btn-primary btn-sm ml-auto btnLogin" 
                                 data-toggle="modal" data-target="#modalAdd">Add Category

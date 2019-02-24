@@ -15,9 +15,9 @@ class SMyearController extends Controller
      */
     public function index()
     {
-        $transaction = DB::table('transactions')
-        ->select(DB::raw('sum(total_price) as total_price, id,date_format(date,\'%Y\') as date,email' ))
-        ->groupBy(DB::raw('date_format(date, \'%Y\')'))
+        $transaction = DB::table('ordered_products')
+        ->select(DB::raw('sum(price) as total_price, id,date_format(created_at,\'%Y\') as date, id' ))
+        ->groupBy(DB::raw('date_format(created_at, \'%Y\')'))
         
         ->get();
 
@@ -25,14 +25,14 @@ class SMyearController extends Controller
         return redirect('/barista');
     }
     elseif (Auth::check() && Auth::user()->role == 'owner') {
-        return view('users.owner.inventory.suppliers')->with('transactions', $transaction);
+        return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction);
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return view('users.admin.reports.salessummary')->with('transactions', $transaction);
+        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction);
         
     }
     else {
-        return view('users.captain_crew.inventory.suppliers')->with('transactions', $transaction);
+        return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction);
     }
     }
 
@@ -65,7 +65,24 @@ class SMyearController extends Controller
      */
     public function show($id)
     {
-        //
+        $SSummaryShow = DB::table('ordered_products')
+        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price'))
+        ->where('transaction_id', $id)
+        ->get();
+
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.reports.salessummaryshow')->with('ordered_products', $SSummaryShow);
+            
+        }
+        else {
+            return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
+        }    
     }
 
     /**

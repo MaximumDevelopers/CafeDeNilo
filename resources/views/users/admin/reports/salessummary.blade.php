@@ -14,17 +14,17 @@
                                     
                             </div>
                             
-                            <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
-                            </a>
+                          <!--  <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
+                            </a> -->
                         
-                        <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Today
-                        </a>
+                      <!--  <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Today
+                        </a> -->
                             
-                            <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Month
-                            </a>
+                         <!--   <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Month
+                            </a> -->
 
-                            <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Year
-                            </a>
+                          <!--  <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Year
+                            </a> -->
 
                                         <br>
                                         <br>
@@ -38,9 +38,13 @@
                                                  
                                               
                                               <th scope="col">Date</th>
-                                              <th scope="col">Price</th>
+                                              <th scope="col">Gross Sales</th>
+                                              <th scope="col">Discount</th>
+                                              <th scope="col">Net Sales</th>
+                                              <th scope="col">Gross Profit</th>
+
                                              
-                                              <th scope="col"></th>
+                                              
                                               
                               
                                             </tr>
@@ -49,17 +53,16 @@
                                                 @foreach ($ordered_products as $transaction)
                                                 <tr>
                                                                   
-                                                            
+                                                                
                                                             <td>{{$transaction -> date}}</td>
                                                             <td>&#8369;{{$transaction -> total_price}}</td>
+                                                            <td></td>
+                                                            <td></td>
+                                                            <td></td>
                                                            
 
                                                           
-                                                            <td class="text-center">          
-                                                                <a style="margin: 0%" href="{{route('admin.salesummary.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
 
-                                                           
-                                                        </td>
                                                     </tr>
                                                     @endforeach
                         

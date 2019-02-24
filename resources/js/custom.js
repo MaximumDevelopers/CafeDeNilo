@@ -34,7 +34,7 @@ $(document).ready(function () {
         
         $('#dtproducts').DataTable({
             order: [[1, 'asc']],
-            'columnDefs': [{ 'orderable': false, 'targets': [0,2] }, { "width": "3%", "targets": 0 }],
+            'columnDefs': [{ 'orderable': false, 'targets': [0,4,5] }, { "width": "3%", "targets": 0 }],
             rowReorder: {
                 selector: 'td:nth-child(2)'
             },
