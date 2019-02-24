@@ -55,8 +55,8 @@
                                                            
 
                                                           
-                                                            <td class="text-center">
-                                                                <a style="margin: 0%" href="/admin/salessummaryshow" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
+                                                            <td class="text-center">          
+                                                                <a style="margin: 0%" href="{{route('admin.salesummary.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
 
                                                            
                                                         </td>
