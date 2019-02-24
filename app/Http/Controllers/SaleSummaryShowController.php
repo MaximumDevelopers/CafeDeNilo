@@ -17,7 +17,11 @@ class SaleSummaryShowController extends Controller
      */
     public function index()
     {
+<<<<<<< HEAD
          
+=======
+        
+>>>>>>> 96787c8fd21aad79c73ff60d161a30eec6af8771
     }
 
     /**
@@ -49,9 +53,16 @@ class SaleSummaryShowController extends Controller
      */
     public function show($id)
     {
+<<<<<<< HEAD
         $SSummaryShow = DB::table('ordered_products')
         ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price'))
         ->where ()
+=======
+
+        $SSummaryShow = DB::table('ordered_products')
+        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price'))
+        
+>>>>>>> 96787c8fd21aad79c73ff60d161a30eec6af8771
         ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {
@@ -67,6 +78,10 @@ class SaleSummaryShowController extends Controller
         else {
             return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
         }    
+<<<<<<< HEAD
+=======
+        
+>>>>>>> 96787c8fd21aad79c73ff60d161a30eec6af8771
     }
 
     /**
