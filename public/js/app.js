@@ -13736,8 +13736,8 @@ __webpack_require__(13);
 __webpack_require__(36);
 __webpack_require__(38);
 __webpack_require__(39);
-__webpack_require__(86);
-__webpack_require__(87);
+__webpack_require__(78);
+__webpack_require__(79);
 //require('./bootstrap-select');
 __webpack_require__(40);
 
@@ -43718,15 +43718,7 @@ $(document).ready(function () {
 /* 75 */,
 /* 76 */,
 /* 77 */,
-/* 78 */,
-/* 79 */,
-/* 80 */,
-/* 81 */,
-/* 82 */,
-/* 83 */,
-/* 84 */,
-/* 85 */,
-/* 86 */
+/* 78 */
 /***/ (function(module, exports) {
 
 $(function () {
@@ -44045,7 +44037,7 @@ $(function () {
 });
 
 /***/ }),
-/* 87 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;var _typeof2 = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
