@@ -1,4 +1,4 @@
-@extends('layouts.admin.graphs')
+@extends('layouts.admin.app')
 @section('content')
 
 

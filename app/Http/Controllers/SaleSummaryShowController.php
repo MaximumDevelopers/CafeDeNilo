@@ -17,24 +17,7 @@ class SaleSummaryShowController extends Controller
      */
     public function index()
     {
-        $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price'))
-        ->where
-        ->get();
-
-        if (Auth::check() && Auth::user()->role == 'barista') {
-            return redirect('/barista');
-        }
-        elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
-        }
-        elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.reports.salessummaryshow')->with('ordered_products', $SSummaryShow);
-            
-        }
-        else {
-            return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
-        }    
+         
     }
 
     /**
@@ -66,7 +49,24 @@ class SaleSummaryShowController extends Controller
      */
     public function show($id)
     {
-        
+        $SSummaryShow = DB::table('ordered_products')
+        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price'))
+        ->where ()
+        ->get();
+
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.reports.salessummaryshow')->with('ordered_products', $SSummaryShow);
+            
+        }
+        else {
+            return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
+        }    
     }
 
     /**

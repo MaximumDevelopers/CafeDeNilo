@@ -78,7 +78,7 @@
                     <a href="#" class="nav-link"> 
                       <i class="nav-icon fa fa-shopping-cart"></i>
                       <p>
-                        Inventory Management
+                        Inventory
                         <i class="right fa fa-angle-left"></i>
                       </p>
                     </a>
