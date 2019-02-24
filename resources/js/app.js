@@ -8,6 +8,8 @@ require('./bootstrap');
 require('./jquery-3.3.1.min');
 require('./popper.min');
 require('./mdb.min');
+require('./dashboard2');
+require('./adminlte');
 //require('./bootstrap-select');
 require('./custom');
 
