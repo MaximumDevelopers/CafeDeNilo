@@ -54,7 +54,7 @@
                                                 <tr>
                                                                   
                                                                 
-                                                            <td>{{$transaction -> date}}</td>
+                                                            <td data-sort>{{$transaction -> date}}</td>
                                                             <td>&#8369;{{$transaction -> total_price}}</td>
                                                             <td></td>
                                                             <td></td>

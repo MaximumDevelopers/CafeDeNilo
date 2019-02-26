@@ -20,6 +20,7 @@ class SalesByProductController extends Controller
     {
         $ordered_products= DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%d %M %Y\')as date, total_price as total_price, id'))
+        ->orderBy(DB::raw('date_format(date, \'%d\')'), 'desc')
         ->get();
 
     if (Auth::check() && Auth::user()->role == 'barista') {

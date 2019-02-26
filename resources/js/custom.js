@@ -51,7 +51,7 @@ $(document).ready(function () {
         });
 
     $('#dtProductSales').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [1,1] }],
+            'columnDefs': [{ 'orderable': false, 'targets': [1,2] }],
             rowReorder: {
                 selector: 'td:nth-child(2)'
             },
@@ -74,7 +74,7 @@ $(document).ready(function () {
         });             
 
         $('#dtSaleSummary').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [2,2] }],
+            'columnDefs': [{ 'orderable': false, 'targets': [0,1,2,3,4] }],
             rowReorder: {
             selector: 'td:nth-child(2)'
             },

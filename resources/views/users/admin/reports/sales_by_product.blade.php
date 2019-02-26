@@ -127,7 +127,7 @@
     
                         <div class="table-reponsive text-nowrap">
     
-                                <table id="dtProducts" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                                <table id="dtProductSales" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                         <thead>
                                             <tr>
                                                  
@@ -145,13 +145,13 @@
                                                 <tr>
                                                                   
                                                             
-                                                            <td>{{$transaction -> date}}</td>
+                                                            <td data-sort>{{$transaction -> date}}</td>
                                                             <td>&#8369;{{$transaction -> total_price}}</td>
                                                            
 
                                                           
                                                             <td class="text-center">          
-                                                                <a style="margin: 0%" href="{{route('admin.salesummary.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
+                                                                <a style="margin: 0%" href="{{route('admin.salesbyproduct.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
 
                                                            
                                                         </td>
