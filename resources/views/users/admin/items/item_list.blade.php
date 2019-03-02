@@ -115,7 +115,8 @@
                                             <th scope="col">Item Name</th>
                                             <th scope="col">Price</th>
                                             <th scope="col">In stock</th>
-                                            <th scope="col">Low stock</th>
+                                            
+                                            <th scope="col"></th>
                                             <th scope="col"></th>
                                             <th scope="col"></th>
                                             <th scope="col"></th>
@@ -134,7 +135,7 @@
                                                         <td>&#8369;{{$item_list -> price}}</td>
                                                         <td>{{$item_list -> quantity}}</td>
                                                         
-                                                             <td>{{$item_list -> low_stock}} </td>       
+                                                                  
                                                         <td>
                                                             <div class="text-center">
                                                                 <button type="button" style="margin: 0%" class="btn btn-blue btn-sm" data-toggle="modal" data-id="{{$item_list -> id}}" data-cost="{{$item_list -> cost}}" data-price="{{$item_list -> price}}" data-quantity="{{$item_list -> quantity}}" data-item_name="{{$item_list -> item_name}}" data-cat_id="{{$item_list -> category_id}}" data-target="#modalItemEdit" style="font-size: 1rem;">SHOW</button>
@@ -143,6 +144,12 @@
                                                         <td>
                                                             <div class="text-center">
                                                                     <a class=" btn-sm form-control btn btn-outline-warning" href="{{ route('admin.stockadjustment.edit',$item_list -> id)}}" role="button">Stock Adjustment</a>
+                                                            </div>
+                                
+                                                        </td>
+                                                        <td>
+                                                            <div class="text-center">
+                                                                    <a class=" btn-md form-control btn btn-outline-primary" href="{{ route('admin.stockin.edit',$item_list -> id)}}"  role="button">Stock In</a>
                                                             </div>
                                 
                                                         </td>

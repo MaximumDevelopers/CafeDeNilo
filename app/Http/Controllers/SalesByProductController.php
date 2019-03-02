@@ -88,7 +88,7 @@ class SalesByProductController extends Controller
     public function show($id)
     {
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price'))
+        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, quantity * price as total_price'))
         ->where('transaction_id', $id)
         ->get();
 

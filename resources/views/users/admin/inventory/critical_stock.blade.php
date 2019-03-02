@@ -96,6 +96,7 @@
                                             <th scope="col">Quantity</th>
                                             <th scope="col">Low Stock</th>
                                             <th scope="col"></th>
+                                            <th scope="col"></th>
                                             
                                             
                                             
@@ -121,7 +122,12 @@
                                                             </div>
                                 
                                                         </td>
-
+                                                        <td>
+                                                                <div class="text-center">
+                                                                        <a class=" btn-sm form-control btn btn-outline-primary" href="{{ route('admin.stockin.edit',$item -> id)}}" role="button">Stock In</a>
+                                                                </div>
+                                    
+                                                            </td>
                                                         
 
                                                         

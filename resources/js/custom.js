@@ -25,7 +25,7 @@ $(document).ready(function () {
 
     $('#dtItem').DataTable({
         order: [[1, 'asc']],
-        'columnDefs': [{ 'orderable': false, 'targets': [0,3,4,5] }, { "width": "3%", "targets": 0 }],
+        'columnDefs': [{ 'orderable': false, 'targets': [0,2,3,4,5,6,7] }, { "width": "3%", "targets": 0 }],
         rowReorder: {
             selector: 'td:nth-child(2)'
         },
@@ -74,7 +74,7 @@ $(document).ready(function () {
         });             
 
         $('#dtSaleSummary').DataTable({
-            'columnDefs': [{ 'orderable': false, 'targets': [0,1,2,3,4] }],
+            'columnDefs': [{ 'orderable': false, 'targets': [0,1,2,3] }],
             rowReorder: {
             selector: 'td:nth-child(2)'
             },

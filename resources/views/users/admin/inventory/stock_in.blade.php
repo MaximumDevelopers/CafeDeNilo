@@ -5,32 +5,15 @@
    <div class="col-lg-11">
       <div class="card shadow-md mb-6">
            <div class="card-body">
-                   
-               <form method="POST" action="{{ route('admin.stockadjustment.store') }}">
+                <h1 class="card-title">Stock In</h1>
+               <form method="POST" action="{{ route('admin.stockin.store') }}">
                 @csrf
                 
-                <div class="form-group md-form ml-0 mr-0">
-                        <select name="reason" id="reason" class="browser-default custom-select">
-                                
-                                
-                                <option value="Loss">Loss</option>
-                                <option value="Damage">Damage</option>
-                        </select>                                       
-                </div>
+              
                 
-                <div class="form-group md-form ml-0 mr-0">
-                        
-                        
-                        <div class="md-form">
-                                        <textarea id="note textarea-char-counter" name="note" class="form-control md-textarea" length="120" rows="1s" required></textarea>
-                                        <label for="textarea-char-counter">Note</label>
-                         </div>                     
-                </div>
+              
 
-                <div class="modal-header yellow darken-2">
-                                <h5 class="modal-title" id="itemModalLabel">Item</h5>
-                                
-                            </div>
+               
                             
                                 
                             
@@ -52,7 +35,7 @@
                                         <div class="form-group md-form ml-0 mr-0">
                                                         <i class="fas fa-sort-amount-up prefix"></i>
                                                         <input readonly id="item_quantity_before" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity_before') ? ' is-invalid' : '' }} filterNum" name="item_quantity_before" value="{{$items -> quantity}}" >
-                                                        <label for="item_quantity_before" class="ml-8">{{ __('Item stock before') }}</label>
+                                                        <label for="item_quantity_before" class="ml-8">{{ __('Item Stock') }}</label>
                                 
                                                         @if ($errors->has('item_quantity_before'))
                                                                 <span class="invalid-feedback" role="alert">
@@ -64,8 +47,8 @@
 
                                         <div class="form-group md-form ml-0 mr-0">
                                                         <i class="fas fa-sort-amount-up prefix"></i>
-                                                        <input id="item_quantity_after" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity_after') ? ' is-invalid' : '' }} filterNum" name="item_quantity_after"  required >
-                                                        <label for="item_quantity_after" class="ml-8">{{ __('Item stock after') }}</label>
+                                                        <input id="item_quantity_after" max="9999" min="0" type="number" class="form-control{{ $errors->has('item_quantity_after') ? ' is-invalid' : '' }} filterNum" name="item_quantity_after" value="" required >
+                                                        <label for="item_quantity_after" class="ml-8">{{ __('Stock In') }}</label>
                                 
                                                         @if ($errors->has('item_quantity_after'))
                                                                 <span class="invalid-feedback" role="alert">

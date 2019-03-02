@@ -105,7 +105,10 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     });
 
   
-
+//StockIn
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('admin/stockin', 'StockInController', ['as' => 'admin']); 
+});
     
     //StockAdjust.
     Route::group(['middleware' => ['auth', 'admin']], function() {

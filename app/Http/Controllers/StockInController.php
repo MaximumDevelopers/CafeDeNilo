@@ -3,13 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 use Auth;
 use App\StockAdjustment;
 use App\ItemList;
 
-
-class StockAdjustmentController extends Controller
+class StockInController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,18 +21,17 @@ class StockAdjustmentController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+            return view('users.owner.inventory.stock_in')->with('StockAdjustment', $StockAdjustment);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+            return view('users.admin.inventory.stock_in')->with('StockAdjustment', $StockAdjustment);
            
             
         }
         else {
-            return view('users.captain_crew.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+            return view('users.captain_crew.inventory.stock_in')->with('StockAdjustment', $StockAdjustment);
         }
     }
-    
 
     /**
      * Show the form for creating a new resource.
@@ -43,7 +40,7 @@ class StockAdjustmentController extends Controller
      */
     public function create()
     {
-        return view('users.admin.inventory.add_stock_adjustment');
+        //
     }
 
     /**
@@ -65,7 +62,7 @@ class StockAdjustmentController extends Controller
         $StockAdjustment->stock_before = $request->get('item_quantity_before');
         $StockAdjustment->stock_after = $request->get('item_quantity_after');
         $StockAdjustment->save();
-        return redirect()->route('admin.stockadjustment.index');
+        return redirect()->route('admin.stock_in.index');
     }
 
     /**
@@ -76,7 +73,7 @@ class StockAdjustmentController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
@@ -85,15 +82,12 @@ class StockAdjustmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Request $request, $id)
-    {           
+    public function edit($id)
+    {
         $ItemList = ItemList::where('id', $id)
         ->get();
 
-        return view('users.admin.inventory.add_stock_adjustment')->with('ItemList', $ItemList);
-        
-
-       
+        return view('users.admin.inventory.stock_in')->with('ItemList', $ItemList);
     }
 
     /**

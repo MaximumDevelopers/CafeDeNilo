@@ -101,6 +101,7 @@
                           <p>Stock Adjustment History</p>
                         </a>
                       </li>
+                     
                       <li class="nav-item">
                         <a href="/admin/critical_stock" class="nav-link">
                           <i class="fa fa-circle-o nav-icon" style="visibility: hidden;"></i>
