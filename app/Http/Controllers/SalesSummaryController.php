@@ -18,23 +18,28 @@ class SalesSummaryController extends Controller
     public function index()
     {
         $transaction = DB::table('transactions')
-            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date, sum(total_price) as total_price, id'))
+            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price, id'))
+            
+            ->get();
+
+            $transaction2 = DB::table('transactions')
+            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,total_price as total_price, id'))
             ->orderBy(DB::raw('date_format(date, \'%d\')'), 'desc')
            ->groupBy(DB::raw('date_format(date, \'%d\')'))
-            ->get();
+            ->get();    
 
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction);
+            return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.reports.salessummary')->with('ordered_products', $transaction);
+            return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2);
             
         }
         else {
-            return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction);
+            return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2);
         }    
             
     }

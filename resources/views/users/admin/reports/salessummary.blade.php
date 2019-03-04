@@ -22,9 +22,9 @@
                   <!-- small card -->
                   <div class="small-box bg-info">
                     <div class="inner">
-                                
-                      <h3>$29000</h3>
-                                 
+                                @foreach($ordered_products as $transactions)
+                      <h3>&#8369;{{$transactions -> total_price}}</h3>
+                                 @endforeach
                       <p>Gross Sales</p>
                     </div>
                     <div class="icon">
@@ -99,7 +99,7 @@
 
    
                         
-                        <div class="table-reponsive text-nowrap">
+                   <div class="table-reponsive text-nowrap">
     
                                 <table id="dtSaleSummary" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                         <thead>
@@ -119,7 +119,7 @@
                                             </tr>
                                           </thead>
                                           <tbody>
-                                                @foreach ($ordered_products as $transaction)
+                                                @foreach ($ordered_products2 as $transaction)
                                                 <tr>
                                                                   
                                                                 
