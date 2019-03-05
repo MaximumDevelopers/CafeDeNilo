@@ -23,23 +23,37 @@ class SalesSummaryController extends Controller
             ->get();
 
             $transaction2 = DB::table('transactions')
-            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,total_price as total_price, id'))
+            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,total_price as total_price ,(total_price - discount + vat) as net_sales, id'))
             ->orderBy(DB::raw('date_format(date, \'%d\')'), 'desc')
            ->groupBy(DB::raw('date_format(date, \'%d\')'))
-            ->get();    
+            ->get();
+            
+            $transaction3 = DB::table('transactions')
+            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,(sum(total_price) - discount + vat) as net_sales, id'))
+            ->get();
 
+            $transaction4 = DB::table('transactions')
+            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(discount) as discount, id'))
+            ->get();
+
+            $transaction5 = DB::table('transactions')
+            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(vat) as vat, id'))
+            ->get();
+
+
+            $date = "day";
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2);
+            return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2);
+            return view('users.admin.reports.salessum_transaction')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
             
         }
         else {
-            return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2);
+            return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5);
         }    
             
     }
@@ -83,6 +97,7 @@ class SalesSummaryController extends Controller
      */
     public function show($id)
     {
+
           
     }
 

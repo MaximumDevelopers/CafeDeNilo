@@ -15,24 +15,45 @@ class SMmonthController extends Controller
      */
     public function index()
     {
-        $transaction = DB::table('ordered_products')
-            ->select(DB::raw('date_format(created_at, \'%M %Y\') as date, id, sum(price) as total_price'))
-            ->groupBy(DB::raw('date_format(created_at, \'%m\')'))
-            ->get();
+        $transaction = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price) as total_price, id'))
+        
+        ->get();
 
-        if (Auth::check() && Auth::user()->role == 'barista') {
-            return redirect('/barista');
-        }
-        elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction);
-        }
-        elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.reports.salessummary')->with('ordered_products', $transaction);
-            
-        }
-        else {
-            return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction);
-        }
+        $transaction2 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price) as total_price ,sum(total_price - discount + vat) as net_sales, id'))
+        ->orderBy(DB::raw('date_format(date, \'%M %Y\')'), 'desc')
+       ->groupBy(DB::raw('date_format(date, \'%M\')'))
+        ->get();
+        
+        $transaction3 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,(sum(total_price) - discount + vat) as net_sales, id'))
+        ->get();
+
+        $transaction4 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(discount) as discount, id'))
+        ->get();
+
+        $transaction5 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(vat) as vat, id'))
+        ->get();
+
+
+$date = "month";
+    if (Auth::check() && Auth::user()->role == 'barista') {
+        return redirect('/barista');
+    }
+    elseif (Auth::check() && Auth::user()->role == 'owner') {
+        return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+    }
+    elseif (Auth::check() && Auth::user()->role == 'admin') {
+        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+        
+    }
+    else {
+        return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+    }    
+        
     }
 
     /**
@@ -65,8 +86,11 @@ class SMmonthController extends Controller
     public function show($id)
     {
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date, product_name,  quantity, price as total_price, id'))
+        ->select(DB::raw('date_format(created_at, \'%M %Y\')as date, product_name,  quantity, sum(price * quantity) as total_price, id'))
+        
+        ->groupBy(DB::raw('date_format(created_at, \'%M\'),product_name'))
         ->where('transaction_id', $id)
+        
         ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {
@@ -81,7 +105,7 @@ class SMmonthController extends Controller
         }
         else {
             return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
-        }    
+        }     
     }
 
     /**

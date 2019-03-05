@@ -18,28 +18,8 @@ class SalesByProductController extends Controller
      */
     public function index()
     {
-        $ordered_products= DB::table('transactions')
-        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date, total_price as total_price, id'))
-        ->orderBy(DB::raw('date_format(date, \'%d\')'), 'desc')
-        ->get();
-
-    if (Auth::check() && Auth::user()->role == 'barista') {
-        return redirect('/barista');
-    }
-    elseif (Auth::check() && Auth::user()->role == 'owner') {
-        return view('users.owner.inventory.suppliers')->with('ordered_products', $ordered_products);
-    }
-    elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products);
-        
-    }
-    else {
-        return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $ordered_products);
-    }    
-        
-        
-       /* $ordered_products = DB::table('ordered_products')
-                     ->select(DB::raw('sum(price) as price , sum(quantity) as quantity, product_name'))
+         $ordered_products = DB::table('ordered_products')
+                     ->select(DB::raw('sum(price * quantity) total_price , sum(quantity) as quantity, product_name'))
                      ->groupBy(DB::raw('product_name'))
                      ->get();    
 
@@ -55,8 +35,13 @@ class SalesByProductController extends Controller
         }
         else {
             return view('users.captain_crew.inventory.sales_by_product')->with('ordered_products', $ordered_products);
-        }  */  
-    }
+        }  
+        
+    }    
+        
+        
+       
+    
 
     /**
      * Show the form for creating a new resource.
@@ -88,8 +73,8 @@ class SalesByProductController extends Controller
     public function show($id)
     {
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, quantity * price as total_price'))
-        ->where('transaction_id', $id)
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date', 'product_name',  'quantity' , 'price as total_price'))
+        
         ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {

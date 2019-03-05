@@ -15,25 +15,45 @@ class SMyearController extends Controller
      */
     public function index()
     {
-        $transaction = DB::table('ordered_products')
-        ->select(DB::raw('sum(price) as total_price, id,date_format(created_at,\'%Y\') as date, id' ))
-        ->groupBy(DB::raw('date_format(created_at, \'%Y\')'))
+        $transaction = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price, id'))
         
         ->get();
 
+        $transaction2 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price ,sum(total_price - discount + vat) as net_sales, id'))
+        ->orderBy(DB::raw('date_format(date, \'%Y\')'), 'desc')
+       ->groupBy(DB::raw('date_format(date, \'%Y\')'))
+        ->get();
+        
+        $transaction3 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \' %Y\')as date ,(sum(total_price) - discount + vat) as net_sales, id'))
+        ->get();
+
+        $transaction4 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(discount) as discount, id'))
+        ->get();
+
+        $transaction5 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(vat) as vat, id'))
+        ->get();
+
+
+$date = "year";
     if (Auth::check() && Auth::user()->role == 'barista') {
         return redirect('/barista');
     }
     elseif (Auth::check() && Auth::user()->role == 'owner') {
-        return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction);
+        return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction);
+        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
         
     }
     else {
-        return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction);
-    }
+        return view('users.captain_crew.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+    }    
+        
     }
 
     /**
@@ -66,7 +86,8 @@ class SMyearController extends Controller
     public function show($id)
     {
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price'))
+        ->select(DB::raw('date_format(created_at, \'%Y\')as date, product_name,  quantity, sum(price * quantity) as total_price, id'))
+        ->groupBy(DB::raw('product_name'))
         ->where('transaction_id', $id)
         ->get();
 
@@ -82,7 +103,7 @@ class SMyearController extends Controller
         }
         else {
             return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
-        }    
+        }   
     }
 
     /**
