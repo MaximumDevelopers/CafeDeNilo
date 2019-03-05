@@ -45,7 +45,7 @@
                                                             <td>{{$transaction -> date}}</td>
                                                             <td>{{$transaction -> product_name}}</td>
                                                             <td>{{$transaction -> quantity }}</td>
-                                                            <td>&#8369;{{$transaction -> total_price  }}</td>
+                                                            <td>&#8369;{{$transaction -> total_price}}</td>
                                                            
 
                                                           
