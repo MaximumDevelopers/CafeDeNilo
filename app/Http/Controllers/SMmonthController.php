@@ -21,13 +21,13 @@ class SMmonthController extends Controller
         ->get();
 
         $transaction2 = DB::table('transactions')
-        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price) as total_price ,sum(total_price - discount + vat) as net_sales, id'))
+        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price) as total_price ,sum(total_price - (discount + vat)) as net_sales, id'))
         ->orderBy(DB::raw('date_format(date, \'%M %Y\')'), 'desc')
        ->groupBy(DB::raw('date_format(date, \'%M\')'))
         ->get();
         
         $transaction3 = DB::table('transactions')
-        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,(sum(total_price) - discount + vat) as net_sales, id'))
+        ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price - (discount + vat)) as net_sales, id'))
         ->get();
 
         $transaction4 = DB::table('transactions')
