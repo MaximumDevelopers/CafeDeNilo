@@ -57,8 +57,13 @@ class StockAdjustmentController extends Controller
         $StockAdjustment = new StockAdjustment;
         $item_id = $request->get('item_id');
         $item_list= ItemList::find($item_id);
-        $item_list ->quantity = $request->get('item_quantity_after');
+        $before = $request->get('item_quantity_before');
+        $minus = $request->get('item_quantity_after');
+        $total = $before - $minus;
+        $item_list->quantity = $total;
         $item_list->save();
+
+
         $StockAdjustment->note = $request->input('note');
         $StockAdjustment->reason = $request->get('reason');
         $StockAdjustment->item_name= $request->get('item_name');

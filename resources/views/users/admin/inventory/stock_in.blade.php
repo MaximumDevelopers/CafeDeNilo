@@ -8,17 +8,10 @@
                 <h1 class="card-title">Stock In</h1>
                <form method="POST" action="{{ route('admin.stockin.store') }}">
                 @csrf
-                
-              
-                
-              
-
-               
-                            
-                                
-                            
+        
                             <div class="modal-body mx-3">
-                                @foreach ($ItemList as $items)
+                                    @foreach($ItemList as $items)
+                              
 
                                 <div class="form-group md-form ml-0 mr-0">
                                                         <i class="fas fa-sort-amount-up prefix"></i>
@@ -58,10 +51,10 @@
                                                 </div>
                                   
                                         <input type="hidden" name="item_id" id="item_id" value="{{$items -> id}}">
-                                        @endforeach
+                                       @endforeach
                                 </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button> 
+                                <a href="/admin/item_list" class="btn btn-secondary" data-dismiss="modal">Close</a> 
                                 <button type="submit" class="btn btn-primary">Save changes</button>
                             </div>
                         

@@ -17,13 +17,16 @@ class CriticalStockController extends Controller
      */
     public function index()
     {
-       
+        $CL = DB::table('ordered_products')
         
+        ->get(); 
+       
 
         $item_list = DB::table('item_lists')
                 ->whereRaw('quantity <= low_stock')
                 ->get();
-        
+
+              
         
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');

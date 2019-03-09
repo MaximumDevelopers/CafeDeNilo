@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Auth;
+use App\transactions;
+use App\ordered_products;
 
 class SMmonthController extends Controller
 {
@@ -86,9 +88,12 @@ $date = "month";
     public function show($id)
     {
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%M %Y\')as date, product_name,  quantity, sum(price * quantity) as total_price, transaction_id'))
-        ->groupBy('product_name')
-        ->where('created_at', '=', 'date_format(created_at, \'%M %Y\')' )
+        ->select(DB::raw('date_format(created_at, \'%M %Y\')as date, product_name,  quantity, price as total_price,id'))
+        ->groupBy(DB::raw('product_name'))   
+        ->where(DB::raw(('date_format(created_at ,\'%m\')')))
+    
+        
+    
         ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {

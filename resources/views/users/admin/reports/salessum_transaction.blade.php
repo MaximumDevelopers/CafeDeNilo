@@ -20,8 +20,7 @@
                         <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Today
                         </a>
                             
-                        <a id="btnsales"  href="/admin/salesummaryw" class="btn btn-primary btn-sm ml-auto btnLogin">Weekly
-                        </a>
+                        
                             <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Monthly
                             </a>
 

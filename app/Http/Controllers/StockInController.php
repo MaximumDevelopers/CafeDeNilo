@@ -51,18 +51,15 @@ class StockInController extends Controller
      */
     public function store(Request $request)
     {
-        $StockAdjustment = new StockAdjustment;
+        
         $item_id = $request->get('item_id');
         $item_list= ItemList::find($item_id);
-        $item_list ->quantity = $request->get('item_quantity_after');
+        $before = $request->get('item_quantity_before');
+        $add = $request->get('item_quantity_after');
+        $total = $before + $add;
+        $item_list ->quantity = $total;
         $item_list->save();
-        $StockAdjustment->note = $request->input('note');
-        $StockAdjustment->reason = $request->get('reason');
-        $StockAdjustment->item_name= $request->get('item_name');
-        $StockAdjustment->stock_before = $request->get('item_quantity_before');
-        $StockAdjustment->stock_after = $request->get('item_quantity_after');
-        $StockAdjustment->save();
-        return redirect()->route('admin.stock_in.index');
+        return redirect()->route('admin.item_list.index');
     }
 
     /**

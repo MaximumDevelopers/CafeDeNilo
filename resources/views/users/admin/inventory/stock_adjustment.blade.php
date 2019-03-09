@@ -34,8 +34,8 @@
                                           <th scope="col">Item Name</th>
                                           <th scope="col">Reason</th>
                                           <th scope="col">Note</th>
-                                          <th scope="col">Stock before</th>
-                                          <th scope="col">Stock after</th>
+                                          <th scope="col">Stock</th>
+                                          <th scope="col">Stock adjust</th>
 
                                         </tr>
                                     </thead>
