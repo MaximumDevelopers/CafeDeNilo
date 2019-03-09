@@ -17,9 +17,7 @@ class CriticalStockController extends Controller
      */
     public function index()
     {
-        $CL = DB::table('ordered_products')
-        
-        ->get(); 
+      
        
 
         $item_list = DB::table('item_lists')
