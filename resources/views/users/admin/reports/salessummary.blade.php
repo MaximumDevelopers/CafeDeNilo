@@ -14,6 +14,7 @@
                                     
                             </div>
                             
+<<<<<<< HEAD
                             <!-- Small Box (Stat card) -->
         
         <div class="row">
@@ -22,6 +23,18 @@
             <div class="small-box bg-info">
               <div class="inner">
                 <h3>150</h3>
+=======
+                            <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
+                            </a>
+                        
+                        <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Today
+                        </a>
+                            
+                        <a id="btnsales"  href="/admin/salesummaryw" class="btn btn-primary btn-sm ml-auto btnLogin">Weekly
+                        </a>
+                            <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Monthly
+                            </a>
+>>>>>>> f3893b7525b50be24f931f20a04959593fbfb466
 
                 <p>Gross sales</p>
               </div>
@@ -40,6 +53,7 @@
               <div class="inner">
                 <h3>53<sup style="font-size: 20px">%</sup></h3>
 
+<<<<<<< HEAD
                 <p>Discount</p>
               </div>
               <div class="icon">
@@ -108,6 +122,86 @@
                         <div class="table-reponsive text-nowrap">
                                 
                         
+=======
+                            <br>
+                            <br>
+                            <!-- Small Box (Stat card) -->
+        <div id="widget" class="container-fluid">
+        <div class="row" >
+                <div class="col-md-3 col-6">
+                  <!-- small card -->
+                  <div class="small-box bg-info">
+                    <div class="inner">
+                                @foreach($ordered_products as $transactions)
+                      <h3>&#8369;{{$transactions -> total_price}}</h3>
+                                 @endforeach
+                      <p>Gross Sales</p>
+                    </div>
+                    <div class="icon">
+                      <i class="fa fa-shopping-cart"></i>
+                    </div>
+                    
+                  </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-md-3 col-6">
+                  <!-- small card -->
+                  <div class="small-box bg-success">
+                    <div class="inner">
+                        @foreach($ordered_products4 as $transactions)
+                      <h3>&#8369;{{$transactions -> discount}}</h3>
+                          @endforeach
+                      <p>Discount</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-stats-bars"></i>
+                    </div>
+                    
+                  </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-md-3 col-6">
+                  <!-- small card -->
+                  <div class="small-box bg-warning">
+                    <div class="inner">
+                        @foreach($ordered_products5 as $transactions)
+                      <h3>&#8369;{{$transactions -> vat}}</h3>
+                      @endforeach
+                      <p>VAT</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-person-add"></i>
+                    </div>
+                    
+                  </div>
+                </div>
+                <!-- ./col -->
+                <div class="col-md-3 col-6">
+                  <!-- small card -->
+                  <div class="small-box bg-danger">
+                    <div class="inner">
+                        @foreach($ordered_products3 as $transactions)
+                      <h3>&#8369;{{$transactions -> net_sales}}</h3>
+                            @endforeach
+                      <p>Net Sales</p>
+                    </div>
+                    <div class="icon">
+                      <i class="ion ion-pie-graph"></i>
+                    </div>
+                  
+                  </div>
+                </div>
+      
+                
+                <!-- ./col -->
+              </div>
+              <!-- /.row -->
+        </div>
+
+   
+                        
+                   <div class="table-reponsive text-nowrap">
+>>>>>>> f3893b7525b50be24f931f20a04959593fbfb466
     
                                 <table id="dtSaleSummary" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
                                         <thead>
@@ -115,17 +209,22 @@
                                                  
                                               
                                               <th scope="col">Date</th>
-                                              <th scope="col">Price</th>
+                                              <th scope="col">Gross Sales</th>
+                                              
+                                              <th scope="col">Net Sales</th>
+                                              <th></th>
+
                                              
-                                              <th scope="col"></th>
+                                              
                                               
                               
                                             </tr>
                                           </thead>
                                           <tbody>
-                                                @foreach ($ordered_products as $transaction)
+                                                @foreach ($ordered_products2 as $transaction)
                                                 <tr>
                                                                   
+<<<<<<< HEAD
                                                             <td>{{$transaction -> date}}</td>
                                                             <td>&#8369;{{$transaction -> total_price}}</td>
                                                           
@@ -133,6 +232,35 @@
                                                                 <a style="margin: 0%" href="{{route('admin.salesummary.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
                                      
                                                         </td>
+=======
+                                                                
+                                                            <td data-sort>{{$transaction -> date}}</td>
+                                                            <td>&#8369;{{$transaction -> total_price}}</td>
+                                                            <td>&#8369;{{$transaction -> net_sales}}</td>
+                                                            
+                                                            
+                                                            <td class="text-center">
+                                                               @if ($date == "day")
+                                                               <a style="margin: 0%" href="{{route('admin.salessummaryshow.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                              
+                                                               @elseif($date == "month")
+                                                               <a style="margin: 0%" href="{{route('admin.salesummarym.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+
+                                                               @else
+                                                               <a style="margin: 0%" href="{{route('admin.salesummaryy.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                               
+                                                               @endif
+                                                                
+                                                                
+                                                               
+                                                                    
+                                                               
+                                                        </td>
+                                                           
+
+                                                          
+
+>>>>>>> f3893b7525b50be24f931f20a04959593fbfb466
                                                     </tr>
                                                     @endforeach
                         

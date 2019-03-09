@@ -78,7 +78,11 @@
                     <a href="#" class="nav-link"> 
                       <i class="nav-icon fa fa-shopping-cart"></i>
                       <p>
+<<<<<<< HEAD
                         Inventory 
+=======
+                        Inventory
+>>>>>>> f3893b7525b50be24f931f20a04959593fbfb466
                         <i class="right fa fa-angle-left"></i>
                       </p>
                     </a>
@@ -101,6 +105,7 @@
                           <p>Stock Adjustment History</p>
                         </a>
                       </li>
+                     
                       <li class="nav-item">
                         <a href="/admin/critical_stock" class="nav-link">
                           <i class="fa fa-circle-o nav-icon" style="visibility: hidden;"></i>

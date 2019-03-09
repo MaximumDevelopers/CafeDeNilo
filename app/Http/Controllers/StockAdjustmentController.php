@@ -27,12 +27,14 @@ class StockAdjustmentController extends Controller
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+           
             
         }
         else {
             return view('users.captain_crew.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
         }
     }
+    
 
     /**
      * Show the form for creating a new resource.
@@ -89,6 +91,9 @@ class StockAdjustmentController extends Controller
         ->get();
 
         return view('users.admin.inventory.add_stock_adjustment')->with('ItemList', $ItemList);
+        
+
+       
     }
 
     /**

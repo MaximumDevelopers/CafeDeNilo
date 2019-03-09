@@ -78,9 +78,13 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
         Route::resource('admin/supplier', 'SuppliersController', ['as' => 'admin']); 
     });
 
-    //SalesS
+    //SalesSummary
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesummary', 'SalesSummaryController', ['as' => 'admin']); 
+    });
+    //SalesSummary_transaction
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesumtransaction', 'SalesSummaryController', ['as' => 'admin']); 
     });
     //SalesSsummaryShow
     Route::group(['middleware' => ['auth', 'admin']], function() {
@@ -89,6 +93,10 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     //SalesSDay
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesummaryd', 'SMdayController', ['as' => 'admin']); 
+    });
+    //SalesSWeek
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesummaryw', 'SMweekController', ['as' => 'admin']); 
     });
     //SalesSMonth
     Route::group(['middleware' => ['auth', 'admin']], function() {
@@ -105,7 +113,10 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     });
 
   
-
+//StockIn
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('admin/stockin', 'StockInController', ['as' => 'admin']); 
+});
     
     //StockAdjust.
     Route::group(['middleware' => ['auth', 'admin']], function() {
