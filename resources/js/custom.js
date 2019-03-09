@@ -92,13 +92,12 @@ $(document).ready(function () {
         $('.dataTables_length').addClass('bs-select');    
         
         //Pickers
-        $('.categoryPicker').selectpicker({
-            liveSearch: true
-        });
+        
+        $('select').select2();
 
-        $('.supplierPicker').selectpicker({
-            liveSearch: true
-        });
+        $('.categoryPicker').select2();
+
+        $('.supplierPicker').select2();
 
            
 
@@ -127,6 +126,13 @@ $(document).ready(function() {
 
   });
     
+  $(function () {
+    $('#datetimepicker3').datetimepicker({
+        
+        format: 'HH:mm:ss'
+    });
+});
+  
 //Accounts Edit
 $(document).ready(function () {  
       
@@ -165,6 +171,8 @@ $(document).ready(function () {
         }
 
     });
+
+    
 
 }); 
 
@@ -283,10 +291,7 @@ $(document).ready(function () {
         modal.find('.modal-body #editCategories').val(cat_id) 
         else 
         modal.find('.modal-body #editCategories').val("empty")
-        $('.editsupplierPickeselect').selectpicker('refresh',
-        {
-            liveSearch: true
-        })  
+        
         
 
        /* //modalLabel

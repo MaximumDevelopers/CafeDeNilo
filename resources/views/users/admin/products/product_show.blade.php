@@ -9,7 +9,7 @@
                 <div class="card shadow-md mb-6">
                     <div class="card-body">
                             <div class="row mb-0">
-                                    <h2 id="ct1" class="card-title">NEW PRODUCT</h2>
+                                    <h2 id="ct1" class="" style="font-weight: 500">NEW PRODUCT</h2>
      
                             </div>
                             
@@ -22,16 +22,45 @@
                                 @endif
                                     
                                         <section>
-                                                <h4 id="ct1" class="ml-0" >Product</h4>
-
+                                                
                                                 <div class="row">
                                                                 <div class="col-md-6">
                                                             <div class="form-group">
+                                                                    <h5 class="">Product Name</h5>
                                                                 <input type="text" name="product_name" class="form-control" placeholder="Please enter product name">
                                                             </div></div>
+
+                                                            <div class="col-md-6">
+                                                                    <div class="form-group">
+                                                                            <h5 class="">Product Category</h5>
+                                                                            
+                                                                       <select name="category" class="supplierPicker" style="width: 100%">
+                                                                        @foreach ($ProductCategories as $category)
+                                                                        
+                                                                            <option value="{{$category -> id}}"> {{$category -> product_category_name}} </option>     
+                                                                    
+                                                                        @endforeach
+                                                                       </select>
+                                                                    </div>
+                                                            </div>
                                            
                                                         </div>
+                                                        <div class="row">
+                                                                
+                                                        <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                        <h5 class="">Time</h5>
 
+                                                                        <div class="input-group date"  id="datetimepicker3" data-target-input="nearest">
+                                                                                <input type="text" name="time" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
+                                                                                <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                                                                    <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                                                                                </div>
+                                                                            </div>
+                                                                </div>
+                                                        </div>
+
+                                                    </div>
 
                                                 <h4 id="ct1" class="ml-0" >Product Item Composition</h4>
                                             <div class="panel panel-footer" >
@@ -60,12 +89,11 @@
                                                     @endforeach
                                                     
                                             </select>
-
-                                            
-                                            
+  
                                         </select> 
                                            
                                         </td>  
+                                        
                                           <td><input type="text" name="quantity[]" class="form-control quantity"></td>
                                           <td><input type="text" name="budget[]" class="form-control budget"></td>
                                           <td><input type="text" name="amount[]" class="form-control amount"></td>
@@ -93,7 +121,7 @@ function addRow()
     
     var tr='<tr>'+ 
     
-    '<td> <select name="item_name[]" class="form-control" required=""> <option value="empty">Select Item Here..</option>'+
+    '<td> <select name="item_name[]" class="form-control select3"  required=""> <option value="empty">Select Item Here..</option>'+
         @foreach ($ItemList as $category) 
         '<option value="{{$category -> id}}" >  {{$category -> item_name}}  </option>'+
         @endforeach
@@ -104,7 +132,12 @@ function addRow()
     '<td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>'+
     '</tr>';
     $('tbody').append(tr);
-};
+
+    $('.select3').select2(); 
+};   
+
+
+
                                                         </script>
                                             </div>
 
