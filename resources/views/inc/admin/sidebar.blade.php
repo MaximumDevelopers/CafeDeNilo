@@ -70,7 +70,7 @@
                 <div class="card-header" id="headingThree">
                     <a data-toggle="collapse" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                         <h6 class="mb-0">
-                            <i class="fas fa-shopping-cart mr-3"></i>Inventory Management
+                            <i class="fas fa-shopping-cart mr-3"></i>Inventory 
                             <i class="fa fa-angle-down float-right mt-1"></i>
                         </h6>     
                     </a>

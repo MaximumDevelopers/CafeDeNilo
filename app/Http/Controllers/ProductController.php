@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\ItemList;
 use App\ProductItems;
+use App\ProductCategories;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Auth;
@@ -50,22 +51,20 @@ class ProductController extends Controller
     public function create()
     {
         $ItemList = ItemList::all();
+        $ProductCategories = ProductCategories::all();
 
-        
-
-        $Product = Products::all();
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.products.product_show')->with('Product', $Product)->with('ItemList', $ItemList);
+            return view('users.admin.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.products.product_show')->with('Product', $Product)->with('ItemList', $ItemList);
+            return view('users.admin.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
             
         }
         else {
-            return view('users.captain_crew.products.product_show')->with('Product', $Product)->with('ItemList', $ItemList);
+            return view('users.captain_crew.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
         }
         
     }
@@ -81,6 +80,8 @@ class ProductController extends Controller
 
         $product = new Products;
         $product->product_name =  $request->input('product_name');
+        $product->category_id=  $request->input('category');
+        $product->prepare_time =  $request->input('time');
 
         $product->save();
 

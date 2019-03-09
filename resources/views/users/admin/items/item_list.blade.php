@@ -41,9 +41,9 @@
                                             @endif
                                         </div>
 
-                                    <div class="form-group ml-4 mr-1 mb-5 mt-0 row">
+                                    <div class="form-group ml-4 mr-0 mb-5 mt-3 row">
                                       
-                                        <select name="addCategories" id="addCategories" class="categoryPicker form-control md-form" data-style="btn-primary">
+                                        <select name="addCategories" id="addCategories"style="width: 100%" class="categoryPicker form-control md-form" data-style="btn-primary">
                                                 <option value="empty">Select Category Here..</option>
                                                 @foreach ($categories as $category)
                                                     <option value="{{$category -> id}}">{{$category -> category_name}}</option>
@@ -181,13 +181,14 @@
                                         
                                                                             <div class="form-group md-form ml-0 mr-0 mb-0 mt-3  row">
                                                                               <p class="font-weight-bold mb-0">CATEGORY</p>
-                                                                                <select name="editCategories" id="editCategories" class=" form-control md-form" data-style="btn-primary">
+                                                                                <select name="editCategories" id="editCategories" class="form-control" data-style="btn-primary">
                                                                                         <option value="empty">Select Category Here..</option>
                                                                                         @foreach ($categories as $category)
                                                                                             <option value="{{$category -> id}}">{{$category -> category_name}}</option>
                                                                                         @endforeach
                                                                                     
-                                                                                </select>                                          
+                                                                                </select>            
+                                                                                                              
                                                                                
                                                                             </div>
                                         
