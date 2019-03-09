@@ -18,9 +18,6 @@ class SalesSummaryController extends Controller
     public function index()
     {
         $transaction = DB::table('transactions')
-<<<<<<< HEAD
-            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date, total_price as total_price, id'))
-=======
             ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price, id'))
             
             ->get();
@@ -33,7 +30,6 @@ class SalesSummaryController extends Controller
             
             $transaction3 = DB::table('transactions')
             ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,(sum(total_price) - discount + vat) as net_sales, id'))
->>>>>>> f3893b7525b50be24f931f20a04959593fbfb466
             ->get();
 
             $transaction4 = DB::table('transactions')
