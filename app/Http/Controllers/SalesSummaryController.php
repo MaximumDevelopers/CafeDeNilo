@@ -24,8 +24,9 @@ class SalesSummaryController extends Controller
 
             $transaction2 = DB::table('transactions')
             ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price ,sum(total_price - discount + vat) as net_sales, id'))
-            ->orderBy(DB::raw('date_format(date, \'%d\')'), 'desc')
-           ->groupBy(DB::raw('date_format(date, \'%d\')'))
+            ->orderBy(DB::raw('date_format(date, \'%d\')'), 'asc')
+            ->groupBy('id')
+           
             ->get();
             
             $transaction3 = DB::table('transactions')

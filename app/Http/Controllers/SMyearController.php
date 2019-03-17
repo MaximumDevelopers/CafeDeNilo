@@ -14,8 +14,7 @@ class SMyearController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $Cyear = now()->year;
+    { 
 
         $transaction = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price, id'))
@@ -25,7 +24,7 @@ class SMyearController extends Controller
         $transaction2 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price ,sum(total_price - (discount + vat)) as net_sales, id'))
         ->orderBy(DB::raw('date_format(date, \'%Y\')'), 'desc')
-       ->groupBy(DB::raw('date_format(date, \'%Y\')'))
+        ->groupBy(DB::raw('date_format(date, \'%Y\')'))
         ->get();
         
         $transaction3 = DB::table('transactions')
@@ -34,13 +33,10 @@ class SMyearController extends Controller
 
         $transaction4 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(discount) as discount, id'))
-       // ->whereY("created_at = {$Cyear}")
         ->get();
 
         $transaction5 = DB::table('transactions')
-        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(vat) as vat, id'))
-      //  ->where('date', '=', $Cyear)
-        
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(vat) as vat, id'))   
         ->get();
 
 
@@ -92,11 +88,11 @@ $date = "year";
     {
        
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%Y\')as date, product_name, sum(quantity) as quantity, sum(price * quantity) as total_price, id'))
-        ->where(DB::raw('(created_at) = (\'%Y\')'))
-        ->groupBy(DB::raw('date_format(created_at, \'%Y\')'))
+        ->select(DB::raw('date_format(created_at, \'%Y\')as date, product_name, quantity as quantity, sum(price * quantity) as total_price, id'))
+        ->orderBy(DB::raw('date_format(date, \'%Y\')'), 'asc')
+        ->groupBy('id')
+         ->where('created_at' ,'=', '%Y') 
         
-
         ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {

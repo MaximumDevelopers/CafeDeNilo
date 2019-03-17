@@ -86,11 +86,12 @@ class SMdayController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         $SSummaryShow = DB::table('ordered_products')
         ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price, id'))
-        ->where('transaction_id', $id)
+        ->groupBy(DB::raw('date_format(created_at, \'%d %M %Y\'), id'))
+        ->where('transaction_id', '=', $id)
         ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {
