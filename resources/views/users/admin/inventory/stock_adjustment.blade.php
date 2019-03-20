@@ -7,7 +7,7 @@
             <div id="c2" class="card shadow-md mb-6">
                 <div class="card-body">
                         <div class="row">
-                                <h2 id="ct1" class="card-title">Stock Adjustment History</h2>
+                                <h2 id="ct1" class="card-title">Stock History</h2>
                                      
                         </div>
                     <div class="modal fade" id="modalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"

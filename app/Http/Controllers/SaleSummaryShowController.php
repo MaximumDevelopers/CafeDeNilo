@@ -70,7 +70,7 @@ return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_prod
     {
 
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  sum(quantity) as quantity , sum(price * quantity) as total_price, transaction_id'))
+        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  sum(quantity) as quantity , price as total_price, transaction_id'))
         ->where('transaction_id' , $id)
         ->groupBy('product_name')
         ->get();

@@ -90,7 +90,7 @@ class SMdayController extends Controller
         $day = date('d');
         $SSummaryShow = DB::table('ordered_products')
         ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name,  quantity, price as total_price, id'))
-        ->groupBy(DB::raw('date_format(created_at, \'%d %M %Y\'), id'))
+        ->groupBy(DB::raw('date_format(created_at, \'%d\'), id'))
        // ->where('transaction_id', '=', $id)
       ->where('created_at', '=', $day )
         ->get();

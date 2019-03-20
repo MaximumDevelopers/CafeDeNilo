@@ -98,7 +98,7 @@
                       <li class="nav-item">
                         <a href="/admin/stockadjustment" class="nav-link ">
                           <i class="fa fa-circle-o nav-icon" style="visibility: hidden;"></i>
-                          <p>Stock Adjustment History</p>
+                          <p>Stock History</p>
                         </a>
                       </li>
                      

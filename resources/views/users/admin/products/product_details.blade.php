@@ -43,8 +43,7 @@
                                                         <tr>
                                                             <th>Item Name</th>
                                                             <th>Quantity</th>
-                                                            <th>Price</th>
-                                                            <th>Total</th>
+                                                          
                                                             
                                                             <th><a href="#" class="fas fa-plus btn btn-sm btn-blue addRow" onclick="addRow()"><i class="glyphicon glyphicon-plus"></i></a></th>
                                                         </tr>
@@ -56,7 +55,7 @@
                                        
                                         <td>
                                         
-                                            <select name="item_name[]" class="form-control" required=""> 
+                                            <select name="item_name[]" class="form-control select3" style="width: 100%" required=""> 
                                                     <option value="empty">Select Item Here..</option>
                                                     @foreach ($ItemList as $item_name)
                                                     
@@ -68,37 +67,22 @@
                                            
                                         </td>  
                                         
-                                          <td><input type="text" name="quantity[]" class="form-control quantity" value="{{$product_item -> quantity}}"></td>
-                                          
-                                          <td><input type="text" name="budget[]" class="form-control budget" value="{{$product_item -> price}}"></td>
-                                          
-                                          <td><input type="text" name="amount[]" class="form-control amount"></td>
+                                        <td><input type="text" name="quantity[]" class="form-control quantity" value="{{$product_item -> quantity}}"></td>
                                         <td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>
                                             
                                         </tr>
                                         @endforeach
                                                        
                                                     </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td style="border: none"></td>
-                                                            <td style="border: none"></td>
-                                                            <td>Total</td>
-                                                            <td><b class="total"> &#8369;0.00</b></td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </tfoot>
+                                                    
                                                 </table>
- <script type="text/javascript">
 
-
-                                                        </script>
                                             </div>
-                                            <div class="row">
-                                                        <input type="" name="" value="Cancel" class="btn btn-sm btn-success ml-auto">
-                                                        <input type="submit" name="" value="Update" class="btn btn-sm btn-success ml-auto">
-                                               </div>
-                                        </section>
+                                            <div class="d-flex justify-content-end">
+                                                        <a  class=" btn btn-success btn-sm">Cancel</a>
+                                                        <a  class="btn btn-success btn-sm">Update</a>
+                                      
+                                            </div>
                                         
                                         
                                 </form> 

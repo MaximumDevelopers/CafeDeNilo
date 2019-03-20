@@ -69,8 +69,7 @@
                                                         <tr>
                                                             <th>Item Name</th>
                                                             <th>Quantity</th>
-                                                            <th>Price</th>
-                                                            <th>Total</th>
+                                                            
                                                             
                                                             <th><a href="#" class="fas fa-plus btn btn-sm btn-blue addRow" onclick="addRow()"><i class="glyphicon glyphicon-plus"></i></a></th>
                                                         </tr>
@@ -80,7 +79,7 @@
 
                                         <td>
                                         
-                                            <select name="item_name[]" class="form-control" required="">
+                                            <select name="item_name[]" class="form-control select3" style="width: 100%" required="">
                                                 <option value="empty">Select Item Here..</option>
                                                     @foreach ($ItemList as $item_name)
                                                     
@@ -95,21 +94,12 @@
                                         </td>  
                                         
                                           <td><input type="text" name="quantity[]" class="form-control quantity"></td>
-                                          <td><input type="text" name="budget[]" class="form-control budget"></td>
-                                          <td><input type="text" name="amount[]" class="form-control amount"></td>
+                                         
                                         <td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>
                                         </tr>
                                                         </tr>
                                                     </tbody>
-                                                    <tfoot>
-                                                        <tr>
-                                                            <td style="border: none"></td>
-                                                            <td style="border: none"></td>
-                                                            <td>Total</td>
-                                                            <td><b class="total"> &#8369;0.00</b></td>
-                                                            <td></td>
-                                                        </tr>
-                                                    </tfoot>
+                                                   
                                                 </table>
                                                 <script type="text/javascript">
 
@@ -121,14 +111,12 @@ function addRow()
     
     var tr='<tr>'+ 
     
-    '<td> <select name="item_name[]" class="form-control select3"  required=""> <option value="empty">Select Item Here..</option>'+
+    '<td> <select name="item_name[]" class="form-control select3" style="width: 100%"  required=""> <option value="empty">Select Item Here..</option>'+
         @foreach ($ItemList as $category) 
         '<option value="{{$category -> id}}" >  {{$category -> item_name}}  </option>'+
         @endforeach
         ' </select> </td>'+
      '<td><input type="text" name="quantity[]" class="form-control quantity" ></td>'+
-    '<td><input type="text" name="budget[]" class="form-control budget"></td>'+
-    ' <td><input type="text" name="amount[]" class="form-control amount"></td>'+
     '<td><a href="#" class="btn btn-danger btn-md remove far fa-trash-alt"><i class="glyphicon glyphicon-remove"></i></a></td>'+
     '</tr>';
     $('tbody').append(tr);
