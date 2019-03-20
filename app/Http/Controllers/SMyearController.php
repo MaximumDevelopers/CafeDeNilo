@@ -14,13 +14,13 @@ class SMyearController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    { 
+    {     $Year = date('%Y');
 
         $transaction = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price, id'))
         
         ->get();
-
+        
         $transaction2 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price ,sum(total_price - (discount + vat)) as net_sales, id'))
         ->orderBy(DB::raw('date_format(date, \'%Y\')'), 'desc')
@@ -29,6 +29,7 @@ class SMyearController extends Controller
         
         $transaction3 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price - (discount + vat)) as net_sales, id'))
+        
         ->get();
 
         $transaction4 = DB::table('transactions')
@@ -86,12 +87,13 @@ $date = "year";
      */
     public function show($id)
     {
+        
        
         $SSummaryShow = DB::table('ordered_products')
-        ->select(DB::raw('date_format(created_at, \'%Y\')as date, product_name, quantity as quantity, sum(price * quantity) as total_price, id'))
-        ->orderBy(DB::raw('date_format(date, \'%Y\')'), 'asc')
+        ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name, quantity as quantity, sum(price * quantity) as total_price, id'))
+        ->orderBy(DB::raw('date_format(created_at, \'%Y\')'), 'desc')
+        ->whereYear('created_at', '=','(\'%Y\')')
         ->groupBy('id')
-         ->where('created_at' ,'=', '%Y') 
         
         ->get();
 

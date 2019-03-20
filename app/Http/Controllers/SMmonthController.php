@@ -89,8 +89,8 @@ $date = "month";
     {
         $SSummaryShow = DB::table('ordered_products')
         ->select(DB::raw('date_format(created_at, \'%M %Y\')as date, product_name,  quantity, price as total_price,id'))
-        ->groupBy(DB::raw('product_name'))   
-        ->where(DB::raw(('date_format(created_at ,\'%m\')')))
+        ->groupBy(DB::raw('date_format(created_at, \'%M %Y\'),id'))   
+        //->where(DB::raw('date_format(created_at)'), '=', '' )
     
         
     
