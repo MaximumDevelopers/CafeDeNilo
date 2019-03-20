@@ -92,9 +92,9 @@ $date = "year";
         $SSummaryShow = DB::table('ordered_products')
         ->select(DB::raw('date_format(created_at, \'%d %M %Y\')as date, product_name, quantity as quantity, sum(price * quantity) as total_price, id'))
         ->orderBy(DB::raw('date_format(created_at, \'%Y\')'), 'desc')
-        ->whereYear('created_at', '=','(\'%Y\')')
+       // ->where(DB::raw("created_at =  'date_format(\'%Y\')'"))
         ->groupBy('id')
-        
+        ->where('created_at', '=', '(\'%Y\')')
         ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {
