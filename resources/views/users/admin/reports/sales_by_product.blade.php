@@ -130,7 +130,7 @@ var myLineChart = new Chart(ctxD, {
                 @endforeach  
                 
         @else
-        'empty',
+        'No Data Available',
         @endif
                 
 
