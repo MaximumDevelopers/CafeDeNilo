@@ -21,7 +21,7 @@ class SMmonthController extends Controller
         
         $transaction = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price) as total_price, id'))
-        ->groupBy(DB::raw('id'))
+   
         ->whereMonth('date', $date)
         ->get();
 
@@ -33,19 +33,18 @@ class SMmonthController extends Controller
         
         $transaction3 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price - (discount + vat)) as net_sales, id'))
-        ->groupBy(DB::raw('id'))
+       
         ->whereMonth('date', $date)
         ->get();
 
         $transaction4 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(discount) as discount, id'))
-        ->groupBy(DB::raw('id'))
+        
         ->whereMonth('date', $date)
         ->get();
 
         $transaction5 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(vat) as vat, id'))
-        ->groupBy(DB::raw('id'))
         ->whereMonth('date', $date)
         ->get();
 

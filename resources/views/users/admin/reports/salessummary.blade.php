@@ -36,13 +36,15 @@
                   <!-- small card -->
                   <div class="small-box bg-info">
                     <div class="inner">
-                      @if ($ordered_products->isNotEmpty())
+                      @foreach($ordered_products as $transactions2)
+                      @if (($transactions2 -> total_price) != null)
                       @foreach($ordered_products as $transactions)
-                      <h3>&#8369;{{count($ordered_products)}}</h3>
+                      <h3>&#8369;{{$transactions -> total_price}}</h3>
                                  @endforeach
                       @else
                       <h3>&#8369;0.00</h3>
                       @endif
+                      @endforeach
                                 
                       <p>Gross Sales</p>
                     </div>
@@ -57,13 +59,15 @@
                   <!-- small card -->
                   <div class="small-box bg-success">
                     <div class="inner">
-                        @if ($ordered_products4->isNotEmpty())
+                        @foreach($ordered_products as $transactions2)
+                        @if (($transactions2 -> total_price) != null)
                         @foreach($ordered_products4 as $transactions)
                         <h3>&#8369;{{$transactions -> discount}}</h3>
                                    @endforeach
                         @else
                         <h3>&#8369;0.00</h3>
                         @endif
+                        @endforeach
                       <p>Discount</p>
                     </div>
                     <div class="icon">
@@ -77,13 +81,15 @@
                   <!-- small card -->
                   <div class="small-box bg-warning">
                     <div class="inner">
-                        @if ($ordered_products5->isNotEmpty())
+                        @foreach($ordered_products as $transactions2)
+                        @if (($transactions2 -> total_price) != null)
                         @foreach($ordered_products5 as $transactions)
                         <h3>&#8369;{{ $transactions -> vat}}</h3>
                                    @endforeach
                         @else
                         <h3>&#8369;0.00</h3>
                         @endif
+                        @endforeach
                       <p>VAT</p>
                     </div>
                     <div class="icon">
@@ -97,13 +103,15 @@
                   <!-- small card -->
                   <div class="small-box bg-danger">
                     <div class="inner">
-                        @if ($ordered_products3->isNotEmpty())
+                        @foreach($ordered_products as $transactions2)
+                        @if (($transactions2 -> total_price) != null)
                         @foreach($ordered_products3 as $transactions)
                         <h3>&#8369;{{$transactions -> net_sales}}</h3>
                                    @endforeach
                         @else
                         <h3>&#8369;0.00</h3>
                         @endif
+                        @endforeach
                       <p>Net Sales</p>
                     </div>
                     <div class="icon">
