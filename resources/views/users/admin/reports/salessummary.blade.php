@@ -36,9 +36,14 @@
                   <!-- small card -->
                   <div class="small-box bg-info">
                     <div class="inner">
-                                @foreach($ordered_products as $transactions)
-                      <h3>&#8369;{{$transactions -> total_price}}</h3>
+                      @if ($ordered_products->isNotEmpty())
+                      @foreach($ordered_products as $transactions)
+                      <h3>&#8369;{{count($ordered_products)}}</h3>
                                  @endforeach
+                      @else
+                      <h3>&#8369;0.00</h3>
+                      @endif
+                                
                       <p>Gross Sales</p>
                     </div>
                     <div class="icon">
@@ -52,9 +57,13 @@
                   <!-- small card -->
                   <div class="small-box bg-success">
                     <div class="inner">
+                        @if ($ordered_products4->isNotEmpty())
                         @foreach($ordered_products4 as $transactions)
-                      <h3>&#8369;{{$transactions -> discount}}</h3>
-                          @endforeach
+                        <h3>&#8369;{{$transactions -> discount}}</h3>
+                                   @endforeach
+                        @else
+                        <h3>&#8369;0.00</h3>
+                        @endif
                       <p>Discount</p>
                     </div>
                     <div class="icon">
@@ -68,9 +77,13 @@
                   <!-- small card -->
                   <div class="small-box bg-warning">
                     <div class="inner">
+                        @if ($ordered_products5->isNotEmpty())
                         @foreach($ordered_products5 as $transactions)
-                      <h3>&#8369;{{$transactions -> vat}}</h3>
-                      @endforeach
+                        <h3>&#8369;{{ $transactions -> vat}}</h3>
+                                   @endforeach
+                        @else
+                        <h3>&#8369;0.00</h3>
+                        @endif
                       <p>VAT</p>
                     </div>
                     <div class="icon">
@@ -84,9 +97,13 @@
                   <!-- small card -->
                   <div class="small-box bg-danger">
                     <div class="inner">
+                        @if ($ordered_products3->isNotEmpty())
                         @foreach($ordered_products3 as $transactions)
-                      <h3>&#8369;{{$transactions -> net_sales}}</h3>
-                            @endforeach
+                        <h3>&#8369;{{$transactions -> net_sales}}</h3>
+                                   @endforeach
+                        @else
+                        <h3>&#8369;0.00</h3>
+                        @endif
                       <p>Net Sales</p>
                     </div>
                     <div class="icon">
@@ -138,10 +155,10 @@
                                                                <a style="margin: 0%" href="{{route('admin.salessummaryshow.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
                                                               
                                                                @elseif($date == "month")
-                                                               <a style="margin: 0%" href="{{route('admin.salesummarym.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                               <a style="margin: 0%" href="{{route('admin.salesummarym.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
 
-                                                               @else
-                                                               <a style="margin: 0%" href="{{route('admin.salesummaryy.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                               @elseif($date == "year")
+                                                               <a style="margin: 0%" href="{{route('admin.salesummaryy.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
                                                                
                                                                @endif
                                                                 
