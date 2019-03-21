@@ -17,8 +17,11 @@ class CriticalStockController extends Controller
      */
     public function index()
     {
+        $cs = now()->subDays(3);
+
         $item_list = DB::table('item_lists')
-                ->whereRaw('quantity <= low_stock')
+               // ->select('quantity')
+                ->where('updated_at', '<=' , $cs)
                 ->get();
 
         

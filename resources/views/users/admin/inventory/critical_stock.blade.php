@@ -107,27 +107,20 @@
                                         @foreach ($critical_stock as $item)
                                                 <tr>
                                                 <td>{{$item -> item_name}}</td>
-                                                        <td>{{$item -> quantity}}</td>
-                                
-                                                        <td>{{$item -> low_stock}}</td>
-                                                        
-                                                        
-                                                                    
-                                                      
-                                                            
-                                                        
-                                                        <td>
+                                                <td>{{$item -> quantity}}</td>
+                                                <td>{{$item -> low_stock}}</td>
+                                                <td>
                                                             <div class="text-center">
                                                                     <a class=" btn-sm form-control btn btn-outline-warning" href="{{ route('admin.stockadjustment.edit',$item -> id)}}" role="button">Stock Adjustment</a>
                                                             </div>
                                 
-                                                        </td>
-                                                        <td>
+                                                </td>
+                                                <td>
                                                                 <div class="text-center">
                                                                         <a class=" btn-sm form-control btn btn-outline-primary" href="{{ route('admin.stockin.edit',$item -> id)}}" role="button">Stock In</a>
                                                                 </div>
                                     
-                                                            </td>
+                                                </td>
                                                         
 
                                                         
