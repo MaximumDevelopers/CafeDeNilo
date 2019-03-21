@@ -17,9 +17,12 @@ class SMmonthController extends Controller
      */
     public function index()
     {
+        $date = now()->month;
+        
         $transaction = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price) as total_price, id'))
-        
+        ->groupBy(DB::raw('id'))
+        ->whereMonth('date', $date)
         ->get();
 
         $transaction2 = DB::table('transactions')
@@ -30,14 +33,20 @@ class SMmonthController extends Controller
         
         $transaction3 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price - (discount + vat)) as net_sales, id'))
+        ->groupBy(DB::raw('id'))
+        ->whereMonth('date', $date)
         ->get();
 
         $transaction4 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(discount) as discount, id'))
+        ->groupBy(DB::raw('id'))
+        ->whereMonth('date', $date)
         ->get();
 
         $transaction5 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(vat) as vat, id'))
+        ->groupBy(DB::raw('id'))
+        ->whereMonth('date', $date)
         ->get();
 
 
@@ -87,14 +96,19 @@ $date = "month";
      */
     public function show($id)
     {
-        $SSummaryShow = DB::table('ordered_products')
+        /*$SSummaryShow = DB::table('ordered_products')
         ->select(DB::raw('date_format(created_at, \'%M %Y\')as date, product_name,  quantity, price as total_price,id'))
         ->groupBy(DB::raw('date_format(created_at, \'%M %Y\'),id'))   
         //->where(DB::raw('date_format(created_at)'), '=', '' )
+        ->get();*/
+    
+        $SSummaryShow = DB::table('ordered_products')
+        ->select(DB::raw('date_format(created_at, \'%M %Y\')as date, product_name,  sum(quantity) as quantity , sum(price) as total_price, transaction_id'))
+        ->groupBy('product_name')
+        ->where(DB::raw("(date_format(created_at,'%M %Y'))"),$id)
+        ->get();
     
         
-    
-        ->get();
 
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
