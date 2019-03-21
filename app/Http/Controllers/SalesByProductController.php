@@ -19,9 +19,19 @@ class SalesByProductController extends Controller
     public function index()
     {
          $ordered_products = DB::table('ordered_products')
-                     ->select(DB::raw('sum(price * quantity) total_price , sum(quantity) as quantity, product_name'))
+                     ->select(DB::raw('sum(price * quantity) as total_price , sum(quantity) as quantity, product_name, created_at'))
+                     ->whereDate('created_at', DB::raw('CURDATE()'))
                      ->groupBy(DB::raw('product_name'))
-                     ->get();    
+                     ->orderBy('quantity', 'desc')
+                     ->get(); 
+
+        $graph= DB::table('ordered_products')
+                     ->select(DB::raw('sum(price) as total_price , sum(quantity) as quantity, product_name'))
+                     ->whereDate('created_at', DB::raw('CURDATE()'))
+                     ->groupBy(DB::raw('date_format(created_at, \'%Y\')'), 'product_name')
+                     ->orderBy('quantity', 'desc')
+                     ->take(5)
+                     ->get();   
 
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
@@ -30,7 +40,7 @@ class SalesByProductController extends Controller
             return view('users.owner.inventory.sales_by_product')->with('ordered_products', $ordered_products);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
-            return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products);
+            return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products)->with('graphs', $graph);
             
         }
         else {

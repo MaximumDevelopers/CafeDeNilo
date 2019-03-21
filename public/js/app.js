@@ -44465,10 +44465,12 @@ $(document).ready(function () {
     });
 
     $('#dtSaleSummary1').DataTable({
-        'columnDefs': [{ 'orderable': false, 'targets': [1] }],
+        order: [[1, 'desc']],
+        'columnDefs': [{ 'orderable': false, 'targets': [] }],
         rowReorder: {
             selector: 'td:nth-child(2)'
         },
+
         responsive: true
     });
 

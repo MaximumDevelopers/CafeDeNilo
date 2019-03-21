@@ -15,10 +15,24 @@ class SalesYearController extends Controller
      */
     public function index()
     {
+        $curyear = now()->year;
         $ordered_products = DB::table('ordered_products')
-        ->select(DB::raw('sum(price) as price , sum(quantity) as quantity, product_name, created_at'))
+        ->select(DB::raw('sum(price) as total_price , sum(quantity) as quantity, product_name, created_at'))
+        ->whereYear('created_at', $curyear)
         ->groupBy(DB::raw('date_format(created_at, \'%Y\')'), 'product_name')
+        ->orderBy('quantity', 'desc')
         ->get();
+
+        $graph = DB::table('ordered_products')
+        ->select(DB::raw('sum(price) as total_price , sum(quantity) as quantity, product_name'))
+        ->whereYear('created_at', $curyear)
+        ->groupBy(DB::raw('date_format(created_at, \'%Y\')'), 'product_name')
+        ->orderBy('quantity', 'desc')
+        ->take(5)
+        ->get();
+
+
+    
 
     if (Auth::check() && Auth::user()->role == 'barista') {
         return redirect('/barista');
@@ -27,7 +41,7 @@ class SalesYearController extends Controller
         return view('users.owner.inventory.sales_by_product')->with('ordered_products', $ordered_products);
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products);
+        return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products)->with('graphs', $graph);
         
     }
     else {

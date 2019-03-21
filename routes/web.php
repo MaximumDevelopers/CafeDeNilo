@@ -115,6 +115,15 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesbyproduct', 'SalesByProductController', ['as' => 'admin']); 
     });
+ //Sales By Product - Month
+ Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('admin/salesbyproductm', 'SalesMonthController', ['as' => 'admin']); 
+});
+
+ //Sales By Product - Year
+ Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::resource('admin/salesbyproducty', 'SalesYearController', ['as' => 'admin']); 
+});
 
   
 //StockIn
