@@ -160,7 +160,7 @@
                                                             
                                                             <td class="text-center">
                                                                @if ($date == "day")
-                                                               <a style="margin: 0%" href="{{route('admin.salessummaryshow.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                               <a style="margin: 0%" href="{{route('admin.salesummaryd.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
                                                               
                                                                @elseif($date == "month")
                                                                <a style="margin: 0%" href="{{route('admin.salesummarym.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 

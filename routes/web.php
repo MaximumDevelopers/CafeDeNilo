@@ -98,10 +98,7 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesummaryd', 'SMdayController', ['as' => 'admin']); 
     });
-    //SalesSWeek
-    Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/salesummaryw', 'SMweekController', ['as' => 'admin']); 
-    });
+   
     //SalesSMonth
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/salesummarym', 'SMmonthController', ['as' => 'admin']); 
