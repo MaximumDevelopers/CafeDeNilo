@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\ItemList;
 use App\categories;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class ItemListController extends Controller
@@ -66,6 +67,7 @@ class ItemListController extends Controller
         $item_list ->low_stock = $request->get('low_stock');
         $cost = $request->get('item_cost');
         $item_list ->price = $this -> price($cost);
+        $item_list ->stock_in_date = Carbon::now();
         
         //get CategoryID
         if ( $request->input('addCategories') != 'empty')

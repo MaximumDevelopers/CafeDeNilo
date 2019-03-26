@@ -351,7 +351,19 @@ $(document).ready(function () {
 
 }); 
 
+//Products Del
+$(document).ready(function () {  
 
+    $('#modalProdDel').on('show.bs.modal', function(event)
+    {
+        var button = $(event.relatedTarget)
+        var id = button.data("id")
+
+        var modal = $(this)
+        modal.find('.modal-body #Prod_id').val(id)   
+    });
+ 
+}); 
 
 function addTR()
 {

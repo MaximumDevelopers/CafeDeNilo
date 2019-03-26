@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\StockAdjustment;
 use App\ItemList;
+use Carbon\Carbon;
 
 class StockInController extends Controller
 {
@@ -51,17 +52,20 @@ class StockInController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $dateFormat = Carbon::now();
         $item_id = $request->get('item_id');
         $item_list= ItemList::find($item_id);
         $before = $request->get('item_quantity_before');
         $add = $request->get('item_quantity_after');
         $total = $before + $add;
         $item_list ->quantity = $total;
+        $item_list ->stock_in_date = $dateFormat;
         $item_list->save();
         return redirect()->route('admin.item_list.index');
     }
 
+
+    
     /**
      * Display the specified resource.
      *

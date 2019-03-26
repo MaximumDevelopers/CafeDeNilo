@@ -17,12 +17,14 @@ class SMmonthController extends Controller
      */
     public function index()
     {
-        $date = now()->month;
-        
+         $date = now()->month;
+         $year = now()->year;
+         $my = date('F Y');
         $transaction = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price) as total_price, id'))
    
         ->whereMonth('date', $date)
+        ->whereYear('date', $year)
         ->get();
 
         $transaction2 = DB::table('transactions')
@@ -35,17 +37,26 @@ class SMmonthController extends Controller
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(total_price - (discount + vat)) as net_sales, id'))
        
         ->whereMonth('date', $date)
+        ->whereYear('date', $year)
+        ->get();
+
+       $profit = DB::table('transactions')
+       ->select(DB::raw('(sum(total_price - (discount+vat)) - (select sum(a.result) from (SELECT sum(cl.quantity) as qty, item_name as name, (SELECT  (il.cost * sum(cl.quantity)) FROM item_lists AS il WHERE cl.item_name = il.item_name ) as result FROM critical_level as cl group by cl.item_name)  as a)) as \'profit\''))
+       ->whereMonth('date', $date)
+        ->whereYear('date', $year)
         ->get();
 
         $transaction4 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(discount) as discount, id'))
         
         ->whereMonth('date', $date)
+        ->whereYear('date', $year)
         ->get();
 
         $transaction5 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(vat) as vat, id'))
         ->whereMonth('date', $date)
+        ->whereYear('date', $year)
         ->get();
 
 
@@ -57,7 +68,7 @@ $date = "month";
         return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date)->with('profit', $profit);
         
     }
     else {

@@ -20,21 +20,53 @@
                                     {{Session::get('success')}}
                                 </div>
                                 @endif
-                                    @foreach ($products as $product)
+                                    
                                         <section>
 
                                                 <h4 id="ct1" class="ml-0" >Product</h4>
-
+                                                @foreach ($products as $product)
                                                 <div class="row">
-                                                                <div class="col-md-6">
-                                                            <div class="form-group">
-                                                            <input type="text" name="product_name" class="form-control" placeholder="Please enter product name" value="{{$product -> product_name}}">
-                                                            </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                        <input type="text" name="product_name" class="form-control" placeholder="Please enter product name" value="{{$product -> product_name}}">
                                                         </div>
+                                                    </div>
+                                                @endforeach 
 
+                                                <div class="col-md-6">
+                                                        <div class="form-group">
+                                                                <h5 class="">Product Category</h5>
+                                                                
+                                                           <select name="category" class="supplierPicker" style="width: 100%">
+                                                            @foreach ($ProductCategorie as $category)
+                                                            
+                                                                <option value="{{$category -> id}}"> {{$category -> product_category_name}} </option>     
+                                                        
+                                                            @endforeach
+                                                           </select>
+                                                        </div>
                                                 </div>
+                               
+                                            </div>
+                                            <div class="row">
+                                                    
+                                            <div class="col-md-6">
+                                                    <div class="form-group">
+                                                            <h5 class="">Time</h5>
+                                                            @foreach ($products as $product)
+                                                            <div class="input-group date"  id="datetimepicker3" data-target-input="nearest">
+                                                                    <input type="text" name="time" class="form-control datetimepicker-input" data-target="#datetimepicker3" value="{{$product -> prepare_time}}"/>
+                                                                    <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
+                                                                        <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
+                                                                    </div>
+                                                                </div>
+                                                                @endforeach 
+                                                    </div>
+                                            </div>
+
+                                        </div>
                                         </section>
-                                    @endforeach        
+                                           
 
                                                 <h4 id="ct1" class="ml-0" >Product Item Composition</h4>
                                             <div class="panel panel-footer" >
@@ -58,8 +90,12 @@
                                             <select name="item_name[]" class="form-control select3" style="width: 100%" required=""> 
                                                     <option value="empty">Select Item Here..</option>
                                                     @foreach ($ItemList as $item_name)
-                                                    
-                                                        <option value="{{$item_name -> id}}"> {{$item_name -> item_name}} </option>     
+                                                    @if ($product_item -> item_name === $item_name -> item_name )
+                                                        <option value="{{$item_name -> item_name}}" selected> {{$item_name -> item_name}} </option>  
+                                                    @else
+                                                    <option value="{{$item_name -> item_name}}"> {{$item_name -> item_name}} </option>  
+                                                    @endif
+                                                           
                                                  
                                                     @endforeach
                                             </select>

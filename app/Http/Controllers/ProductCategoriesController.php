@@ -35,7 +35,7 @@ class ProductCategoriesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'category_name' => 'required|string|max:255',
+            'product_category_name' => 'required|string|max:255|unique:product_categories',
         ]);
     }
 
@@ -99,7 +99,7 @@ class ProductCategoriesController extends Controller
         $category_id = $request->get('cat_id');
 
         $category = ProductCategories::find($category_id);
-        $category->category_name = $request->get('product_category_name');
+        $category->product_category_name = $request->get('category_name');
         $category->save();
         return $this->redirect_route();
     }

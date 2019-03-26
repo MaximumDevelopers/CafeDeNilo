@@ -17,24 +17,24 @@
                             <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
                             </a>
                         
-                        <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Today
+                        <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Daily
                         </a>
                             
                        
                             <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Monthly
                             </a>
 
-                            <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Year
+                            <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Yearly
                             </a>
 
                             <br>
                             <br>
                             <!-- Small Box (Stat card) -->
         <div id="widget" class="container-fluid">
-        <div class="row" >
-                <div class="col-md-3 col-6">
+        <div class="row d-flex justify-content-center" >
+                <div class="col-md-3 col-6 pl-0 pr-3">
                   <!-- small card -->
-                  <div class="small-box bg-info">
+                  <div class="small-box bg-info ">
                     <div class="inner">
                       @foreach($ordered_products as $transactions2)
                       @if (($transactions2 -> total_price) != null)
@@ -55,7 +55,7 @@
                   </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-md-3 col-6">
+                <div class="col-md-3 col-6 pl-0 pr-3">
                   <!-- small card -->
                   <div class="small-box bg-success">
                     <div class="inner">
@@ -77,7 +77,7 @@
                   </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-md-3 col-6">
+                <div class="col-md-3 col-6  pl-0 pr-3">
                   <!-- small card -->
                   <div class="small-box bg-warning">
                     <div class="inner">
@@ -99,7 +99,7 @@
                   </div>
                 </div>
                 <!-- ./col -->
-                <div class="col-md-3 col-6">
+                <div class="col-md-3 col-6  pl-0 pr-3">
                   <!-- small card -->
                   <div class="small-box bg-danger">
                     <div class="inner">
@@ -123,6 +123,32 @@
       
                 
                 <!-- ./col -->
+
+                <!-- ./col -->
+                <div class="col-md-3 col-6  pl-0 pr-3">
+                    <!-- small card -->
+                    <div class="small-box bg-secondary">
+                      <div class="inner">
+                          @foreach($ordered_products as $transactions2)
+                          @if (($transactions2 -> total_price) != null)
+                          @foreach($profit as $transactions)
+                          <h3>&#8369;{{$transactions -> profit}}</h3>
+                                     @endforeach
+                          @else
+                          <h3>&#8369;0.00</h3>
+                          @endif
+                          @endforeach
+                        <p>Gross Profit</p>
+                      </div>
+                      <div class="icon">
+                        <i class="ion ion-pie-graph"></i>
+                      </div>
+                    
+                    </div>
+                  </div>
+        
+                  
+                  <!-- ./col -->
               </div>
               <!-- /.row -->
         </div>

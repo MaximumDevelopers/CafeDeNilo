@@ -20,12 +20,12 @@ class ProductController extends Controller
      */
     public function index()
     {
-
         
-        $Product = DB::select("select p.id, p.product_name, (sum(i.price * ing.quantity)) price
+        $Product = DB::select("select p.id, pc.product_category_name pname, p.product_name, (sum(i.price * ing.quantity)) price
         from products p
         Join product_items ing on p.id = ing.products_id
         JOIN  item_lists i ON ing.item_list_id = i.id
+        JOIN product_categories pc on p.category_id = pc.id
         group by p.product_name");
 
         if (Auth::check() && Auth::user()->role == 'barista') {
@@ -125,7 +125,7 @@ class ProductController extends Controller
     public function edit($id)
     {
         $ItemList = ItemList::all();
-
+        $ProductCategories = ProductCategories::all();
 
         $products = Products::all()
             ->where('id', '=', $id);
@@ -138,7 +138,7 @@ class ProductController extends Controller
 
 
                         
-        return view('users.admin.products.product_details')->with('product_item', $Product_item)->with('products', $products)->with('ItemList', $ItemList);
+        return view('users.admin.products.product_details')->with('product_item', $Product_item)->with('products', $products)->with('ItemList', $ItemList)->with('ProductCategorie', $ProductCategories);
 
     }
 
@@ -151,7 +151,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $Products = Products::find($id);
         
+        $Products ->product_name = $request->get('item_name');
+        $Products ->category_id = $request->get('item_cost');
+        $Products ->prepare_time = $request->get('item_cost');
+        //$item_list ->quantity = $request->get('item_quantity');
+        //$cost = $request->get('item_cost');
+        
+        $item_list->save();
+        return $this->redirect_route();
+    }
+
+    protected function redirect_route()
+    {
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return redirect()->route('owner.products.index');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'captain crew') {
+            return redirect('/captaincrew');
+        }
+        else {
+            return redirect()->route('admin.products.index');
+        }
     }
 
     /**
@@ -160,8 +185,17 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request, $id)
     {
-        //
+        
+        $item_id = $request->get('Prod_id');
+        $item = Products::find($item_id );
+        $item->delete();
+        
+        $query = DB::table('Product_Items')
+        ->where('products_id',$item_id )
+        ->delete();
+
+        return $this->redirect_route();
     }
 }
