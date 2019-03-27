@@ -20,7 +20,6 @@ class ProductController extends Controller
      */
     public function index()
     {
-        
         $Product = DB::select("select p.id, pc.product_category_name pname, p.product_name, (sum(i.price * ing.quantity)) price
         from products p
         Join product_items ing on p.id = ing.products_id
@@ -66,7 +65,6 @@ class ProductController extends Controller
         else {
             return view('users.captain_crew.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
         }
-        
     }
 
     /**
@@ -84,8 +82,6 @@ class ProductController extends Controller
         $product->prepare_time =  $request->input('time');
 
         $product->save();
-
-    
         
         $id = DB::getPdo()->lastInsertId();
         
@@ -135,11 +131,8 @@ class ProductController extends Controller
                      ->select('item_lists.item_name', 'product_items.quantity', 'item_lists.price')
                      ->where('product_items.products_id', '=', $id)
                      ->get();
-
-
                         
         return view('users.admin.products.product_details')->with('product_item', $Product_item)->with('products', $products)->with('ItemList', $ItemList)->with('ProductCategorie', $ProductCategories);
-
     }
 
     /**
@@ -151,15 +144,37 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        /*$name = DB::table('products')
+        ->select('product_name')
+        ->where('id', '=', $id)
+        ->get();*/
+
         $Products = Products::find($id);
         
-        $Products ->product_name = $request->get('item_name');
-        $Products ->category_id = $request->get('item_cost');
-        $Products ->prepare_time = $request->get('item_cost');
+        $Products ->product_name = $request->get('product_name');
+        $Products ->category_id = $request->get('category');
+        $Products ->prepare_time = $request->get('time');
+
+        $query = DB::table('Product_Items')
+        ->where('products_id',$id )
+        ->delete();
+
         //$item_list ->quantity = $request->get('item_quantity');
         //$cost = $request->get('item_cost');
         
-        $item_list->save();
+        $Products->save();
+
+        if(count($request->item_name) > 0)
+        {
+        foreach($request->item_name as $item=>$v){
+                $data2=array(
+                    'item_list_id'=>$request->item_name[$item],
+                    'quantity' =>$request->quantity[$item],
+                    'products_id'=>$id,
+                );
+                ProductItems::insert($data2);
+            }
+        }
         return $this->redirect_route();
     }
 

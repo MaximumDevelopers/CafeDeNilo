@@ -15,11 +15,9 @@ class SMdayController extends Controller
      */
     public function index()
     {
-        return $Product = DB::set("SET time_zone = \"+08:00\"");
+        //return $Product = DB::set("SET time_zone = \"+08:00\"");
         
-        return $transaction = DB::table('transactions')
-        ->select(DB::raw('now()'))
-        ->get();
+      
 
         $transaction = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price,id'))

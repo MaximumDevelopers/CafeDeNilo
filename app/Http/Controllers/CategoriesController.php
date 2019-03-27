@@ -45,7 +45,7 @@ class CategoriesController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'category_name' => 'required|string|max:255',
+            'category_name' => 'required|string|max:255|unique:categories',
         ]);
     }
 

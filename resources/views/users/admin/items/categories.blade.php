@@ -28,12 +28,19 @@
                             <form method="POST" action="{{ route('admin.categories.store')}}">
                                     @csrf
                                     <div class="modal-body mb-1">
-                                    <div class="form-group md-form ml-0 mr-0">
-                                            <i class="far fa-list-alt prefix"></i>
-                                            <input id="category_name" name="category_name" type="text" class="form-control" name="category" required>
-                                            <label for="category" class="ml-8">{{ __('Enter new category here..') }}</label>
-      
+                                    
+                                    <div class="form-group md-form ml-0 mr-0 mb-0">
+                                        <i class="far fa-list-alt prefix"></i>
+                                        <input id="category_name" type="text" class="form-control{{ $errors->has('category_name') ? ' is-invalid' : '' }}" name="category_name" value="" required >
+                                        <label for="category_name" class="ml-8">{{ __('Enter new category here..') }}</label>
+        
+                                        @if ($errors->has('category_name'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('category_name') }}</strong>
+                                            </span>
+                                        @endif
                                     </div>
+                                    
                                     </div>
 
                                     <div class="modal-footer">

@@ -52,7 +52,7 @@
                                                                         <h5 class="">Time</h5>
 
                                                                         <div class="input-group date"  id="datetimepicker3" data-target-input="nearest">
-                                                                                <input type="text" name="time" class="form-control datetimepicker-input" data-target="#datetimepicker3"/>
+                                                                                <input type="text" name="time" class="form-control datetimepicker-input" data-target="#datetimepicker3" value="00:00:00"/>
                                                                                 <div class="input-group-append" data-target="#datetimepicker3" data-toggle="datetimepicker">
                                                                                     <div class="input-group-text"><i class="fa fa-clock-o"></i></div>
                                                                                 </div>

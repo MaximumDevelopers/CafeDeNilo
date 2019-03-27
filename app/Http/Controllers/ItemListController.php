@@ -56,7 +56,7 @@ class ItemListController extends Controller
      */
     public function store(Request $request)
     {
-        //$this->validator($request->all())->validate();
+        $this->validator($request->all())->validate();
         
         //$suppliers = supplier::select('id')->get();
 
@@ -105,9 +105,9 @@ class ItemListController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'item_name' => 'required|string|max:130|unique:item_list',
-            'item_cost' => 'required|numeric|max:99999|min:0|unique:item_list',
-            'item_quantity' => 'required|numeric|max:9999|min:0|unique:item_list',
+            'item_name' => 'required|string|max:130|unique:item_lists',
+            'item_cost' => 'required|numeric|max:99999|min:0',
+            'item_quantity' => 'required|numeric|max:9999|min:0',
         ]);
     }
 
