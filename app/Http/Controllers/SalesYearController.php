@@ -38,7 +38,7 @@ class SalesYearController extends Controller
         return redirect('/barista');
     }
     elseif (Auth::check() && Auth::user()->role == 'owner') {
-        return view('users.owner.inventory.sales_by_product')->with('ordered_products', $ordered_products);
+        return view('users.owner.reports.sales_by_product')->with('ordered_products', $ordered_products)->with('graphs', $graph);
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
         return view('users.admin.reports.sales_by_product')->with('ordered_products', $ordered_products)->with('graphs', $graph);

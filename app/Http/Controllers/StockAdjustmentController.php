@@ -43,7 +43,22 @@ class StockAdjustmentController extends Controller
      */
     public function create()
     {
-        return view('users.admin.inventory.add_stock_adjustment');
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.inventory.add_stock_adjustment');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.inventory.add_stock_adjustment');
+           
+            
+        }
+        else {
+            return view('users.captain_crew.inventory.stock_adjustment')->with('StockAdjustment', $StockAdjustment);
+        }
+
+       
     }
 
     /**
@@ -70,7 +85,23 @@ class StockAdjustmentController extends Controller
         $StockAdjustment->stock_before = $request->get('item_quantity_before');
         $StockAdjustment->stock_after = $request->get('item_quantity_after');
         $StockAdjustment->save();
-        return redirect()->route('admin.stockadjustment.index');
+
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return redirect()->route('owner.stockadjustment.index');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return redirect()->route('admin.stockadjustment.index');
+           
+            
+        }
+        else {
+            return redirect()->route('admin.stockadjustment.index');
+        }
+
+        
     }
 
     /**
@@ -95,10 +126,20 @@ class StockAdjustmentController extends Controller
         $ItemList = ItemList::where('id', $id)
         ->get();
 
-        return view('users.admin.inventory.add_stock_adjustment')->with('ItemList', $ItemList);
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.inventory.add_stock_adjustment')->with('ItemList', $ItemList);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.inventory.add_stock_adjustment')->with('ItemList', $ItemList);  
+            
+        }
+        else {
+            //return redirect()->route('admin.stockadjustment.index');
+        }
         
-
-       
     }
 
     /**

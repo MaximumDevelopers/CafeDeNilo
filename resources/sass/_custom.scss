@@ -161,6 +161,15 @@ table.dataTable thead .sorting_desc_disabled:after {
   opacity: 0
 }
 
+.dataTables_wrapper {
+  font-family: tahoma;
+  font-size: 16px;
+  position: relative;
+  clear: both;
+  
+}
+
+
 /*table.dataTable thead .sorting, 
 table.dataTable thead .sorting_asc, 
 table.dataTable thead .sorting_desc {

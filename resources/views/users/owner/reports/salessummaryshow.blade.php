@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.owner.app')
 @section('content')
 
 
@@ -44,8 +44,8 @@
                                                             
                                                             <td>{{$transaction -> date}}</td>
                                                             <td>{{$transaction -> product_name}}</td>
-                                                            <td align="right">{{$transaction -> quantity }}</td>
-                                                            <td align="right">&#8369;{{$transaction -> total_price}}</td>
+                                                            <td>{{$transaction -> quantity }}</td>
+                                                            <td>&#8369;{{$transaction -> total_price}}</td>
                                                            
 
                                                           
@@ -54,12 +54,6 @@
                                                     @endforeach
                         
                                             </tbody>
-                                            <tfoot>
-                                                <tr align="right">
-                                                    <th colspan="3" style="text-align:right">Total:</th>
-                                                    <th align="right"></th>
-                                                </tr>
-                                            </tfoot>
                                         
                                       </table>
             

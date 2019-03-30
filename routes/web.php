@@ -37,20 +37,7 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/accounts', 'UsersController', ['as' => 'admin']); 
     });
-    //item_categories
-    Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/categories', 'CategoriesController', ['as' => 'admin']); 
-    }); 
-
-    //item_list
-    Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/item_list', 'ItemListController', ['as' => 'admin']); 
-    });
-     //critical_stock
-     Route::group(['middleware' => ['auth', 'admin']], function() {
-        Route::resource('admin/critical_stock', 'CriticalStockController', ['as' => 'admin']); 
-    });
-
+   
     //products
     Route::group(['middleware' => ['auth', 'admin']], function() {
         Route::resource('admin/products', 'ProductController', ['as' => 'admin']);
@@ -122,11 +109,25 @@ Route::Post('/showP', 'SalesSummaryController@showProduct');
     Route::resource('admin/salesbyproducty', 'SalesYearController', ['as' => 'admin']); 
 });
 
-  
-//StockIn
-Route::group(['middleware' => ['auth', 'admin']], function() {
-    Route::resource('admin/stockin', 'StockInController', ['as' => 'admin']); 
-});
+     //item_categories
+     Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/categories', 'CategoriesController', ['as' => 'admin']); 
+    }); 
+
+    //item_list
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/item_list', 'ItemListController', ['as' => 'admin']); 
+    });
+     //critical_stock
+     Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/critical_stock', 'CriticalStockController', ['as' => 'admin']); 
+    });
+    
+
+    //StockIn
+    Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/stockin', 'StockInController', ['as' => 'admin']); 
+    });
     
     //StockAdjust.
     Route::group(['middleware' => ['auth', 'admin']], function() {
@@ -141,7 +142,95 @@ Route::get('/owner', 'User\OwnerController@index')->middleware('auth','owner');
 Route::group(['middleware' => ['auth', 'owner']], function() {
     Route::resource('owner/accounts', 'UsersController', ['as' => 'owner']); 
 });
+    //SalesSummary
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/salesummary', 'SalesSummaryController', ['as' => 'owner']); 
+    });
+    //SalesSummary_transaction
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/salesumtransaction', 'SalesSummaryController', ['as' => 'owner']); 
+    });
+    //SalesSsummaryShow
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/salessummaryshow', 'SaleSummaryShowController', ['as' => 'owner']); 
+    });
+    //SalesDetails
+    /*Route::group(['middleware' => ['auth', 'admin']], function() {
+        Route::resource('admin/salesdetails', 'SalesDetailsController', ['as' => 'admin']); 
+    });*/
+    //SalesSDay
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/salesummaryd', 'SMdayController', ['as' => 'owner']); 
+    });
 
+    //SalesSMonth
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/salesummarym', 'SMmonthController', ['as' => 'owner']); 
+    });
+    //SalesSYear
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/salesummaryy', 'SMyearController', ['as' => 'owner']); 
+    });
+
+    //Sales By Product
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/salesbyproduct', 'SalesByProductController', ['as' => 'owner']); 
+    });
+    //Sales By Product - Month
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+    Route::resource('owner/salesbyproductm', 'SalesMonthController', ['as' => 'owner']); 
+    });
+
+    //Sales By Product - Year
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+    Route::resource('owner/salesbyproducty', 'SalesYearController', ['as' => 'owner']); 
+    });
+
+    //products
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/products', 'ProductController', ['as' => 'owner']);
+        
+    });
+    Route::post('/owner/product/post', 'ProductController@store'); 
+    //products_show
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/products_show', 'ProductController', ['as' => 'owner']); 
+    });
+
+      //product_details
+      Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/product_details', 'ProductDetailsController', ['as' => 'owner']); 
+    });
+    
+    //products_categories
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/productcategories', 'ProductCategoriesController', ['as' => 'owner']); 
+    }); 
+
+    //item_categories
+     Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/categories', 'CategoriesController', ['as' => 'owner']); 
+    }); 
+
+    //item_list
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/item_list', 'ItemListController', ['as' => 'owner']); 
+    });
+     //critical_stock
+     Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/critical_stock', 'CriticalStockController', ['as' => 'owner']); 
+    });
+    
+
+    //StockIn
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/stockin', 'StockInController', ['as' => 'owner']); 
+    });
+    
+    //StockAdjust.
+    Route::group(['middleware' => ['auth', 'owner']], function() {
+        Route::resource('owner/stockadjustment', 'StockAdjustmentController', ['as' => 'owner']); 
+    });
 
 //BARISTA ROUTES
 Route::get('/barista', 'User\BaristaController@index')->middleware('auth','barista');

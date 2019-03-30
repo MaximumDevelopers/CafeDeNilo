@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.owner.app')
 @section('content')
 
 
@@ -14,17 +14,17 @@
                                     
                             </div>
                             
-                            <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
+                            <a id="btnsales"  href="/owner/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
                             </a>
                         
-                        <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Daily
+                        <a id="btnsales"  href="/owner/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Daily
                         </a>
                             
                         
-                            <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Monthly
+                            <a id="btnsales"  href="/owner/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Monthly
                             </a>
 
-                            <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Yearly
+                            <a id="btnsales"  href="/owner/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Yearly
                             </a>
 
                             <br>
@@ -57,7 +57,7 @@
                                                 @foreach ($ordered_products2 as $transaction)
                                                 <tr>
                                                                   
-                                                            <td>{{$transaction -> id}}</td>  
+                                                        <td>{{$transaction -> id}}</td>  
                                                             <td data-sort>{{$transaction -> date}}</td>
                                                             <td align="right">&#8369;{{$transaction -> total_price}}</td>
                                                             <td align="right">&#8369;{{$transaction -> net_sales}}</td>
@@ -65,7 +65,7 @@
                                                             <td align="right">&#8369;{{$transaction -> discount}}</td>
                                                             <td align="right">&#8369;{{$transaction -> vat}}</td>
                                                             <td class="text-center">          
-                                                                <a style="margin: 0%" href="{{route('admin.salessummaryshow.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
+                                                                <a style="margin: 0%" href="{{route('owner.salessummaryshow.show',$transaction -> id)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a>
 
                                                            
                                                         </td>

@@ -31,7 +31,7 @@ class ProductController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.products.products')->with('Product', $Product);
+            return view('users.owner.products.products')->with('Product', $Product);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.products.products')->with('Product', $Product);
@@ -56,7 +56,7 @@ class ProductController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
+            return view('users.owner.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
@@ -75,7 +75,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
+        $this->validator($request->all())->validate();
         $product = new Products;
         $product->product_name =  $request->input('product_name');
         $product->category_id=  $request->input('category');
@@ -100,6 +100,13 @@ class ProductController extends Controller
         return redirect()->back()->with('success','data insert successfully');
             
     }   
+
+    protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'product_name' => 'required|string|max:130|unique:products',
+        ]);
+    }
 
     /**
      * Display the specified resource.
@@ -131,8 +138,22 @@ class ProductController extends Controller
                      ->select('item_lists.item_name', 'product_items.quantity', 'item_lists.price')
                      ->where('product_items.products_id', '=', $id)
                      ->get();
-                        
-        return view('users.admin.products.product_details')->with('product_item', $Product_item)->with('products', $products)->with('ItemList', $ItemList)->with('ProductCategorie', $ProductCategories);
+        
+                     
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.products.product_details')->with('product_item', $Product_item)->with('products', $products)->with('ItemList', $ItemList)->with('ProductCategorie', $ProductCategories);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.products.product_details')->with('product_item', $Product_item)->with('products', $products)->with('ItemList', $ItemList)->with('ProductCategorie', $ProductCategories);
+            
+        }
+        else {
+            //return view('users.captain_crew.products.product_show')->with('ProductCategories', $ProductCategories)->with('ItemList', $ItemList);
+        }             
+        
     }
 
     /**
@@ -155,7 +176,7 @@ class ProductController extends Controller
         $Products ->category_id = $request->get('category');
         $Products ->prepare_time = $request->get('time');
 
-        $query = DB::table('Product_Items')
+        $query = DB::table('product_items')
         ->where('products_id',$id )
         ->delete();
 

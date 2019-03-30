@@ -1,7 +1,7 @@
-@extends('layouts.admin.app')
+@extends('layouts.owner.app')
 @section('content')
 
-<form action="/admin/product/post" method="POST">
+<form action="/owner/product/post" method="POST">
                                         {{csrf_field()}}
 <div id="cf" class="container-fluid">
 

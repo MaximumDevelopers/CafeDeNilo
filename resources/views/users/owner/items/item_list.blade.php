@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.owner.app')
 @section('content')
 
 <div id="cf" class="container-fluid">
@@ -25,7 +25,7 @@
                                     </button>
                                 </div>
                                 
-                                <form method="POST" action="{{ route('admin.item_list.store')}}">
+                                <form method="POST" action="{{ route('owner.item_list.store')}}">
                                     @csrf
                                     <div class="modal-body mb-1">
 
@@ -145,13 +145,13 @@
                                                         </td>
                                                         <td>
                                                             <div class="text-center">
-                                                                    <a class=" btn-sm form-control btn btn-outline-warning" href="{{ route('admin.stockadjustment.edit',$item_list -> id)}}" role="button">Stock Adjustment</a>
+                                                                    <a class=" btn-sm form-control btn btn-outline-warning" href="{{ route('owner.stockadjustment.edit',$item_list -> id)}}" role="button">Stock Adjustment</a>
                                                             </div>
                                 
                                                         </td>
                                                         <td>
                                                             <div class="text-center">
-                                                                    <a class=" btn-md form-control btn btn-outline-primary" href="{{ route('admin.stockin.edit',$item_list -> id)}}"  role="button">Stock In</a>
+                                                                    <a class=" btn-md form-control btn btn-outline-primary" href="{{ route('owner.stockin.edit',$item_list -> id)}}"  role="button">Stock In</a>
                                                             </div>
                                 
                                                         </td>
@@ -171,7 +171,7 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form method="POST" action="{{ route('admin.item_list.update', $category -> id) }}">
+                                                                    <form method="POST" action="{{ route('owner.item_list.update', $category -> id) }}">
                                                                         
                                                                     @csrf
                                                                     @method('PATCH')
@@ -266,7 +266,7 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                         </button>
                                                                     </div>
-                                                                    <form action="{{ route('admin.item_list.destroy', $category -> id) }}" method="post">
+                                                                    <form action="{{ route('owner.item_list.destroy', $category -> id) }}" method="post">
                                                                             @csrf
                                                                             @method('DELETE')
                                                                     <div class="modal-body">

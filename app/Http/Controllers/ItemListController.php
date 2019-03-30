@@ -7,6 +7,7 @@ use App\ItemList;
 use App\categories;
 use Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class ItemListController extends Controller
@@ -18,7 +19,8 @@ class ItemListController extends Controller
      */
     public function index()
     {
-        $item_list = ItemList::all();
+        //$item_list = ItemList::all();
+        $item_list = DB::select('select item_lists.cost,item_lists.category_id,item_lists.price, item_lists.quantity, item_lists.updated_at, item_lists.item_name, item_lists.quantity as quantity, dan.qty, round(dan.qty) as low_stock, item_lists.id from item_lists join (select item_name, ( CASE WHEN a.quantity is not null THEN ((sum(a.quantity)/7))*3 ELSE 0 END) as qty from (select il.item_name, sum(cl.quantity) as quantity, cl.date from item_lists il left join critical_level cl on cl.item_name = il.item_name where date_format(il.stock_in_date, \'%Y-%m-%d\') <=  il.stock_in_date + interval 2 day group by il.item_name, cl.date) as a group by item_name) dan on dan.item_name = item_lists.item_name');
         //$category = categories::select('category_name')->get();
         $categories = categories::select('id', 'category_name')->get();
         
@@ -27,7 +29,7 @@ class ItemListController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.items.item_list')->with('item_list', $item_list)->with('categories', $categories);
+            return view('users.owner.items.item_list')->with('item_list', $item_list)->with('categories', $categories);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.items.item_list')->with('item_list', $item_list)->with('categories', $categories);

@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.owner.app')
 @section('content')
 
 
@@ -14,17 +14,17 @@
                                     
                             </div>
                             
-                            <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
+                            <a id="btnsales"  href="/owner/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction
                             </a>
                         
-                        <a id="btnsales"  href="/admin/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Daily
+                        <a id="btnsales"  href="/owner/salesummaryd" class="btn btn-primary btn-sm ml-auto btnLogin">Daily
                         </a>
                             
                        
-                            <a id="btnsales"  href="/admin/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Monthly
+                            <a id="btnsales"  href="/owner/salesummarym" class="btn btn-primary btn-sm ml-auto btnLogin">Monthly
                             </a>
 
-                            <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Yearly
+                            <a id="btnsales"  href="/owner/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Yearly
                             </a>
 
                             <br>
@@ -124,7 +124,6 @@
                 
                 <!-- ./col -->
 
-                <!-- ./col -->
                 
         
                   
@@ -166,13 +165,13 @@
                                                             
                                                             <td class="text-center">
                                                                @if ($date == "day")
-                                                               <a style="margin: 0%" href="{{route('admin.salesummaryd.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                               <a style="margin: 0%" href="{{route('owner.salesummaryd.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
                                                               
                                                                @elseif($date == "month")
-                                                               <a style="margin: 0%" href="{{route('admin.salesummarym.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                               <a style="margin: 0%" href="{{route('owner.salesummarym.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
 
                                                                @elseif($date == "year")
-                                                               <a style="margin: 0%" href="{{route('admin.salesummaryy.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
+                                                               <a style="margin: 0%" href="{{route('owner.salesummaryy.show',$transaction -> date)}}" class="btn btn-blue btn-md"   style="font-size: 1rem; ">Show</a> 
                                                                
                                                                @endif
                                                                 

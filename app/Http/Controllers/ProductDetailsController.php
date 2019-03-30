@@ -20,7 +20,7 @@ class ProductDetailsController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.products.product_details')->with('Product', $Product_details);
+            return view('users.owner.products.product_details')->with('Product', $Product_details);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.products.product_details')->with('Product', $Product_details);

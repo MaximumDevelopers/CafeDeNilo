@@ -26,7 +26,7 @@ if (Auth::check() && Auth::user()->role == 'barista') {
 return redirect('/barista');
 }
 elseif (Auth::check() && Auth::user()->role == 'owner') {
-return view('users.owner.inventory.salessummaryshow')->with('ordered_products', $ordered_products);
+    return view('users.admin.reports.salessummaryshow')->with('ordered_products', $ordered_products);
 }
 elseif (Auth::check() && Auth::user()->role == 'admin') {
 return view('users.admin.reports.salessummaryshow')->with('ordered_products', $ordered_products);
@@ -83,7 +83,7 @@ return view('users.captain_crew.inventory.salessummaryshow')->with('ordered_prod
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
+            return view('users.owner.reports.salessummaryshow')->with('ordered_products', $SSummaryShow);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.reports.salessummaryshow')->with('ordered_products', $SSummaryShow);

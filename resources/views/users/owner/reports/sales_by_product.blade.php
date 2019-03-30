@@ -1,4 +1,4 @@
-@extends('layouts.admin.graphs1')
+@extends('layouts.owner.graphs1')
 @section('content')
 
 
@@ -14,14 +14,14 @@
                                     <h2 id="ct1" class="card-title">Sales by Product</h2>
                                     
                             </div>
-                            <a id="btnsales"  href="/admin/salesbyproduct" class="btn btn-primary btn-sm ml-auto btnLogin">Today
+                            <a id="btnsales"  href="/owner/salesbyproduct" class="btn btn-primary btn-sm ml-auto btnLogin">Today
                             </a>
                                 
                            
-                                <a id="btnsales"  href="/admin/salesbyproductm" class="btn btn-primary btn-sm ml-auto btnLogin">This Month
+                                <a id="btnsales"  href="/owner/salesbyproductm" class="btn btn-primary btn-sm ml-auto btnLogin">This Month
                                 </a>
     
-                                <a id="btnsales"  href="/admin/salesbyproducty" class="btn btn-primary btn-sm ml-auto btnLogin">This Year
+                                <a id="btnsales"  href="/owner/salesbyproducty" class="btn btn-primary btn-sm ml-auto btnLogin">This Year
                                 </a>
                            
 
@@ -53,8 +53,8 @@
                                                             
                                                           
                                                             <td>{{$transaction -> product_name}}</td>
-                                                            <td  align="right" data-sort>{{$transaction -> quantity }}</td>
-                                                            <td align="right" >&#8369;{{$transaction -> total_price}}</td>
+                                                            <td align="right" data-sort>{{$transaction -> quantity }}</td>
+                                                            <td align="right">&#8369;{{$transaction -> total_price}}</td>
                                                            
 
                                                           

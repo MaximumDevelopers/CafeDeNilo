@@ -21,7 +21,7 @@ class ProductCategoriesController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.products.product_categories')->with('ProductCategories', $ProductCategories);
+            return view('users.owner.products.product_categories')->with('ProductCategories', $ProductCategories);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.products.product_categories')->with('ProductCategories', $ProductCategories);
@@ -60,7 +60,7 @@ class ProductCategoriesController extends Controller
         $this->validator($request->all())->validate();
 
         $post = new ProductCategories;
-        $post->product_category_name = $request->input('category_name');
+        $post->product_category_name = $request->input('product_category_name');
         $post->save();
         return $this->redirect_route();
     }
@@ -110,7 +110,7 @@ class ProductCategoriesController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return redirect()->route('owner.ProductCategories.index');
+            return redirect()->route('owner.productcategories.index');
         }
         elseif (Auth::check() && Auth::user()->role == 'captain crew') {
             return redirect('/captaincrew');

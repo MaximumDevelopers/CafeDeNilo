@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.owner.app')
 @section('content')
 
 <div id="cf" class="container-fluid">
@@ -8,7 +8,7 @@
                 <div class="card-body">
                         <div class="row">
                                 <h2 id="ct1" class="card-title">Products</h2>
-                                <form action="{{ route('admin.products.create') }}" class="ml-auto">
+                                <form action="{{ route('owner.products.create') }}" class="ml-auto">
                                     <button type="submit"  class="btn btn-primary btn-sm btnLogin">Add Products
                                     </button>
                                 </form>    
@@ -43,7 +43,7 @@
                                                                     
                                                         <td>
                                                             <div class="text-center">
-                                                                <a  href="{{ route('admin.products.edit', $item -> id) }}" style="margin: 0%" class="btn btn-blue btn-sm"  data-id=""  style="font-size: 1rem;">SHOW</a>
+                                                                <a  href="{{ route('owner.products.edit', $item -> id) }}" style="margin: 0%" class="btn btn-blue btn-sm"  data-id=""  style="font-size: 1rem;">SHOW</a>
                                                             </div>
                                                         </td>
 
@@ -64,7 +64,7 @@
                                                                <span aria-hidden="true">&times;</span>
                                                            </button>
                                                        </div>
-                                                       <form action="{{ route('admin.products.destroy', $item -> id) }}" method="post">
+                                                       <form action="{{ route('owner.products.destroy', $item -> id) }}" method="post">
                                                                @csrf
                                                                @method('DELETE')
                                                        <div class="modal-body">

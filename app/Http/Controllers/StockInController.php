@@ -61,7 +61,23 @@ class StockInController extends Controller
         $item_list ->quantity = $total;
         $item_list ->stock_in_date = $dateFormat;
         $item_list->save();
-        return redirect()->route('admin.item_list.index');
+
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return redirect()->route('owner.item_list.index');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return redirect()->route('admin.item_list.index');
+           
+            
+        }
+        else {
+            //return view('users.captain_crew.inventory.stock_in')->with('StockAdjustment', $StockAdjustment);
+        }
+
+        
     }
 
 
@@ -88,7 +104,22 @@ class StockInController extends Controller
         $ItemList = ItemList::where('id', $id)
         ->get();
 
-        return view('users.admin.inventory.stock_in')->with('ItemList', $ItemList);
+        if (Auth::check() && Auth::user()->role == 'barista') {
+            return redirect('/barista');
+        }
+        elseif (Auth::check() && Auth::user()->role == 'owner') {
+            return view('users.owner.inventory.stock_in')->with('ItemList', $ItemList);
+        }
+        elseif (Auth::check() && Auth::user()->role == 'admin') {
+            return view('users.admin.inventory.stock_in')->with('ItemList', $ItemList);
+           
+            
+        }
+        else {
+            //return view('users.captain_crew.inventory.stock_in')->with('StockAdjustment', $StockAdjustment);
+        }
+
+        
     }
 
     /**

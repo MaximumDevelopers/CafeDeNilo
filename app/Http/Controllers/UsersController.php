@@ -18,11 +18,13 @@ class UsersController extends Controller
     public function index()
     {
         $accounts = account::all();
+        $accounts2 = account::where('role', '!=',  'admin')
+        ->get();
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.accounts')->with('accounts', $accounts);
+            return view('users.owner.accounts')->with('accounts', $accounts2);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.accounts')->with('accounts', $accounts);

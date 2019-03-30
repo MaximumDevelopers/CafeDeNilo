@@ -40,11 +40,11 @@ class SMmonthController extends Controller
         ->whereYear('date', $year)
         ->get();
 
-       $profit = DB::table('transactions')
+       /*$profit = DB::table('transactions')
        ->select(DB::raw('(sum(total_price - (discount+vat)) - (select sum(a.result) from (SELECT sum(cl.quantity) as qty, item_name as name, (SELECT  (il.cost * sum(cl.quantity)) FROM item_lists AS il WHERE cl.item_name = il.item_name ) as result FROM critical_level as cl group by cl.item_name)  as a)) as \'profit\''))
        ->whereMonth('date', $date)
         ->whereYear('date', $year)
-        ->get();
+        ->get();*/
 
         $transaction4 = DB::table('transactions')
         ->select(DB::raw('date_format(date, \'%M %Y\')as date ,sum(discount) as discount, id'))
@@ -65,10 +65,10 @@ $date = "month";
         return redirect('/barista');
     }
     elseif (Auth::check() && Auth::user()->role == 'owner') {
-        return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+        return view('users.owner.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
     }
     elseif (Auth::check() && Auth::user()->role == 'admin') {
-        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date)->with('profit', $profit);
+        return view('users.admin.reports.salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
         
     }
     else {
@@ -124,7 +124,7 @@ $date = "month";
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.salessummaryshow')->with('ordered_products', $SSummaryShow);
+            return view('users.owner.reports.salessummaryshow')->with('ordered_products', $SSummaryShow);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.reports.salessummaryshow')->with('ordered_products', $SSummaryShow);

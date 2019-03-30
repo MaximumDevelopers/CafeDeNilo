@@ -21,7 +21,7 @@ class CategoriesController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.admin.items.categories')->with('categories', $categories);
+            return view('users.owner.items.categories')->with('categories', $categories);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.items.categories')->with('categories', $categories);

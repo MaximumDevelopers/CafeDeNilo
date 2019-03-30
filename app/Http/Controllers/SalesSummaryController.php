@@ -23,8 +23,8 @@ class SalesSummaryController extends Controller
             ->get();
 
             $transaction2 = DB::table('transactions')
-            ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price ,sum(total_price - discount + vat) as net_sales, id, cash, discount, vat'))
-            ->orderBy(DB::raw('date_format(date, \'%d\')'), 'asc')
+            ->select(DB::raw('date_format(date, \'%d %M %Y  %h:%i %p\')as date ,sum(total_price) as total_price ,sum(total_price - discount + vat) as net_sales, id, cash, discount, vat'))
+            ->orderBy(DB::raw('date_format(date, \'%d %M %Y  %h:%i %p\')'), 'desc')
             ->groupBy('id')
            
             ->get();
@@ -47,7 +47,7 @@ class SalesSummaryController extends Controller
             return redirect('/barista');
         }
         elseif (Auth::check() && Auth::user()->role == 'owner') {
-            return view('users.owner.inventory.suppliers')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5);
+            return view('users.owner.reports.salessum_transaction')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
         }
         elseif (Auth::check() && Auth::user()->role == 'admin') {
             return view('users.admin.reports.salessum_transaction')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);

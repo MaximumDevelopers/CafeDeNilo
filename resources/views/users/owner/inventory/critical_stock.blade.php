@@ -1,4 +1,4 @@
-@extends('layouts.admin.app')
+@extends('layouts.owner.app')
 @section('content')
 
 <div id="cf" class="container-fluid">
@@ -23,7 +23,7 @@
                                     </button>
                                 </div>
                                 
-                                <form method="POST" action="{{ route('admin.item_list.store')}}">
+                                <form method="POST" action="{{ route('owner.item_list.store')}}">
                                     @csrf
                                     <div class="modal-body mb-1">
 
@@ -111,13 +111,13 @@
                                                 <td align="right">{{$item -> low_stock}}</td>
                                                 <td>
                                                             <div class="text-center">
-                                                                    <a class=" btn-sm form-control btn btn-outline-warning" href="{{ route('admin.stockadjustment.edit',$item -> id)}}" role="button">Stock Adjustment</a>
+                                                                    <a class=" btn-sm form-control btn btn-outline-warning" href="{{ route('owner.stockadjustment.edit',$item -> id)}}" role="button">Stock Adjustment</a>
                                                             </div>
                                 
                                                 </td>
                                                 <td>
                                                                 <div class="text-center">
-                                                                        <a class=" btn-sm form-control btn btn-outline-primary" href="{{ route('admin.stockin.edit',$item -> id)}}" role="button">Stock In</a>
+                                                                        <a class=" btn-sm form-control btn btn-outline-primary" href="{{ route('owner.stockin.edit',$item -> id)}}" role="button">Stock In</a>
                                                                 </div>
                                     
                                                 </td>

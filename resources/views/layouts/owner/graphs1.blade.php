@@ -41,6 +41,7 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+            <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
         @yield('content')
       </div>
     </section>
@@ -54,7 +55,7 @@
 
         <script type="text/javascript" src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <script type="text/javascript" src="js/bootstrap-filestyle.min.js"> </script>
-        <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+        
         <script type="text/javascript" src="{{ asset('js/addons/datatables.js') }}"></script>
         <script type="text/javascript" src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
