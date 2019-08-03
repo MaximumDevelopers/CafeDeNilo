@@ -11,6 +11,14 @@
 |
 */
 
+Route::get('/students','PrintController@index');
+Route::get('/ssm','SalesSummaryController@prnpriview');
+Route::get('/ssmmonth','SMmonthController@prnpriview');
+Route::get('/ssmyear','SMyearController@prnpriview');
+Route::get('/ssmday','SMdayController@prnpriview');
+
+Route::get('generate-pdf','HomeController@generatePDF');
+
 Route::get('/', 'PagesController@index');
 
 Route::get('/Msample', 'PagesController@Msample')->middleware('auth','admin');

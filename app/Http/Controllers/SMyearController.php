@@ -123,6 +123,45 @@ $date = "year";
         }   
     }
 
+
+    public function prnpriview()
+    {
+        $Year = date('Y');
+
+        $transaction = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price, id'))
+        
+        ->get();
+
+        /*$profit = DB::table('transactions')
+        ->select(DB::raw('(sum(total_price - (discount+vat)) - (select sum(a.result) from (SELECT sum(cl.quantity) as qty, item_name as name, (SELECT  (il.cost * sum(cl.quantity)) FROM item_lists AS il WHERE cl.item_name = il.item_name ) as result FROM critical_level as cl group by cl.item_name)  as a)) as \'profit\''))
+        ->whereYear('date', $Year)
+        ->get();*/
+        
+        $transaction2 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price) as total_price ,sum(total_price - (discount + vat)) as net_sales, id'))
+        ->orderBy(DB::raw('date_format(date, \'%Y\')'), 'desc')
+        ->groupBy(DB::raw('date_format(date, \'%Y\')'))
+        ->get();
+        
+        $transaction3 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(total_price - (discount + vat)) as net_sales, id'))
+        
+        ->get();
+
+        $transaction4 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(discount) as discount, id'))
+        ->get();
+
+        $transaction5 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%Y\')as date ,sum(vat) as vat, id'))   
+        ->get();
+
+
+    $date = "year";
+          return view('salesmonth')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

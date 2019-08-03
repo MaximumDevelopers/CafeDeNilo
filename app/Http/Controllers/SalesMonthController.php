@@ -15,21 +15,23 @@ class SalesMonthController extends Controller
      */
     public function index()
     {
-        $curmonth = now()->month;
+        
+        $curyear = now()->year;
         $ordered_products = DB::table('ordered_products')
         ->select(DB::raw('sum(price) as total_price , sum(quantity) as quantity, product_name, created_at'))
-        ->whereMonth('created_at', $curmonth)
-        ->groupBy(DB::raw('date_format(created_at, \'%m\'), product_name'))
+        ->whereYear('created_at', $curyear)
+        ->groupBy(DB::raw('date_format(created_at, \'%Y\')'), 'product_name')
         ->orderBy('quantity', 'desc')
         ->get();
 
         $graph = DB::table('ordered_products')
-                     ->select(DB::raw('sum(price) as total_price , sum(quantity) as quantity, product_name'))
-                     ->whereMonth('created_at', $curmonth)
-                     ->groupBy(DB::raw('date_format(created_at, \'%Y\')'), 'product_name')
-                     ->orderBy('quantity', 'desc')
-                     ->take(5)
-                     ->get();
+        ->select(DB::raw('sum(price) as total_price , sum(quantity) as quantity, product_name'))
+        ->whereYear('created_at', $curyear)
+        ->groupBy(DB::raw('date_format(created_at, \'%Y\')'), 'product_name')
+        ->orderBy('quantity', 'desc')
+        ->take(5)
+        ->get();
+
 
         if (Auth::check() && Auth::user()->role == 'barista') {
             return redirect('/barista');

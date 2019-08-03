@@ -10,6 +10,7 @@ require('./popper.min');
 require('./mdb.min');
 require('./dashboard2');
 require('./adminlte');
+require('./print');
 //require('./bootstrap-select');
 require('./custom');
 

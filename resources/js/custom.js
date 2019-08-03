@@ -399,6 +399,10 @@ $(document).ready(function () {
  
 }); 
 
+$(document).ready(function(){
+	$('.btnprn').printPage();
+	});
+
 function addTR()
 {
     var tr='<tr>'+
@@ -550,3 +554,5 @@ $(document).ready(function(){
        });  
    
    });
+
+   

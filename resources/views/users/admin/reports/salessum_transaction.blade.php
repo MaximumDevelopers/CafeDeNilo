@@ -11,6 +11,8 @@
                     <div class="card-body">
                             <div class="row">
                                     <h2 id="ct1" class="card-title">Sales Summary</h2>
+                                    <a id="btnsales"  href="/ssm" class="btn btnprn btn-primary btn-sm ml-auto btnLogin">Print
+                            </a>
                                     
                             </div>
                             
@@ -26,6 +28,8 @@
 
                             <a id="btnsales"  href="/admin/salesummaryy" class="btn btn-primary btn-sm ml-auto btnLogin">Yearly
                             </a>
+
+                            
 
                             <br>
                             <br>

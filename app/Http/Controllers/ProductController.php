@@ -20,7 +20,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $Product = DB::select("select p.id, pc.product_category_name pname, p.product_name, (sum(i.price * ing.quantity)) price
+        $Product = DB::select("select p.id, pc.product_category_name pname, p.product_name, (sum(i.price * ing.quantity)) price, format(((sum(i.price * ing.quantity))*.12	), 2) vat
         from products p
         Join product_items ing on p.id = ing.products_id
         JOIN  item_lists i ON ing.item_list_id = i.id

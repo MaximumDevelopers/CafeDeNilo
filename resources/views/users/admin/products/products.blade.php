@@ -23,7 +23,8 @@
                                             <th scope="col"></th>
                                             <th scope="col">Product Name</th>
                                             <th scope="col">Category</th>
-                                            <th scope="col">Price</th>
+                                            <th scope="col">VATable Sales</th>
+                                            <th scope="col">VAT</th>
 
                                             <th scope="col"></th>
                                             <th scope="col"></th>
@@ -40,6 +41,7 @@
 
                                                         <td>{{$item -> pname}}</td>
                                                         <td align="right">&#8369;{{$item -> price}}</td>
+                                                        <td align="right">&#8369;{{$item -> vat}}</td>
                                                                     
                                                         <td>
                                                             <div class="text-center">

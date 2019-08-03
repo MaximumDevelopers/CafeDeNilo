@@ -11,7 +11,25 @@
                     <div class="card-body">
                             <div class="row">
                                     <h2 id="ct1" class="card-title">Sales Summary</h2>
+
                                     
+                                    
+                                                   @if ($date == "day")
+                                                   <a id="btnsales"  href="/ssmday" class="btn btnprn btn-primary btn-sm ml-auto btnLogin">Print
+                                                   </a>
+                                                  
+                                                   @elseif($date == "month")
+                                                   <a id="btnsales"  href="/ssmmonth" class="btn btnprn btn-primary btn-sm ml-auto btnLogin">Print
+                                                   </a>
+                        
+                                                   @elseif($date == "year")
+                                                   <a id="btnsales"  href="/ssmyear" class="btn btnprn btn-primary btn-sm ml-auto btnLogin">Print
+                                                   </a>
+                                                   
+                                                   @endif
+
+
+                                   
                             </div>
                             
                             <a id="btnsales"  href="/admin/salesummary" class="btn btn-primary btn-sm ml-auto btnLogin">Per Transaction

@@ -19,7 +19,6 @@ class SalesSummaryController extends Controller
     {
         $transaction = DB::table('transactions')
             ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price, id'))
-            
             ->get();
 
             $transaction2 = DB::table('transactions')
@@ -58,6 +57,34 @@ class SalesSummaryController extends Controller
         }    
             
     }
+
+    public function prnpriview()
+      {
+        $transaction = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price, id'))
+        ->get();
+
+        $transaction2 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y  %h:%i %p\')as date ,sum(total_price) as total_price ,sum(total_price - discount + vat) as net_sales, id, cash, discount, vat'))
+        ->orderBy(DB::raw('date_format(date, \'%d %M %Y  %h:%i %p\')'), 'desc')
+        ->groupBy('id')
+       
+        ->get();
+        
+        $transaction3 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,(sum(total_price) - discount + vat) as net_sales, id'))
+        ->get();
+
+        $transaction4 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(discount) as discount, id'))
+        ->get();
+
+        $transaction5 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(vat) as vat, id'))
+        ->get();
+        $date = "day";
+            return view('salessummary')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+      }
 
     /**
      * Show the form for creating a new resource.

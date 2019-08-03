@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\ItemList;
-use App\categories;
+use App\Categories;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
@@ -84,7 +84,8 @@ class ItemListController extends Controller
 
     public function price($cost)
     {
-        $price = ($cost * .50) + $cost;
+        //$price = ($cost * .50) + $cost;
+        $price = $cost;
         return $price;
     }
 

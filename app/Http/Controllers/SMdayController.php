@@ -65,6 +65,45 @@ class SMdayController extends Controller
     }    
     }
 
+    public function prnpriview()
+    {
+        $Product = DB::statement("SET time_zone = \"+08:00\"");
+
+        $transaction = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price,id'))
+        ->whereDate('date', DB::raw('CURDATE()'))
+        ->get();
+
+        $transaction2 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(total_price) as total_price,sum(total_price - (discount + vat)) as net_sales, id'))     
+        ->orderBy(DB::raw('date_format(date, \'%d %M %Y\')'), 'desc')
+        ->groupBy(DB::raw('date_format(date, \'%d\')'))
+        ->get();
+        
+            /*$profit = DB::table('transactions')
+            ->select(DB::raw('(sum(total_price - (discount+vat)) - (select sum(a.result) from (SELECT sum(cl.quantity) as qty, item_name as name, (SELECT  (il.cost * sum(cl.quantity)) FROM item_lists AS il WHERE cl.item_name = il.item_name ) as result FROM critical_level as cl group by cl.item_name)  as a)) as \'profit\''))
+            ->whereDate('date', DB::raw('CURDATE()'))
+            ->get();*/
+
+        $transaction3 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date,sum(total_price - (discount + vat)) as net_sales, id'))
+        ->whereDate('date', DB::raw('CURDATE()'))
+        ->get();
+
+        $transaction4 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(discount) as discount , id'))
+        ->whereDate('date', DB::raw('CURDATE()'))
+        ->get();
+
+        $transaction5 = DB::table('transactions')
+        ->select(DB::raw('date_format(date, \'%d %M %Y\')as date ,sum(vat) as vat, id'))
+        ->whereDate('date', DB::raw('CURDATE()'))
+        ->get();
+
+        $date = "day";
+          return view('salesmonth')->with('ordered_products', $transaction)->with('ordered_products2', $transaction2)->with('ordered_products3', $transaction3)->with('ordered_products4', $transaction4)->with('ordered_products5', $transaction5)->with('date', $date);
+    }
+
     /**
      * Show the form for creating a new resource.
      *
